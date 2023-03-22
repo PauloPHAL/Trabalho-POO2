@@ -1,6 +1,7 @@
-
 package Gerencia;
 
+import Interface.CadastrarFabricante;
+import Interface.CadastrarModelo;
 import Interface.Principal;
 import java.awt.Frame;
 import java.lang.reflect.InvocationTargetException;
@@ -14,12 +15,15 @@ import javax.swing.JOptionPane;
 public class GerTarefasGraficas {
     //acessos
     private Principal frmPrincipal;
-    
+    private CadastrarFabricante dlgCadFabricante;
+    private CadastrarModelo dlgCadModelo;
     private GerTarefasDao gerenciaDAO;
     
     //construtor
     public GerTarefasGraficas(){
         this.frmPrincipal = null;
+        this.dlgCadFabricante = null;
+        this.dlgCadModelo = null;
 //        try {
 //            this.gerenciaDAO = new GerTarefasDao();
 //        } catch (ClassNotFoundException | SQLException ex) {
@@ -35,20 +39,26 @@ public class GerTarefasGraficas {
                 try {
                     dlg = (JDialog) classe.getConstructor(Frame.class, boolean.class, GerTarefasGraficas.class).newInstance(parent,true,this);
                 } catch (InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException ex) {
-                    
+                    JOptionPane.showMessageDialog(frmPrincipal, "Erro!: "+ex);
                 }
             } catch (NoSuchMethodException | SecurityException ex) {
-                
+                JOptionPane.showMessageDialog(frmPrincipal, "Erro!: "+ex);
             }       
         }
         dlg.setVisible(true);
         return dlg;
     }
-    private void abrirPrincipal(){
+    public void abrirPrincipal(){
         if(this.frmPrincipal == null){
             frmPrincipal = new Principal(this);
         }
         frmPrincipal.setVisible(true);
+    }
+    public void abrirCadFabricante(){
+        dlgCadFabricante = (CadastrarFabricante) abrirJanela(frmPrincipal,dlgCadFabricante,CadastrarFabricante.class);
+    }
+    public void abrirCadModelo(){
+        dlgCadModelo = (CadastrarModelo) abrirJanela(frmPrincipal,dlgCadModelo,CadastrarModelo.class);
     }
     
     //-----------------------------------------------------------------------------------------
@@ -62,10 +72,10 @@ public class GerTarefasGraficas {
                     break;
                 }
             }
-            GerTarefasGraficas gerencia = new GerTarefasGraficas();
-            gerencia.abrirPrincipal();
         }catch(ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex){
             java.util.logging.Logger.getLogger(Principal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        GerTarefasGraficas gerencia = new GerTarefasGraficas();
+        gerencia.abrirPrincipal();
     }  
 }
