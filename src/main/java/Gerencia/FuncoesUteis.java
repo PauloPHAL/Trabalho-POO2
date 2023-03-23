@@ -50,5 +50,15 @@ public class FuncoesUteis {
         return dtForm.format(dt);
     }
     
+    //converter string em numero
+    public static int stringToInt(String str) {
+        int num = Integer.parseInt(str);
+        return num;
+    }
+    public static double stringToDouble(String str) {
+        double num = Double.parseDouble(str);
+        return num;
+    }
+    
     
 }

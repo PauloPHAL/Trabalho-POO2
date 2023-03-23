@@ -3,6 +3,8 @@ package Gerencia;
 import Interface.CadastrarFabricante;
 import Interface.CadastrarModelo;
 import Interface.CadastrarPais;
+import Interface.PesquisarFabricante;
+import Interface.PesquisarModelo;
 import Interface.Principal;
 import java.awt.Frame;
 import java.lang.reflect.InvocationTargetException;
@@ -16,14 +18,17 @@ import javax.swing.JOptionPane;
 public class GerTarefasGraficas {
     //acessos
     private Principal frmPrincipal;
-    //------------------
+    //------------------ Cadastro
     private CadastrarFabricante dlgCadFabricante;
     private CadastrarModelo dlgCadModelo;
     //private CadastrarAeronave dlgCadAeronave;
     private CadastrarPais dlgCadPais;
-    //------------------
     
+    //------------------ Pesquisa
+    private PesquisarFabricante dlgPesqFabricante;
+    private PesquisarModelo dlgPesqModelo;
     
+    //------------------ Genrencia de Dominio
     private GerTarefasDao gerenciaDAO;
     
     //construtor
@@ -33,6 +38,8 @@ public class GerTarefasGraficas {
         this.dlgCadModelo = null;
         //this.dlgCadAeronave = null;
         this.dlgCadPais = null;
+        this.dlgPesqFabricante = null;
+        this.dlgPesqModelo = null;
 //        try {
 //            this.gerenciaDAO = new GerTarefasDao();
 //        } catch (ClassNotFoundException | SQLException ex) {
@@ -75,7 +82,12 @@ public class GerTarefasGraficas {
     public void abrirCadPais(){
         dlgCadPais = (CadastrarPais) abrirJanela(frmPrincipal,dlgCadPais,CadastrarPais.class);
     }
-    
+    public void abrirPesqFabricante(){
+        dlgPesqFabricante = (PesquisarFabricante) abrirJanela(frmPrincipal,dlgPesqFabricante,PesquisarFabricante.class);
+    }
+    public void abrirPesqModelo(){
+        dlgPesqModelo = (PesquisarModelo) abrirJanela(frmPrincipal,dlgPesqModelo,PesquisarModelo.class);
+    }
     //-----------------------------------------------------------------------------------------
     
     //main
