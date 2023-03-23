@@ -1,8 +1,10 @@
 package Gerencia;
 
+import Interface.CadastrarAeronave;
 import Interface.CadastrarFabricante;
 import Interface.CadastrarModelo;
 import Interface.CadastrarPais;
+import Interface.PesquisarAeronave;
 import Interface.PesquisarFabricante;
 import Interface.PesquisarModelo;
 import Interface.Principal;
@@ -21,27 +23,29 @@ public class GerTarefasGraficas {
     //------------------ Cadastro
     private CadastrarFabricante dlgCadFabricante;
     private CadastrarModelo dlgCadModelo;
-    //private CadastrarAeronave dlgCadAeronave;
+    private CadastrarAeronave dlgCadAeronave;
     private CadastrarPais dlgCadPais;
     
     //------------------ Pesquisa
     private PesquisarFabricante dlgPesqFabricante;
     private PesquisarModelo dlgPesqModelo;
+    private PesquisarAeronave dlgPesqAeronave;
     
     //------------------ Genrencia de Dominio
-    private GerTarefasDao gerenciaDAO;
+    private GerTarefasDaoDominio gerenciaDaoDominio;
     
     //construtor
     public GerTarefasGraficas(){
         this.frmPrincipal = null;
         this.dlgCadFabricante = null;
         this.dlgCadModelo = null;
-        //this.dlgCadAeronave = null;
+        this.dlgCadAeronave = null;
         this.dlgCadPais = null;
         this.dlgPesqFabricante = null;
         this.dlgPesqModelo = null;
+        this.dlgPesqAeronave = null;
 //        try {
-//            this.gerenciaDAO = new GerTarefasDao();
+//            this.gerenciaDaoDominio = new GerTarefasDaoDominio();
 //        } catch (ClassNotFoundException | SQLException ex) {
 //            JOptionPane.showMessageDialog(this.frmPrincipal, ex);
 //            System.exit(-1);
@@ -77,7 +81,7 @@ public class GerTarefasGraficas {
         dlgCadModelo = (CadastrarModelo) abrirJanela(frmPrincipal,dlgCadModelo,CadastrarModelo.class);
     }
     public void abrirCadAeronave(){
-        //dlgCadAeronave = (CadastrarAeronave) abrirJanela(frmPrincipal,dlgCadAeronave,CadastrarAeronave.class);
+        dlgCadAeronave = (CadastrarAeronave) abrirJanela(frmPrincipal,dlgCadAeronave,CadastrarAeronave.class);
     }
     public void abrirCadPais(){
         dlgCadPais = (CadastrarPais) abrirJanela(frmPrincipal,dlgCadPais,CadastrarPais.class);
@@ -87,6 +91,14 @@ public class GerTarefasGraficas {
     }
     public void abrirPesqModelo(){
         dlgPesqModelo = (PesquisarModelo) abrirJanela(frmPrincipal,dlgPesqModelo,PesquisarModelo.class);
+    }
+    public void abrirPesqAeronave(){
+        dlgPesqAeronave = (PesquisarAeronave) abrirJanela(frmPrincipal,dlgPesqAeronave,PesquisarAeronave.class);
+    }
+    //-----------------------------------------------------------------------------------------
+    //Acesso a classe Gerencia de Dominio e DAO
+    public GerTarefasDaoDominio getGerenciaDaoDominio() {
+        return gerenciaDaoDominio;
     }
     //-----------------------------------------------------------------------------------------
     

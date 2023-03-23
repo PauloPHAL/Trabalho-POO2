@@ -2,17 +2,17 @@ package Interface;
 
 import Gerencia.GerTarefasGraficas;
 
-public class PesquisarFabricante extends javax.swing.JDialog {
-    //acessos
+public class PesquisarAeronave extends javax.swing.JDialog {
+    //acesso
     private GerTarefasGraficas gerTarefas;
     
-    //construtor   
-    public PesquisarFabricante(java.awt.Frame parent, boolean modal,GerTarefasGraficas gerTarefas) {
+    //construtor
+    public PesquisarAeronave(java.awt.Frame parent, boolean modal, GerTarefasGraficas gerTarefas) {
         super(parent, modal);
         initComponents();
         this.gerTarefas = gerTarefas;
     }
-  
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -27,7 +27,7 @@ public class PesquisarFabricante extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "PESQUISAR FABRICANTES", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 18), new java.awt.Color(0, 0, 204))); // NOI18N
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "PESQUISAR AERONAVES", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 18), new java.awt.Color(0, 0, 204))); // NOI18N
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/intergraf/imagens/find.gif"))); // NOI18N
         jButton1.setText("Procurar");
@@ -37,7 +37,7 @@ public class PesquisarFabricante extends javax.swing.JDialog {
 
             },
             new String [] {
-                "Nome", "Pais"
+                "Codigo", "Modelo", "Fabricante"
             }
         ));
         jScrollPane1.setViewportView(jTable1);
@@ -99,9 +99,7 @@ public class PesquisarFabricante extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     
-    
-    
-    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;

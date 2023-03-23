@@ -10,6 +10,7 @@ public class Principal extends javax.swing.JFrame {
     //construtor
     public Principal(GerTarefasGraficas gerTarefas) {
         initComponents();
+        setLocationRelativeTo(null);
         this.gerTarefas = gerTarefas;
     }
 
