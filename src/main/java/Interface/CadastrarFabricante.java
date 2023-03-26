@@ -38,6 +38,11 @@ public class CadastrarFabricante extends javax.swing.JDialog {
 
         lblFoto.setText("Foto");
         lblFoto.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        lblFoto.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblFotoMouseClicked(evt);
+            }
+        });
 
         jLabel2.setText("NOME:");
 
@@ -168,6 +173,10 @@ public class CadastrarFabricante extends javax.swing.JDialog {
     private void btlPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btlPesquisarActionPerformed
         gerTarefas.abrirPesqFabricante();
     }//GEN-LAST:event_btlPesquisarActionPerformed
+
+    private void lblFotoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblFotoMouseClicked
+        gerTarefas.abrirFoto(lblFoto);     
+    }//GEN-LAST:event_lblFotoMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

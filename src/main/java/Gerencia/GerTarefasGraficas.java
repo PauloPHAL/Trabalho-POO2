@@ -9,12 +9,19 @@ import Interface.PesquisarFabricante;
 import Interface.PesquisarModelo;
 import Interface.Principal;
 import java.awt.Frame;
+import java.awt.Image;
+import java.io.File;
 import java.lang.reflect.InvocationTargetException;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JDialog;
+import javax.swing.JFileChooser;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 
 public class GerTarefasGraficas {
@@ -101,7 +108,24 @@ public class GerTarefasGraficas {
         return gerenciaDaoDominio;
     }
     //-----------------------------------------------------------------------------------------
-    
+    //Abrir Foto
+    public void abrirFoto(JLabel lblFoto){
+        JFileChooser janArq = new JFileChooser();      
+        janArq.setAcceptAllFileFilterUsed(false);
+        janArq.setFileFilter( new FileNameExtensionFilter("Arquivos de imagem", "jpg", "png", "gif", "bmp") );
+        janArq.addChoosableFileFilter( new FileNameExtensionFilter("Arquivos de texto", "txt", "doc", "docx") );     
+        if ( janArq.showOpenDialog(dlgCadFabricante) == JFileChooser.APPROVE_OPTION  ) {
+            File arquivo = janArq.getSelectedFile();
+            Icon imagem = new ImageIcon( arquivo.getAbsolutePath() );         
+            mostrarFoto(imagem,lblFoto);
+        }
+    }
+    private void mostrarFoto(Icon ic, JLabel lblFoto){
+        ImageIcon imagem = (ImageIcon) ic;
+        imagem.setImage(imagem.getImage().getScaledInstance(lblFoto.getWidth(), lblFoto.getHeight(), Image.SCALE_DEFAULT));      
+        lblFoto.setText("");                
+        lblFoto.setIcon(imagem);    
+    }   
     //main
     public static void main(String[] args) {
         try{
