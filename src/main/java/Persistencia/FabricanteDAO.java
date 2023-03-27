@@ -1,4 +1,4 @@
-package Dao;
+package Persistencia;
 
 public class FabricanteDAO {
     
