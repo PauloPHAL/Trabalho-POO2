@@ -77,6 +77,11 @@ public class CadastrarModelo extends javax.swing.JDialog {
 
         btlSair.setIcon(new javax.swing.ImageIcon(getClass().getResource("/intergraf/imagens/remove.png"))); // NOI18N
         btlSair.setText("Cancelar");
+        btlSair.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btlSairActionPerformed(evt);
+            }
+        });
 
         btlAdd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/intergraf/imagens/add.png"))); // NOI18N
         btlAdd.setText("Adicionar");
@@ -206,6 +211,10 @@ public class CadastrarModelo extends javax.swing.JDialog {
     private void lblFotoModeloMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblFotoModeloMouseClicked
         gerTarefas.abrirFoto(lblFotoModelo);
     }//GEN-LAST:event_lblFotoModeloMouseClicked
+
+    private void btlSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btlSairActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_btlSairActionPerformed
 
     
 

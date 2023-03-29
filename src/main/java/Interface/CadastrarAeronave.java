@@ -47,6 +47,11 @@ public class CadastrarAeronave extends javax.swing.JDialog {
 
         btlSair.setIcon(new javax.swing.ImageIcon(getClass().getResource("/intergraf/imagens/remove.png"))); // NOI18N
         btlSair.setText("Cancelar");
+        btlSair.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btlSairActionPerformed(evt);
+            }
+        });
 
         try {
             txtData.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
@@ -142,6 +147,10 @@ public class CadastrarAeronave extends javax.swing.JDialog {
     private void btlPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btlPesquisarActionPerformed
         gerTarefas.abrirPesqAeronave();
     }//GEN-LAST:event_btlPesquisarActionPerformed
+
+    private void btlSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btlSairActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_btlSairActionPerformed
 
     
 
