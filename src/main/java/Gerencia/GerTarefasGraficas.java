@@ -8,6 +8,7 @@ import Interface.PesquisarAeronave;
 import Interface.PesquisarFabricante;
 import Interface.PesquisarModelo;
 import Interface.Principal;
+import java.awt.Cursor;
 import java.awt.Frame;
 import java.awt.Image;
 import java.io.File;
@@ -19,6 +20,7 @@ import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JDialog;
 import javax.swing.JFileChooser;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -125,7 +127,21 @@ public class GerTarefasGraficas {
         imagem.setImage(imagem.getImage().getScaledInstance(lblFoto.getWidth(), lblFoto.getHeight(), Image.SCALE_DEFAULT));      
         lblFoto.setText("");                
         lblFoto.setIcon(imagem);    
-    }   
+    }
+    //-----------------------------------------------------------------------------------------
+    //cursor Dialog e Frame
+    public void cursorDentro(JFrame janela){
+        janela.setCursor(new Cursor(Cursor.HAND_CURSOR));
+    }
+    public void cursorFora(JFrame janela){
+        janela.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+    }
+    public void cursorDentro(JDialog janela){
+        janela.setCursor(new Cursor(Cursor.HAND_CURSOR));
+    }
+    public void cursorFora(JDialog janela){
+        janela.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+    }
     //main
     public static void main(String[] args) {
         try{
