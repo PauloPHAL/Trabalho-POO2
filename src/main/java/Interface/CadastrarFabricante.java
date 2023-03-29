@@ -188,7 +188,7 @@ public class CadastrarFabricante extends javax.swing.JDialog {
     }//GEN-LAST:event_btlPesquisarActionPerformed
 
     private void lblFotoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblFotoMouseClicked
-        gerTarefas.abrirFoto(lblFoto);     
+        gerTarefas.abrirFoto(lblFoto,this);     
     }//GEN-LAST:event_lblFotoMouseClicked
 
     private void btlSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btlSairActionPerformed

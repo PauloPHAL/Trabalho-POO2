@@ -217,7 +217,7 @@ public class CadastrarModelo extends javax.swing.JDialog {
     }//GEN-LAST:event_btlPesquisarActionPerformed
 
     private void lblFotoModeloMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblFotoModeloMouseClicked
-        gerTarefas.abrirFoto(lblFotoModelo);
+        gerTarefas.abrirFoto(lblFotoModelo,this);
     }//GEN-LAST:event_lblFotoModeloMouseClicked
 
     private void btlSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btlSairActionPerformed

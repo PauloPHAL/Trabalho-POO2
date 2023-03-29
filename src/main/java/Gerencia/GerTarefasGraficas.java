@@ -111,12 +111,12 @@ public class GerTarefasGraficas {
     }
     //-----------------------------------------------------------------------------------------
     //Abrir Foto
-    public void abrirFoto(JLabel lblFoto){
+    public void abrirFoto(JLabel lblFoto,JDialog janela){
         JFileChooser janArq = new JFileChooser();      
         janArq.setAcceptAllFileFilterUsed(false);
         janArq.setFileFilter( new FileNameExtensionFilter("Arquivos de imagem", "jpg", "png", "gif", "bmp") );
         janArq.addChoosableFileFilter( new FileNameExtensionFilter("Arquivos de texto", "txt", "doc", "docx") );     
-        if ( janArq.showOpenDialog(frmPrincipal) == JFileChooser.APPROVE_OPTION  ) {
+        if ( janArq.showOpenDialog(janela) == JFileChooser.APPROVE_OPTION  ) {
             File arquivo = janArq.getSelectedFile();
             Icon imagem = new ImageIcon( arquivo.getAbsolutePath() );         
             mostrarFoto(imagem,lblFoto);
