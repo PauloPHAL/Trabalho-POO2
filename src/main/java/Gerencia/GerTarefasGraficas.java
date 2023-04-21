@@ -13,9 +13,6 @@ import java.awt.Frame;
 import java.awt.Image;
 import java.io.File;
 import java.lang.reflect.InvocationTargetException;
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JDialog;
@@ -53,12 +50,9 @@ public class GerTarefasGraficas {
         this.dlgPesqFabricante = null;
         this.dlgPesqModelo = null;
         this.dlgPesqAeronave = null;
-//        try {
-//            this.gerenciaDaoDominio = new GerTarefasDaoDominio();
-//        } catch (ClassNotFoundException | SQLException ex) {
-//            JOptionPane.showMessageDialog(this.frmPrincipal, ex);
-//            System.exit(-1);
-//        }
+        
+        //Conexao
+        this.gerenciaDaoDominio = new GerTarefasDaoDominio();       
     }
        
     //Abrir Janelas   
