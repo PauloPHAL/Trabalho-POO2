@@ -17,15 +17,11 @@ public class Aeronave implements Serializable{
     @Temporal (TemporalType.DATE)
     private Date dataCompra;
     
-    @ManyToOne
+    @OneToOne  (cascade = CascadeType.ALL, fetch = FetchType.EAGER )
     @JoinColumn (name="idModelo")
     private Modelo modelo;
 
-    public Aeronave(String numeroSerie, Date dataCompra, Modelo modelo) {
-        this.numeroSerie = numeroSerie;
-        this.dataCompra = dataCompra;
-        this.modelo = modelo;
-    }
+    
     
     
     

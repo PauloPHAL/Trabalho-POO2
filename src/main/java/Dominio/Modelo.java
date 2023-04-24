@@ -26,18 +26,16 @@ public class Modelo implements Serializable{
     @Lob
     private byte[] fotoModelo;
     
+    @OneToOne (mappedBy = "modelo" )
+    @MapsId
+    @JoinColumn ( name= "idModelo" )
+    private Aeronave aeronave;
+    
     @ManyToOne (fetch = FetchType.EAGER)
     @JoinColumn (name="idFabricante")
     private Fabricante fabricante;
 
-    public Modelo(String nome, String tipo, int capacidade, Date dataModelo, byte[] fotoModelo, Fabricante fabricante) {
-        this.nome = nome;
-        this.tipo = tipo;
-        this.capacidade = capacidade;
-        this.dataModelo = dataModelo;
-        this.fotoModelo = fotoModelo;
-        this.fabricante = fabricante;
-    }
+    
     
     
 }

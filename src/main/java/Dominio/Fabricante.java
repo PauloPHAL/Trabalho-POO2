@@ -28,13 +28,7 @@ public class Fabricante implements Serializable{
     @OneToMany (mappedBy = "fabricante",fetch = FetchType.LAZY)
     private List<Modelo> modelo;
 
-    public Fabricante(String nome, String pais, Date dataFundacao, byte[] logo, List<Modelo> modelo) {
-        this.nome = nome;
-        this.pais = pais;
-        this.dataFundacao = dataFundacao;
-        this.logo = logo;
-        this.modelo = modelo;
-    }
+    
     
     
     
