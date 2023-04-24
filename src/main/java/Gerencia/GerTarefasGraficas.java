@@ -1,27 +1,11 @@
 package Gerencia;
 
-import Interface.CadastrarAeronave;
-import Interface.CadastrarFabricante;
-import Interface.CadastrarModelo;
-import Interface.CadastrarPais;
-import Interface.PesquisarAeronave;
-import Interface.PesquisarFabricante;
-import Interface.PesquisarModelo;
-import Interface.Principal;
-import java.awt.Cursor;
-import java.awt.Frame;
-import java.awt.Image;
+import Interface.*;
+import java.awt.*;
 import java.io.File;
 import java.lang.reflect.InvocationTargetException;
-import javax.swing.Icon;
-import javax.swing.ImageIcon;
-import javax.swing.JDialog;
-import javax.swing.JFileChooser;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
-
+import javax.swing.*;
 
 public class GerTarefasGraficas {
     //acessos
