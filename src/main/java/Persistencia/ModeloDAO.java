@@ -4,6 +4,16 @@ import Dominio.Modelo;
 import java.util.List;
 
 public class ModeloDAO {
+    // padrao Singleton
+    private static ModeloDAO gerenciador; 
+    private ModeloDAO(){
+    }
+    public static ModeloDAO getConexão(){
+        if(gerenciador == null){
+            gerenciador = new ModeloDAO();
+        }
+        return gerenciador;
+    }
     //CRUD:
     //----------------------------------------------------------------
     public void inserirModelo(Modelo modelo){      

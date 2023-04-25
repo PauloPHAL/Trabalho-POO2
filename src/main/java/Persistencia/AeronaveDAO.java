@@ -1,10 +1,19 @@
 package Persistencia;
 
 import Dominio.Aeronave;
-import java.sql.SQLException;
 import java.util.List;
 
 public class AeronaveDAO {
+    // padrao Singleton
+    private static AeronaveDAO gerenciador; 
+    private AeronaveDAO(){
+    }
+    public static AeronaveDAO getConexão(){
+        if(gerenciador == null){
+            gerenciador = new AeronaveDAO();
+        }
+        return gerenciador;
+    }
     //CRUD:
     //----------------------------------------------------------------
     public void inserirAeronave(Aeronave aeronave){      

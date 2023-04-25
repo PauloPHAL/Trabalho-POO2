@@ -4,6 +4,16 @@ import Dominio.Fabricante;
 import java.util.List;
 
 public class FabricanteDAO {
+    // padrao Singleton
+    private static FabricanteDAO gerenciador; 
+    private FabricanteDAO(){
+    }
+    public static FabricanteDAO getConexão(){
+        if(gerenciador == null){
+            gerenciador = new FabricanteDAO();
+        }
+        return gerenciador;
+    }
     //CRUD:
     //----------------------------------------------------------------
     public void inserirFabricante(Fabricante fabricante){      

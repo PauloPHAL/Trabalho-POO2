@@ -36,7 +36,7 @@ public class GerTarefasGraficas {
         this.dlgPesqAeronave = null;
         
         //Conexao
-        this.gerenciaDaoDominio = new GerTarefasDaoDominio();       
+        this.gerenciaDaoDominio = GerTarefasDaoDominio.getConexão();
     }
        
     //Abrir Janelas   
