@@ -2,6 +2,7 @@ package Dominio;
 
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.*;
@@ -25,8 +26,8 @@ public class Fabricante implements Serializable{
     @Lob
     private byte[] logo;
     
-    @OneToMany (mappedBy = "fabricante",fetch = FetchType.LAZY)
-    private List<Modelo> modelo;
+    
+    private List<Modelo> modelo = new ArrayList<>();
 
     
     

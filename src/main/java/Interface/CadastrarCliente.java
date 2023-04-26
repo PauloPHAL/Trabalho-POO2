@@ -18,6 +18,7 @@ public class CadastrarCliente extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        grpSexo = new javax.swing.ButtonGroup();
         jPanel5 = new javax.swing.JPanel();
         lblNome = new javax.swing.JLabel();
         txtCelular = new javax.swing.JTextField();
@@ -39,6 +40,14 @@ public class CadastrarCliente extends javax.swing.JDialog {
         btlAlterar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                formMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                formMouseExited(evt);
+            }
+        });
         getContentPane().setLayout(new javax.swing.BoxLayout(getContentPane(), javax.swing.BoxLayout.LINE_AXIS));
 
         jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createTitledBorder(""), "Cadastro de Cliente", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 14), new java.awt.Color(51, 51, 255))); // NOI18N
@@ -92,6 +101,15 @@ public class CadastrarCliente extends javax.swing.JDialog {
         lblFoto.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblFoto.setText("Foto");
         lblFoto.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        lblFoto.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+                lblFotoAncestorAdded(evt);
+            }
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+        });
         lblFoto.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 lblFotoMouseClicked(evt);
@@ -101,6 +119,7 @@ public class CadastrarCliente extends javax.swing.JDialog {
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Sexo"));
         jPanel2.setLayout(new java.awt.BorderLayout());
 
+        grpSexo.add(rdbFemin);
         rdbFemin.setMnemonic('F');
         rdbFemin.setText("Feminino");
         rdbFemin.setActionCommand("Feminino");
@@ -109,6 +128,7 @@ public class CadastrarCliente extends javax.swing.JDialog {
         rdbFemin.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/intergraf/imagens/rbrs.gif"))); // NOI18N
         jPanel2.add(rdbFemin, java.awt.BorderLayout.CENTER);
 
+        grpSexo.add(rdbMasc);
         rdbMasc.setMnemonic('M');
         rdbMasc.setSelected(true);
         rdbMasc.setText("Masculino");
@@ -214,16 +234,28 @@ public class CadastrarCliente extends javax.swing.JDialog {
     }//GEN-LAST:event_btnNovoActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
-        
+        this.dispose();
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarActionPerformed
-   
+        gerTarefas.abrirPesqCliente();
     }//GEN-LAST:event_btnPesquisarActionPerformed
 
     private void lblFotoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblFotoMouseClicked
-
+        gerTarefas.abrirFoto(lblFoto, this);
     }//GEN-LAST:event_lblFotoMouseClicked
+
+    private void formMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseEntered
+        gerTarefas.cursorFora(this);
+    }//GEN-LAST:event_formMouseEntered
+
+    private void formMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseExited
+        gerTarefas.cursorDentro(this);
+    }//GEN-LAST:event_formMouseExited
+
+    private void lblFotoAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_lblFotoAncestorAdded
+        
+    }//GEN-LAST:event_lblFotoAncestorAdded
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -231,6 +263,7 @@ public class CadastrarCliente extends javax.swing.JDialog {
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnNovo;
     private javax.swing.JButton btnPesquisar;
+    private javax.swing.ButtonGroup grpSexo;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JLabel lblCpf;

@@ -1,7 +1,9 @@
 package Dominio;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.*;
 
 @Entity
@@ -26,13 +28,11 @@ public class Modelo implements Serializable{
     @Lob
     private byte[] fotoModelo;
     
-    @OneToOne (mappedBy = "modelo" )
-    @MapsId
-    @JoinColumn ( name= "idModelo" )
+    private List<Aeronave> listAeronave = new ArrayList<>();
+    
     private Aeronave aeronave;
     
-    @ManyToOne (fetch = FetchType.EAGER)
-    @JoinColumn (name="idFabricante")
+    
     private Fabricante fabricante;
 
     

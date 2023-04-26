@@ -1,7 +1,9 @@
 package Dominio;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.*;
 
 @Entity
@@ -17,8 +19,8 @@ public class Aeronave implements Serializable{
     @Temporal (TemporalType.DATE)
     private Date dataCompra;
     
-    @OneToOne  (cascade = CascadeType.ALL, fetch = FetchType.EAGER )
-    @JoinColumn (name="idModelo")
+    private List<Locacao> locacao = new ArrayList<>();
+    
     private Modelo modelo;
 
     
