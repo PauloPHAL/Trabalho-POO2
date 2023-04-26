@@ -22,7 +22,4 @@ public class GerTarefasDaoDominio {
         return gerenciador;
     }
     
-    public void inserirAeronave(){
-        aeronaveDao.inserirAeronave(null);
-    }
 }
