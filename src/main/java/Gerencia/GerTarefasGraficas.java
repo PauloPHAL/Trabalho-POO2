@@ -15,11 +15,15 @@ public class GerTarefasGraficas {
     private CadastrarModelo dlgCadModelo;
     private CadastrarAeronave dlgCadAeronave;
     private CadastrarPais dlgCadPais;
+    private CadastrarLocacao dlgCadLocacao;
+    private CadastrarCliente dlgCadCliente;
     
     //------------------ Pesquisa
     private PesquisarFabricante dlgPesqFabricante;
     private PesquisarModelo dlgPesqModelo;
     private PesquisarAeronave dlgPesqAeronave;
+    private PesquisarLocacao dlgPesqLocacao;
+    private PesquisarCliente dlgPesqCliente;
     
     //------------------ Genrencia de Dominio
     private GerTarefasDaoDominio gerenciaDaoDominio;
@@ -33,7 +37,11 @@ public class GerTarefasGraficas {
         this.dlgCadPais = null;
         this.dlgPesqFabricante = null;
         this.dlgPesqModelo = null;
-        this.dlgPesqAeronave = null;
+        this.dlgPesqAeronave = null;      
+        this.dlgPesqCliente = null;
+        this.dlgPesqLocacao = null;
+        this.dlgCadCliente = null;
+        this.dlgCadLocacao = null;
         
         //Conexao
         this.gerenciaDaoDominio = GerTarefasDaoDominio.getConexão();
@@ -69,7 +77,13 @@ public class GerTarefasGraficas {
     }
     public void abrirCadAeronave(){
         dlgCadAeronave = (CadastrarAeronave) abrirJanela(frmPrincipal,dlgCadAeronave,CadastrarAeronave.class);
+    }  
+    public void abrirCadCliente(){
+        dlgCadCliente = (CadastrarCliente) abrirJanela(frmPrincipal,dlgCadCliente,CadastrarCliente.class);
     }
+    public void abrirCadLocacao(){
+        dlgCadLocacao = (CadastrarLocacao) abrirJanela(frmPrincipal,dlgCadLocacao,CadastrarLocacao.class);
+    }  
     public void abrirCadPais(){
         dlgCadPais = (CadastrarPais) abrirJanela(frmPrincipal,dlgCadPais,CadastrarPais.class);
     }
@@ -81,6 +95,12 @@ public class GerTarefasGraficas {
     }
     public void abrirPesqAeronave(){
         dlgPesqAeronave = (PesquisarAeronave) abrirJanela(frmPrincipal,dlgPesqAeronave,PesquisarAeronave.class);
+    } 
+    public void abrirPesqCliente(){
+        dlgPesqCliente = (PesquisarCliente) abrirJanela(frmPrincipal,dlgPesqCliente,PesquisarCliente.class);
+    }
+    public void abrirPesqLocacao(){
+        dlgPesqLocacao = (PesquisarLocacao) abrirJanela(frmPrincipal,dlgPesqLocacao,PesquisarLocacao.class);
     }
     //-----------------------------------------------------------------------------------------
     //Acesso a classe Gerencia de Dominio e DAO

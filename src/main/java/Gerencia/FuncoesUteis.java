@@ -114,7 +114,5 @@ public class FuncoesUteis {
         } else {
             return (false);
         }      
-    }
-    
-    
+    }   
 }
