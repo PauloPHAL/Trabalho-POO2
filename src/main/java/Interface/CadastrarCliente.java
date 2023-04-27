@@ -10,6 +10,7 @@ public class CadastrarCliente extends javax.swing.JDialog {
     public CadastrarCliente(java.awt.Frame parent, boolean modal, GerTarefasGraficas gerTarefas) {
         super(parent, modal);
         initComponents();
+        setLocationRelativeTo(null);
         this.gerTarefas = gerTarefas;
     }
 

@@ -10,6 +10,7 @@ public class PesquisarModelo extends javax.swing.JDialog {
     public PesquisarModelo(java.awt.Frame parent, boolean modal, GerTarefasGraficas gerTarefas) {
         super(parent, modal);
         initComponents();
+        setLocationRelativeTo(null);
         this.gerTarefas = gerTarefas;
     }
 

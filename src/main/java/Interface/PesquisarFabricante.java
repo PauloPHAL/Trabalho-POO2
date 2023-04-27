@@ -10,6 +10,7 @@ public class PesquisarFabricante extends javax.swing.JDialog {
     public PesquisarFabricante(java.awt.Frame parent, boolean modal,GerTarefasGraficas gerTarefas) {
         super(parent, modal);
         initComponents();
+        setLocationRelativeTo(null);
         this.gerTarefas = gerTarefas;
     }
   

@@ -10,6 +10,7 @@ public class PesquisarAeronave extends javax.swing.JDialog {
     public PesquisarAeronave(java.awt.Frame parent, boolean modal, GerTarefasGraficas gerTarefas) {
         super(parent, modal);
         initComponents();
+        setLocationRelativeTo(null);
         this.gerTarefas = gerTarefas;
     }
 
