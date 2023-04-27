@@ -1,15 +1,23 @@
 package Dominio;
 
+import java.io.Serializable;
 import java.util.Date;
+import javax.persistence.*;
 
-public class Locacao {
+@Entity
+public class Locacao implements Serializable{
+    @EmbeddedId
+    private LocacaoPK chaveComposta;
     
-    private int idLocacao;
+    @Column (updatable = false)
+    @Temporal (TemporalType.DATE)
     private Date dataLocacao;
-    private Date dataLimite;
-    private int valor;
     
-    private Aeronave aeronave;
-    private Cliente cliente;
+    @Temporal (TemporalType.DATE)
+    private Date dataLimite;
+    
+    @Column
+    private int valor;
+
     
 }

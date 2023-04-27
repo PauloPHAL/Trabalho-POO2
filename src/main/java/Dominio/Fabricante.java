@@ -26,7 +26,7 @@ public class Fabricante implements Serializable{
     @Lob
     private byte[] logo;
     
-    
+    @OneToMany ( mappedBy = "fabricante", fetch = FetchType.LAZY )
     private List<Modelo> modelo = new ArrayList<>();
 
     

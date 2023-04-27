@@ -28,11 +28,11 @@ public class Modelo implements Serializable{
     @Lob
     private byte[] fotoModelo;
     
-    private List<Aeronave> listAeronave = new ArrayList<>();
-    
-    private Aeronave aeronave;
-    
-    
+    @OneToMany ( mappedBy = "modelo", fetch = FetchType.LAZY )
+    private List<Aeronave> aeronave = new ArrayList<>();
+       
+    @ManyToOne ( fetch = FetchType.EAGER )
+    @JoinColumn ( name="idFabricante" )
     private Fabricante fabricante;
 
     

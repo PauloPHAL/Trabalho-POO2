@@ -15,9 +15,12 @@
     <property name="hibernate.hbm2ddl.auto">create</property>
     <property name="hibernate.show_sql">true</property>
     <property name="hibernate.format_sql">true</property>
+    <mapping class="Dominio.Locacao"></mapping>
+    <mapping class="Dominio.LocacaoPK"></mapping>
     <mapping class="Dominio.Aeronave"></mapping>
     <mapping class="Dominio.Modelo"></mapping>
     <mapping class="Dominio.Fabricante"></mapping>
+    <mapping class="Dominio.Cliente"></mapping>
   </session-factory>
 </hibernate-configuration>-->
 
@@ -33,8 +36,11 @@
     <property name="hibernate.hbm2ddl.auto">create</property>
     <property name="hibernate.show_sql">true</property>
     <property name="hibernate.format_sql">true</property>
-<!--    <mapping class="Dominio.Aeronave"></mapping>
+    <mapping class="Dominio.Locacao"></mapping>
+    <mapping class="Dominio.LocacaoPK"></mapping>
+    <mapping class="Dominio.Aeronave"></mapping>
     <mapping class="Dominio.Modelo"></mapping>
-    <mapping class="Dominio.Fabricante"></mapping>-->
+    <mapping class="Dominio.Fabricante"></mapping>
+    <mapping class="Dominio.Cliente"></mapping>   
   </session-factory>
 </hibernate-configuration>
