@@ -35,6 +35,16 @@ public class Modelo implements Serializable{
     @JoinColumn ( name="idFabricante" )
     private Fabricante fabricante;
 
+    public Modelo(int idModelo, String nome, String tipo, int capacidade, Date dataModelo, byte[] fotoModelo, Fabricante fabricante) {
+        this.idModelo = idModelo;
+        this.nome = nome;
+        this.tipo = tipo;
+        this.capacidade = capacidade;
+        this.dataModelo = dataModelo;
+        this.fotoModelo = fotoModelo;
+        this.fabricante = fabricante;
+    }
+
     
     
     

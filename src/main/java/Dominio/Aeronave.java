@@ -26,6 +26,13 @@ public class Aeronave implements Serializable{
     @JoinColumn ( name="idModelo" )
     private Modelo modelo;
 
+    public Aeronave(int idAeronave, String numeroSerie, Date dataCompra, Modelo modelo) {
+        this.idAeronave = idAeronave;
+        this.numeroSerie = numeroSerie;
+        this.dataCompra = dataCompra;
+        this.modelo = modelo;
+    }
+
     
     
     

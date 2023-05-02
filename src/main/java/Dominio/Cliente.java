@@ -36,6 +36,17 @@ public class Cliente implements Serializable{
     
     @OneToMany ( mappedBy = "chaveComposta.cliente", fetch = FetchType.LAZY )
     private List<Locacao> locacao = new ArrayList<>();
+
+    public Cliente(int idCliente, String nome, String cpf, String email, int celular, char sexo, Date dataNascimento, byte[] fotoCliente) {
+        this.idCliente = idCliente;
+        this.nome = nome;
+        this.cpf = cpf;
+        this.email = email;
+        this.celular = celular;
+        this.sexo = sexo;
+        this.dataNascimento = dataNascimento;
+        this.fotoCliente = fotoCliente;
+    }
     
     
 }
