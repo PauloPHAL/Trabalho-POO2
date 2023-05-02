@@ -114,5 +114,10 @@ public class FuncoesUteis {
         } else {
             return (false);
         }      
-    }   
+    }
+    
+    //verificar Email/Gmail
+    public static boolean isEmail_Gmail(String str){      
+        return (str.indexOf("@") > 0);
+    }
 }
