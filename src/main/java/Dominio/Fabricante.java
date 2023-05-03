@@ -16,8 +16,9 @@ public class Fabricante implements Serializable{
     @Column (name="nomeFabricante", length = 250, nullable = false)
     private String nome;
     
-    @Column (name="nomePais", length = 250, nullable = false)
-    private String pais;
+    @ManyToOne
+    @JoinColumn (name = "idPais")
+    private Pais pais;
     
     @Column (updatable = false)
     @Temporal (TemporalType.DATE)
@@ -29,7 +30,7 @@ public class Fabricante implements Serializable{
     @OneToMany ( mappedBy = "fabricante", fetch = FetchType.LAZY )
     private List<Modelo> modelo = new ArrayList<>();
 
-    public Fabricante(int idFabricante, String nome, String pais, Date dataFundacao, byte[] logo) {
+    public Fabricante(int idFabricante, String nome, Pais pais, Date dataFundacao, byte[] logo) {
         this.idFabricante = idFabricante;
         this.nome = nome;
         this.pais = pais;

@@ -20,6 +20,7 @@
     <mapping class="Dominio.Aeronave"></mapping>
     <mapping class="Dominio.Modelo"></mapping>
     <mapping class="Dominio.Fabricante"></mapping>
+    <mapping class="Dominio.Pais"></mapping>
     <mapping class="Dominio.Cliente"></mapping>
   </session-factory>
 </hibernate-configuration>-->
@@ -32,7 +33,7 @@
     <property name="hibernate.connection.driver_class">org.postgresql.Driver</property>
     <property name="hibernate.connection.url">jdbc:postgresql://localhost:5432/TrabalhoPOO2</property>
     <property name="hibernate.connection.username">postgres</property>
-    <property name="hibernate.connection.password">admin</property>
+    <property name="hibernate.connection.password">postgres</property>
     <property name="hibernate.hbm2ddl.auto">create</property>
     <property name="hibernate.show_sql">true</property>
     <property name="hibernate.format_sql">true</property>
@@ -41,6 +42,7 @@
     <mapping class="Dominio.Aeronave"></mapping>
     <mapping class="Dominio.Modelo"></mapping>
     <mapping class="Dominio.Fabricante"></mapping>
+    <mapping class="Dominio.Pais"></mapping>
     <mapping class="Dominio.Cliente"></mapping>   
   </session-factory>
 </hibernate-configuration>
