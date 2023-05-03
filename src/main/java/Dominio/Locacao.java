@@ -17,9 +17,9 @@ public class Locacao implements Serializable{
     private Date dataLimite;
     
     @Column
-    private int valor;
+    private double valor;
 
-    public Locacao(Cliente cliente,Aeronave aeronave, Date dataLocacao, Date dataLimite, int valor) {
+    public Locacao(Cliente cliente,Aeronave aeronave, Date dataLocacao, Date dataLimite, double valor) {
         this.chaveComposta = new LocacaoPK(aeronave,cliente);
         this.dataLocacao = dataLocacao;
         this.dataLimite = dataLimite;
