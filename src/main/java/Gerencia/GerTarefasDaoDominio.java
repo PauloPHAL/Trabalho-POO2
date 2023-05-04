@@ -9,6 +9,7 @@ public class GerTarefasDaoDominio {
     private FabricanteDAO fabricanteDao;
     private ClienteDAO clienteDao;
     private LocacaoDAO locacaoDao;
+    private PaisDAO paisDao;
     // padrao Singleton
     private static GerTarefasDaoDominio gerenciador; 
     private GerTarefasDaoDominio(){
@@ -18,6 +19,7 @@ public class GerTarefasDaoDominio {
         this.fabricanteDao = FabricanteDAO.getConexão();
         this.clienteDao = ClienteDAO.getConexão();
         this.locacaoDao = LocacaoDAO.getConexão();
+        this.paisDao = PaisDAO.getConexão();
     }
     public static GerTarefasDaoDominio getConexão(){
         if(gerenciador == null){
