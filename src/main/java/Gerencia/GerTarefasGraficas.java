@@ -27,7 +27,7 @@ public class GerTarefasGraficas {
     
     //------------------ Genrencia de Dominio
     private GerTarefasDaoDominio gerenciaDaoDominio;
-    
+    private GerenciaDeEdicao gerEdicao;
     //construtor
     public GerTarefasGraficas(){
         this.frmPrincipal = null;
@@ -42,6 +42,8 @@ public class GerTarefasGraficas {
         this.dlgPesqLocacao = null;
         this.dlgCadCliente = null;
         this.dlgCadLocacao = null;
+        
+        this.gerEdicao = new GerenciaDeEdicao();
         
         //Conexao
         this.gerenciaDaoDominio = GerTarefasDaoDominio.getConexão();
@@ -103,10 +105,13 @@ public class GerTarefasGraficas {
         dlgPesqLocacao = (PesquisarLocacao) abrirJanela(frmPrincipal,dlgPesqLocacao,PesquisarLocacao.class);
     }
     //-----------------------------------------------------------------------------------------
-    //Acesso a classe Gerencia de Dominio e DAO
+    //Acesso a classe Gerencia de Dominio e DAO, Edicao
     public GerTarefasDaoDominio getGerenciaDaoDominio() {
         return gerenciaDaoDominio;
     }
+    public GerenciaDeEdicao getGerEdicao() {
+        return gerEdicao;
+    }   
     //-----------------------------------------------------------------------------------------
     //Abrir Foto
     public void abrirFoto(JLabel lblFoto,JDialog janela){
