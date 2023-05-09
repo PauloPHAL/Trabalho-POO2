@@ -16,14 +16,14 @@ public class PaisDAO {
     }
     //CRUD:
     //----------------------------------------------------------------
-    /*
-    public void inserirPais(Pais modelo){      
+    
+    public void inserirPais(Pais pais){      
+        
+    }/*
+    public void excluirPais(Pais pais){
         
     }
-    public void excluirPais(Pais modelo){
-        
-    }
-    public void alterarPais(Pais modelo){
+    public void alterarPais(Pais pais){
         
     }
     */

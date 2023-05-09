@@ -4,6 +4,7 @@ import Persistencia.*;
 
 public class GerTarefasDaoDominio {
     // classes DAO
+    private GenericDAO genericDao;
     private AeronaveDAO aeronaveDao;
     private ModeloDAO modeloDao;
     private FabricanteDAO fabricanteDao;
@@ -14,6 +15,7 @@ public class GerTarefasDaoDominio {
     private static GerTarefasDaoDominio gerenciador; 
     private GerTarefasDaoDominio(){
         ConexaoHibernate.getSessionFactory();
+        this.genericDao = GenericDAO.getConexão();
         this.aeronaveDao = AeronaveDAO.getConexão();
         this.modeloDao = ModeloDAO.getConexão();
         this.fabricanteDao = FabricanteDAO.getConexão();
