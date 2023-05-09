@@ -62,11 +62,6 @@ public class CadastrarCliente extends javax.swing.JDialog {
         btnNovo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/intergraf/imagens/add.png"))); // NOI18N
         btnNovo.setMnemonic('N');
         btnNovo.setText("Novo");
-        btnNovo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnNovoActionPerformed(evt);
-            }
-        });
 
         btnCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/intergraf/imagens/remove.png"))); // NOI18N
         btnCancelar.setText("Cancelar");
@@ -102,15 +97,6 @@ public class CadastrarCliente extends javax.swing.JDialog {
         lblFoto.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblFoto.setText("Foto");
         lblFoto.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        lblFoto.addAncestorListener(new javax.swing.event.AncestorListener() {
-            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
-                lblFotoAncestorAdded(evt);
-            }
-            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
-            }
-            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
-            }
-        });
         lblFoto.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 lblFotoMouseClicked(evt);
@@ -143,7 +129,7 @@ public class CadastrarCliente extends javax.swing.JDialog {
         btlAlterar.setText("Alterar");
 
         try {
-            txtCelular.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##)")));
+            txtCelular.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##)#####-####")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
@@ -240,10 +226,6 @@ public class CadastrarCliente extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovoActionPerformed
-
-    }//GEN-LAST:event_btnNovoActionPerformed
-
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         this.dispose();
     }//GEN-LAST:event_btnCancelarActionPerformed
@@ -263,10 +245,6 @@ public class CadastrarCliente extends javax.swing.JDialog {
     private void formMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseExited
         gerTarefas.cursorDentro(this);
     }//GEN-LAST:event_formMouseExited
-
-    private void lblFotoAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_lblFotoAncestorAdded
-        
-    }//GEN-LAST:event_lblFotoAncestorAdded
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
