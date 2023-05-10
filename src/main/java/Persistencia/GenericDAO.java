@@ -6,16 +6,6 @@ import org.hibernate.HibernateException;
 import org.hibernate.Session;
 
 public class GenericDAO {
-   // padrao Singleton
-    private static GenericDAO gerenciador; 
-    private GenericDAO(){
-    }
-    public static GenericDAO getConexão(){
-        if(gerenciador == null){
-            gerenciador = new GenericDAO();
-        }
-        return gerenciador;
-    }
     //CRUD:
     //----------------------------------------------------------------    
     public void inserir(Object obj) throws HibernateException {

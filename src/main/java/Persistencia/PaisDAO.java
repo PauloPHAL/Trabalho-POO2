@@ -3,7 +3,7 @@ package Persistencia;
 import Dominio.Pais;
 import java.util.List;
 
-public class PaisDAO {
+public class PaisDAO extends GenericDAO{
     // padrao Singleton
     private static PaisDAO gerenciador; 
     private PaisDAO(){
@@ -14,19 +14,6 @@ public class PaisDAO {
         }
         return gerenciador;
     }
-    //CRUD:
-    //----------------------------------------------------------------
-    
-    public void inserirPais(Pais pais){      
-        
-    }/*
-    public void excluirPais(Pais pais){
-        
-    }
-    public void alterarPais(Pais pais){
-        
-    }
-    */
     private List<Pais> pesquisarPais(String pesq, int tipo){
         return null;
     }

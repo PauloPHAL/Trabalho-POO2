@@ -3,7 +3,7 @@ package Persistencia;
 import Dominio.Fabricante;
 import java.util.List;
 
-public class FabricanteDAO {
+public class FabricanteDAO extends GenericDAO{
     // padrao Singleton
     private static FabricanteDAO gerenciador; 
     private FabricanteDAO(){
@@ -14,19 +14,8 @@ public class FabricanteDAO {
         }
         return gerenciador;
     }
-    //CRUD:
-    //----------------------------------------------------------------
-    public void inserirFabricante(Fabricante fabricante){      
-        
-    }
-    public void excluirFabricante(Fabricante fabricante){
-        
-    }
     private List<Fabricante> pesquisarFabricante(String pesq, int tipo){
         return null;
-    }
-    public void alterarFabricante(Fabricante fabricante){
-        
     }   
     //----------------------------------------------------------------
     public List<Fabricante> listar(){

@@ -3,7 +3,7 @@ package Persistencia;
 import Dominio.Modelo;
 import java.util.List;
 
-public class ModeloDAO {
+public class ModeloDAO extends GenericDAO{
     // padrao Singleton
     private static ModeloDAO gerenciador; 
     private ModeloDAO(){
@@ -13,21 +13,10 @@ public class ModeloDAO {
             gerenciador = new ModeloDAO();
         }
         return gerenciador;
-    }
-    //CRUD:
-    //----------------------------------------------------------------
-    public void inserirModelo(Modelo modelo){      
-        
-    }
-    public void excluirModelo(Modelo modelo){
-        
-    }
+    }  
     private List<Modelo> pesquisarModelo(String pesq, int tipo){
         return null;
     }
-    public void alterarModelo(Modelo modelo){
-        
-    }   
     //----------------------------------------------------------------
     public List<Modelo> listar(){
         return pesquisarModelo("",-1);

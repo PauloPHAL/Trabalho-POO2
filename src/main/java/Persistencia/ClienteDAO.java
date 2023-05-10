@@ -3,7 +3,7 @@ package Persistencia;
 import Dominio.Cliente;
 import java.util.List;
 
-public class ClienteDAO {
+public class ClienteDAO extends GenericDAO{
     // padrao Singleton
     private static ClienteDAO gerenciador; 
     private ClienteDAO(){
@@ -14,20 +14,9 @@ public class ClienteDAO {
         }
         return gerenciador;
     }
-    //CRUD:
-    //----------------------------------------------------------------
-    public void inserirCliente(Cliente cliente){      
-        
-    }
-    public void excluirCliente(Cliente cliente){
-        
-    }
     private List<Cliente> pesquisarCliente(String pesq, int tipo){
         return null;
-    }
-    public void alterarCliente(Cliente cliente){
-        
-    }   
+    } 
     //----------------------------------------------------------------
     public List<Cliente> listar(){
         return pesquisarCliente("",-1);

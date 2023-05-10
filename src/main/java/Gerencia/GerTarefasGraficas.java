@@ -43,6 +43,7 @@ public class GerTarefasGraficas {
         this.dlgCadCliente = null;
         this.dlgCadLocacao = null;
         
+        //Gerencia de edicao
         this.gerEdicao = new GerenciaDeEdicao();
         
         //Conexao

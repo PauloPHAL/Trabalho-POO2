@@ -3,7 +3,7 @@ package Persistencia;
 import Dominio.Locacao;
 import java.util.List;
 
-public class LocacaoDAO {
+public class LocacaoDAO extends GenericDAO{
     // padrao Singleton
     private static LocacaoDAO gerenciador; 
     private LocacaoDAO(){
@@ -14,20 +14,9 @@ public class LocacaoDAO {
         }
         return gerenciador;
     }
-    //CRUD:
-    //----------------------------------------------------------------
-    public void inserirLocacao(Locacao local){      
-        
-    }
-    public void excluirLocacao(Locacao local){
-        
-    }
     private List<Locacao> pesquisarLocacao(String pesq, int tipo){
         return null;
     }
-    public void alterarLocacao(Locacao local){
-        
-    }   
     //----------------------------------------------------------------
     public List<Locacao> listar(){
         return pesquisarLocacao("",-1);

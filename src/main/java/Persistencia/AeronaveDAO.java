@@ -3,7 +3,7 @@ package Persistencia;
 import Dominio.Aeronave;
 import java.util.List;
 
-public class AeronaveDAO {
+public class AeronaveDAO extends GenericDAO{
     // padrao Singleton
     private static AeronaveDAO gerenciador; 
     private AeronaveDAO(){
@@ -14,20 +14,9 @@ public class AeronaveDAO {
         }
         return gerenciador;
     }
-    //CRUD:
-    //----------------------------------------------------------------
-    public void inserirAeronave(Aeronave aeronave){      
-        
-    }
-    public void excluirAeronave(Aeronave aeronave){
-        
-    }
     private List<Aeronave> pesquisarAeronave(String pesq, int tipo){
         return null;
-    }
-    public void alterarAeronave(Aeronave aeronave){
-        
-    }   
+    } 
     //----------------------------------------------------------------
     public List<Aeronave> listar(){
         return pesquisarAeronave("",-1);

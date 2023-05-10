@@ -15,7 +15,7 @@ public class GerTarefasDaoDominio {
     private static GerTarefasDaoDominio gerenciador; 
     private GerTarefasDaoDominio(){
         ConexaoHibernate.getSessionFactory();
-        this.genericDao = GenericDAO.getConexão();
+        this.genericDao = new GenericDAO();
         this.aeronaveDao = AeronaveDAO.getConexão();
         this.modeloDao = ModeloDAO.getConexão();
         this.fabricanteDao = FabricanteDAO.getConexão();
