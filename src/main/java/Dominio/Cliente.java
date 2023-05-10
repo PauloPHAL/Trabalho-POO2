@@ -48,5 +48,5 @@ public class Cliente implements Serializable{
         this.fotoCliente = fotoCliente;
     }
     
-    
+   
 }

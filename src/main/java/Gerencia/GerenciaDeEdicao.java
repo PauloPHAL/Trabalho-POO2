@@ -48,7 +48,6 @@ public class GerenciaDeEdicao {
     public void setLocacaoSelecionada(Locacao locacaoSelecionada) {
         this.locacaoSelecionada = locacaoSelecionada;
     }
-    
-    
+  
     
 }
