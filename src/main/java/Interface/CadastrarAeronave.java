@@ -12,6 +12,7 @@ public class CadastrarAeronave extends javax.swing.JDialog {
         initComponents();
         setLocationRelativeTo(null);
         this.gerTarefas = gerTarefas;
+        this.gerTarefas.habilitarBotoes(this.gerTarefas.getGerEdicao().getAeronaveSelecionada(), btnNovo, btnAlterar);
     }
 
     @SuppressWarnings("unchecked")
@@ -23,8 +24,8 @@ public class CadastrarAeronave extends javax.swing.JDialog {
         jComboBox2 = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        btlAlterar = new javax.swing.JButton();
-        btlAdd = new javax.swing.JButton();
+        btnAlterar = new javax.swing.JButton();
+        btnNovo = new javax.swing.JButton();
         btlSair = new javax.swing.JButton();
         txtData = new javax.swing.JFormattedTextField();
         jLabel3 = new javax.swing.JLabel();
@@ -48,11 +49,11 @@ public class CadastrarAeronave extends javax.swing.JDialog {
 
         jLabel2.setText("MODELOS:");
 
-        btlAlterar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/intergraf/imagens/accept.png"))); // NOI18N
-        btlAlterar.setText("Alterar");
+        btnAlterar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/intergraf/imagens/accept.png"))); // NOI18N
+        btnAlterar.setText("Alterar");
 
-        btlAdd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/intergraf/imagens/add.png"))); // NOI18N
-        btlAdd.setText("Adicionar");
+        btnNovo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/intergraf/imagens/add.png"))); // NOI18N
+        btnNovo.setText("Adicionar");
 
         btlSair.setIcon(new javax.swing.ImageIcon(getClass().getResource("/intergraf/imagens/remove.png"))); // NOI18N
         btlSair.setText("Cancelar");
@@ -88,9 +89,9 @@ public class CadastrarAeronave extends javax.swing.JDialog {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGap(0, 66, Short.MAX_VALUE)
-                        .addComponent(btlAlterar)
+                        .addComponent(btnAlterar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btlAdd)
+                        .addComponent(btnNovo)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btlSair))
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -134,8 +135,8 @@ public class CadastrarAeronave extends javax.swing.JDialog {
                 .addGap(32, 32, 32)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btlSair)
-                    .addComponent(btlAdd)
-                    .addComponent(btlAlterar))
+                    .addComponent(btnNovo)
+                    .addComponent(btnAlterar))
                 .addContainerGap())
         );
 
@@ -172,10 +173,10 @@ public class CadastrarAeronave extends javax.swing.JDialog {
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btlAdd;
-    private javax.swing.JButton btlAlterar;
     private javax.swing.JButton btlPesquisar;
     private javax.swing.JButton btlSair;
+    private javax.swing.JButton btnAlterar;
+    private javax.swing.JButton btnNovo;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JLabel jLabel1;

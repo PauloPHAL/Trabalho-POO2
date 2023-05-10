@@ -1,6 +1,14 @@
 package Interface;
 
+import Dominio.Fabricante;
+import Gerencia.FuncoesUteis;
 import Gerencia.GerTarefasGraficas;
+import java.text.ParseException;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.Icon;
+import javax.swing.JOptionPane;
 
 public class CadastrarModelo extends javax.swing.JDialog {
     //acessos
@@ -12,6 +20,7 @@ public class CadastrarModelo extends javax.swing.JDialog {
         initComponents();
         setLocationRelativeTo(null);
         this.gerTarefas = gerTarefas;
+        this.gerTarefas.habilitarBotoes(this.gerTarefas.getGerEdicao().getModeloSelecionado(), btlAdd, btlAlterar);
     }
 
     @SuppressWarnings("unchecked")
@@ -53,12 +62,15 @@ public class CadastrarModelo extends javax.swing.JDialog {
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Tipo Aeronave"));
 
         grupoTipoAeronave.add(rdComercial);
+        rdComercial.setMnemonic('C');
         rdComercial.setText("Comercial");
 
         grupoTipoAeronave.add(rdMilitar);
+        rdMilitar.setMnemonic('M');
         rdMilitar.setText("Militar");
 
         grupoTipoAeronave.add(rdExecutiva);
+        rdExecutiva.setMnemonic('E');
         rdExecutiva.setText("Executiva");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -94,9 +106,19 @@ public class CadastrarModelo extends javax.swing.JDialog {
 
         btlAdd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/intergraf/imagens/add.png"))); // NOI18N
         btlAdd.setText("Adicionar");
+        btlAdd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btlAddActionPerformed(evt);
+            }
+        });
 
         btlAlterar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/intergraf/imagens/accept.png"))); // NOI18N
         btlAlterar.setText("Alterar");
+        btlAlterar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btlAddActionPerformed(evt);
+            }
+        });
 
         jLabel3.setText("DATA DE CRIACAO:");
 
@@ -232,6 +254,46 @@ public class CadastrarModelo extends javax.swing.JDialog {
     private void formMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseExited
         gerTarefas.cursorDentro(this);
     }//GEN-LAST:event_formMouseExited
+
+    private void btlAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btlAddActionPerformed
+        try {
+            //pegando os dados
+            String tipo;
+            String nome = this.txtNome.getText();
+            String c = this.txtCapacidade.getText();
+            String d = this.txtData.getText();
+            char t = (char) this.grupoTipoAeronave.getSelection().getMnemonic();
+            Fabricante fabricante = (Fabricante) this.jComboBox1.getSelectedItem();
+            Icon f = this.lblFotoModelo.getIcon(); 
+            
+            //tratando os dados que precisa
+            Date data = FuncoesUteis.strToDate(d);
+            byte[] foto = FuncoesUteis.IconToBytes(f);
+            int capacidade = Integer.parseInt(c);
+            
+            // INSERIR NO BANCO           
+            if(t == 'C'){
+                tipo = "Comercial";
+            }else if(t == 'M'){
+                tipo = "Militar";
+            }else{
+                tipo = "Execultiva";
+            }
+            //------------------------------------------------------------------------------
+            if ( this.gerTarefas.getGerEdicao().getModeloSelecionado() == null) {
+                // INSERIR
+                int id = this.gerTarefas.getGerenciaDaoDominio().inserirModelo(nome,tipo,capacidade,data,foto,fabricante);
+                JOptionPane.showMessageDialog(this, "Modelo " + id + "inserido com sucesso.");
+            } else {
+                // ALTERAR
+                this.gerTarefas.getGerenciaDaoDominio().alterarModelo();
+                int id = this.gerTarefas.getGerEdicao().getModeloSelecionado().getIdModelo();
+                JOptionPane.showMessageDialog(this, "Modelo " + id + "alterado com sucesso.");
+            }
+        } catch (ParseException ex) {
+            JOptionPane.showMessageDialog(this, "Erro: "+ex);
+        }                 
+    }//GEN-LAST:event_btlAddActionPerformed
 
     
 

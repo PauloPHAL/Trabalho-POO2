@@ -1,6 +1,12 @@
 package Interface;
 
+import Dominio.Pais;
+import Gerencia.FuncoesUteis;
 import Gerencia.GerTarefasGraficas;
+import java.text.ParseException;
+import java.util.Date;
+import javax.swing.Icon;
+import javax.swing.JOptionPane;
 
 public class CadastrarFabricante extends javax.swing.JDialog {
     //acessos
@@ -12,6 +18,7 @@ public class CadastrarFabricante extends javax.swing.JDialog {
         initComponents();
         setLocationRelativeTo(null);
         this.gerTarefas = gerTarefas;
+        this.gerTarefas.habilitarBotoes(this.gerTarefas.getGerEdicao().getFabricanteSelecionado(), btlAdd, btlAlterar);
     }
    
     @SuppressWarnings("unchecked")
@@ -42,6 +49,11 @@ public class CadastrarFabricante extends javax.swing.JDialog {
                 formMouseExited(evt);
             }
         });
+        addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                formComponentShown(evt);
+            }
+        });
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "CADASTRAR FABRICANTE", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 18), new java.awt.Color(0, 0, 255))); // NOI18N
 
@@ -65,6 +77,11 @@ public class CadastrarFabricante extends javax.swing.JDialog {
 
         btlAdd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/intergraf/imagens/add.png"))); // NOI18N
         btlAdd.setText("Adicionar");
+        btlAdd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btlAddActionPerformed(evt);
+            }
+        });
 
         btlAlterar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/intergraf/imagens/accept.png"))); // NOI18N
         btlAlterar.setText("Alterar");
@@ -203,6 +220,39 @@ public class CadastrarFabricante extends javax.swing.JDialog {
     private void formMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseExited
         gerTarefas.cursorDentro(this);
     }//GEN-LAST:event_formMouseExited
+
+    private void btlAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btlAddActionPerformed
+            try {
+            //pegando os dados
+            String nome = this.txtNome.getText();
+            String d = this.txtData.getText();
+            Pais pais = (Pais) this.comboPais.getSelectedItem();
+            Icon f = this.lblFoto.getIcon();
+            
+            //tratando os dados que precisa
+            Date data = FuncoesUteis.strToDate(d);
+            byte[] foto = FuncoesUteis.IconToBytes(f);
+            
+            // INSERIR NO BANCO           
+            //------------------------------------------------------------------------------
+            if ( this.gerTarefas.getGerEdicao().getFabricanteSelecionado() == null) {
+                // INSERIR
+                int id = this.gerTarefas.getGerenciaDaoDominio().inserirFabricante(nome,data,foto, pais);
+                JOptionPane.showMessageDialog(this, "Fabricante " + id + "inserido com sucesso.");
+            } else {
+                // ALTERAR
+                this.gerTarefas.getGerenciaDaoDominio().alterarFabricante();
+                int id = this.gerTarefas.getGerEdicao().getFabricanteSelecionado().getIdFabricante();
+                JOptionPane.showMessageDialog(this, "Fabricante " + id + "alterado com sucesso.");
+            }
+        } catch (ParseException ex) {
+            JOptionPane.showMessageDialog(this, "Erro: "+ex);
+        }              
+    }//GEN-LAST:event_btlAddActionPerformed
+
+    private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
+        this.gerTarefas.carregarComboBox(comboPais,this);
+    }//GEN-LAST:event_formComponentShown
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

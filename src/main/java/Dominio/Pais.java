@@ -12,9 +12,33 @@ public class Pais implements Serializable{
     @Column (name="nomePais", length = 50, nullable = false)
     private String nome;
 
-    public Pais(int idPais, String nome) {
-        this.idPais = idPais;
+    //Hibernate
+    public Pais() {
+    }
+    
+    public Pais(String nome) {
         this.nome = nome;
     }
-  
+
+    public int getIdPais() {
+        return idPais;
+    }
+
+    public void setIdPais(int idPais) {
+        this.idPais = idPais;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    @Override
+    public String toString() {
+        return this.nome;
+    }
+    
 }

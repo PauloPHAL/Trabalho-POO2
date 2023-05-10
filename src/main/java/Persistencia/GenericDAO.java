@@ -1,5 +1,6 @@
 package Persistencia;
 
+import Dominio.Pais;
 import java.util.List;
 import javax.persistence.criteria.CriteriaQuery;
 import org.hibernate.HibernateException;
@@ -26,7 +27,6 @@ public class GenericDAO {
             }
             throw new HibernateException(erro);
         }
-
     }
     
     public void alterar(Object obj) throws HibernateException {
@@ -46,8 +46,7 @@ public class GenericDAO {
                 sessao.close();
             }
             throw new HibernateException(erro);
-        }
-        
+        }       
     }
     
     public void excluir(Object obj) throws HibernateException {
@@ -70,7 +69,7 @@ public class GenericDAO {
         }    
     }  
     
-    public List listar(Class classe) throws HibernateException {
+    public List listar(Class classe,int r) throws HibernateException {
         Session sessao = null;
         List lista = null;
         try {

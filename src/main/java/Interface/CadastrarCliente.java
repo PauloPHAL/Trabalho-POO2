@@ -12,6 +12,7 @@ public class CadastrarCliente extends javax.swing.JDialog {
         initComponents();
         setLocationRelativeTo(null);
         this.gerTarefas = gerTarefas;
+        this.gerTarefas.habilitarBotoes(this.gerTarefas.getGerEdicao().getClienteSelecionado(), btnNovo, btnAlterar);
     }
 
 
@@ -37,7 +38,7 @@ public class CadastrarCliente extends javax.swing.JDialog {
         jPanel2 = new javax.swing.JPanel();
         rdbFemin = new javax.swing.JRadioButton();
         rdbMasc = new javax.swing.JRadioButton();
-        btlAlterar = new javax.swing.JButton();
+        btnAlterar = new javax.swing.JButton();
         txtCelular = new javax.swing.JFormattedTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -125,8 +126,8 @@ public class CadastrarCliente extends javax.swing.JDialog {
         rdbMasc.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/intergraf/imagens/rbs.gif"))); // NOI18N
         jPanel2.add(rdbMasc, java.awt.BorderLayout.PAGE_START);
 
-        btlAlterar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/intergraf/imagens/accept.png"))); // NOI18N
-        btlAlterar.setText("Alterar");
+        btnAlterar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/intergraf/imagens/accept.png"))); // NOI18N
+        btnAlterar.setText("Alterar");
 
         try {
             txtCelular.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##)#####-####")));
@@ -171,7 +172,7 @@ public class CadastrarCliente extends javax.swing.JDialog {
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btlAlterar)
+                        .addComponent(btnAlterar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btnNovo, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -217,7 +218,7 @@ public class CadastrarCliente extends javax.swing.JDialog {
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnCancelar)
                             .addComponent(btnNovo)
-                            .addComponent(btlAlterar))
+                            .addComponent(btnAlterar))
                         .addContainerGap())))
         );
 
@@ -248,7 +249,7 @@ public class CadastrarCliente extends javax.swing.JDialog {
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btlAlterar;
+    private javax.swing.JButton btnAlterar;
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnNovo;
     private javax.swing.JButton btnPesquisar;

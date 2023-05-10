@@ -1,11 +1,15 @@
 package Gerencia;
 
+import java.util.List;
+import Dominio.Pais;
 import Interface.*;
 import java.awt.*;
 import java.io.File;
 import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayList;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.*;
+import org.hibernate.HibernateException;
 
 public class GerTarefasGraficas {
     //acessos
@@ -145,6 +149,27 @@ public class GerTarefasGraficas {
     }
     public void cursorFora(JDialog janela){
         janela.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+    }
+    //-----------------------------------------------------------------------------------------
+    //Habilitar Botoes
+    public void habilitarBotoes(Object obj, JButton btnNovo, JButton btnAlterar){
+        if ( obj == null ) {
+            btnNovo.setVisible(true);
+            btnAlterar.setVisible(false);
+        } else {
+            btnNovo.setVisible(false);
+            btnAlterar.setVisible(true);
+        } 
+    }
+    //-----------------------------------------------------------------------------------------
+    //Carregar Combo Box
+    public void carregarComboBox(JComboBox combo, JDialog janela){    
+        try {
+            List<Pais> lista = this.gerenciaDaoDominio.listarPais();
+            combo.setModel(new DefaultComboBoxModel(lista.toArray()) );
+        } catch (HibernateException ex) {
+            JOptionPane.showMessageDialog(frmPrincipal, "Erro carregar Modelo:"+ ex);
+        }        
     }
     //main
     public static void main(String[] args) {

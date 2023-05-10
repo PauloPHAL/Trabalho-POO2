@@ -12,6 +12,7 @@ public class CadastrarLocacao extends javax.swing.JDialog {
         initComponents();
         setLocationRelativeTo(null);
         this.gerTarefas = gerTarefas;
+        this.gerTarefas.habilitarBotoes(this.gerTarefas.getGerEdicao().getLocacaoSelecionada(), btlAdd, btlAlterar);
     }
 
     @SuppressWarnings("unchecked")

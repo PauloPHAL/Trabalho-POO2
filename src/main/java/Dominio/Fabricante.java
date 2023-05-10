@@ -29,13 +29,64 @@ public class Fabricante implements Serializable{
     
     @OneToMany ( mappedBy = "fabricante", fetch = FetchType.LAZY )
     private List<Modelo> modelo = new ArrayList<>();
-
-    public Fabricante(int idFabricante, String nome, Pais pais, Date dataFundacao, byte[] logo) {
-        this.idFabricante = idFabricante;
+    
+    //Hibernate
+    public Fabricante() {
+    }
+    
+    public Fabricante(String nome, Date dataFundacao, byte[] logo, Pais pais) {
         this.nome = nome;
         this.pais = pais;
         this.dataFundacao = dataFundacao;
         this.logo = logo;
+    }
+
+    public int getIdFabricante() {
+        return idFabricante;
+    }
+
+    public void setIdFabricante(int idFabricante) {
+        this.idFabricante = idFabricante;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public Pais getPais() {
+        return pais;
+    }
+
+    public void setPais(Pais pais) {
+        this.pais = pais;
+    }
+
+    public Date getDataFundacao() {
+        return dataFundacao;
+    }
+
+    public void setDataFundacao(Date dataFundacao) {
+        this.dataFundacao = dataFundacao;
+    }
+
+    public byte[] getLogo() {
+        return logo;
+    }
+
+    public void setLogo(byte[] logo) {
+        this.logo = logo;
+    }
+
+    public List<Modelo> getModelo() {
+        return modelo;
+    }
+
+    public void setModelo(List<Modelo> modelo) {
+        this.modelo = modelo;
     }
 
     
