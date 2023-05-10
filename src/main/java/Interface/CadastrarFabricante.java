@@ -238,12 +238,12 @@ public class CadastrarFabricante extends javax.swing.JDialog {
             if ( this.gerTarefas.getGerEdicao().getFabricanteSelecionado() == null) {
                 // INSERIR
                 int id = this.gerTarefas.getGerenciaDaoDominio().inserirFabricante(nome,data,foto, pais);
-                JOptionPane.showMessageDialog(this, "Fabricante " + id + "inserido com sucesso.");
+                JOptionPane.showMessageDialog(this, "Fabricante " + id + " inserido com sucesso.");
             } else {
                 // ALTERAR
                 this.gerTarefas.getGerenciaDaoDominio().alterarFabricante();
                 int id = this.gerTarefas.getGerEdicao().getFabricanteSelecionado().getIdFabricante();
-                JOptionPane.showMessageDialog(this, "Fabricante " + id + "alterado com sucesso.");
+                JOptionPane.showMessageDialog(this, "Fabricante " + id + " alterado com sucesso.");
             }
         } catch (ParseException ex) {
             JOptionPane.showMessageDialog(this, "Erro: "+ex);

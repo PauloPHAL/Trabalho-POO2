@@ -120,6 +120,7 @@ public class CadastrarPais extends javax.swing.JDialog {
         // INSERIR
         int id = this.gerTarefas.getGerenciaDaoDominio().inserirPais(nome);
         JOptionPane.showMessageDialog(this, "Pais " + id + " inserido com sucesso.");
+        this.txtNome.setText("");
     }//GEN-LAST:event_jButton2ActionPerformed
 
    

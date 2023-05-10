@@ -1,6 +1,5 @@
 package Persistencia;
 
-import Dominio.Pais;
 import java.util.List;
 import javax.persistence.criteria.CriteriaQuery;
 import org.hibernate.HibernateException;

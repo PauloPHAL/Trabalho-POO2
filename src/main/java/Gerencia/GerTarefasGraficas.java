@@ -1,7 +1,6 @@
 package Gerencia;
 
 import java.util.List;
-import Dominio.Pais;
 import Interface.*;
 import java.awt.*;
 import java.io.File;
@@ -165,7 +164,7 @@ public class GerTarefasGraficas {
     public <T> void carregarComboBox(JComboBox combo, JDialog janela, Class<T> classe){    
         try {
             List<T> lista = (List<T>) this.gerenciaDaoDominio.listar(classe);
-            combo.setModel(new DefaultComboBoxModel(lista.toArray()) );
+            combo.setModel(new DefaultComboBoxModel(lista.toArray()));
         } catch (HibernateException ex) {
             JOptionPane.showMessageDialog(frmPrincipal, "Erro carregar Combo Box:"+ ex);
         }        

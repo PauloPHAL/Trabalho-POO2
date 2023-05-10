@@ -25,12 +25,61 @@ public class Aeronave implements Serializable{
     @ManyToOne ( fetch = FetchType.EAGER )
     @JoinColumn ( name="idModelo" )
     private Modelo modelo;
+    
+    //hibernate
+    public Aeronave() {
+    }
 
     public Aeronave(int idAeronave, String numeroSerie, Date dataCompra, Modelo modelo) {
         this.idAeronave = idAeronave;
         this.numeroSerie = numeroSerie;
         this.dataCompra = dataCompra;
         this.modelo = modelo;
+    }
+
+    public int getIdAeronave() {
+        return idAeronave;
+    }
+
+    public void setIdAeronave(int idAeronave) {
+        this.idAeronave = idAeronave;
+    }
+
+    public String getNumeroSerie() {
+        return numeroSerie;
+    }
+
+    public void setNumeroSerie(String numeroSerie) {
+        this.numeroSerie = numeroSerie;
+    }
+
+    public Date getDataCompra() {
+        return dataCompra;
+    }
+
+    public void setDataCompra(Date dataCompra) {
+        this.dataCompra = dataCompra;
+    }
+
+    public List<Locacao> getLocacao() {
+        return locacao;
+    }
+
+    public void setLocacao(List<Locacao> locacao) {
+        this.locacao = locacao;
+    }
+
+    public Modelo getModelo() {
+        return modelo;
+    }
+
+    public void setModelo(Modelo modelo) {
+        this.modelo = modelo;
+    }
+
+    @Override
+    public String toString() {
+        return "Aeronave:{"+ numeroSerie +'}';
     }
 
     
