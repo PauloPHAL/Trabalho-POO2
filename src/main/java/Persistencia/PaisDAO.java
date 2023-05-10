@@ -21,28 +21,8 @@ public class PaisDAO extends GenericDAO{
         return null;
     }
     //----------------------------------------------------------------      
-    public List<Pais> listar(Class classe){
-        Session sessao = null;
-        List<Pais> lista = null;
-        try {
-            sessao = ConexaoHibernate.getSessionFactory().openSession();
-            sessao.beginTransaction();
-
-            // OPERAÇÕES
-            CriteriaQuery consulta = sessao.getCriteriaBuilder().createQuery(classe);
-            consulta.from(classe);
-            lista = sessao.createQuery(consulta).getResultList();
-            
-            sessao.getTransaction().commit();
-            sessao.close();
-        } catch ( HibernateException erro) {
-            if ( sessao != null ){
-                sessao.getTransaction().rollback();
-                sessao.close();
-            }
-            throw new HibernateException(erro);
-        }               
-        return lista;
+    public List<Pais> listar(){
+        return null;
     } 
     
 }

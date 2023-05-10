@@ -69,7 +69,7 @@ public class GenericDAO {
         }    
     }  
     
-    public List listar(Class classe,int r) throws HibernateException {
+    public List listar(Class classe) throws HibernateException {
         Session sessao = null;
         List lista = null;
         try {

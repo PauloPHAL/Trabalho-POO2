@@ -89,6 +89,11 @@ public class Fabricante implements Serializable{
         this.modelo = modelo;
     }
 
+    @Override
+    public String toString() {
+        return nome;
+    }
+
     
     
     

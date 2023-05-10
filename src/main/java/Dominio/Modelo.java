@@ -112,6 +112,11 @@ public class Modelo implements Serializable{
         this.fabricante = fabricante;
     }
 
+    @Override
+    public String toString() {
+        return nome;
+    }
+
     
     
     

@@ -1,6 +1,7 @@
 package Gerencia;
 
 import Dominio.Fabricante;
+import Dominio.Modelo;
 import Dominio.Pais;
 import Persistencia.*;
 import java.util.Date;
@@ -34,30 +35,41 @@ public class GerTarefasDaoDominio {
         }
         return gerenciador;
     }
-    
+    //------------------------------------------------------
     public int inserirAeronave(){
         
         return 1;
     }
+    public int alterarAeronave(){
+        return 1;
+    }
+    
     //------------------------------------------------------
     public int inserirModelo(String nome, String tipo, int capacidade, Date dataModelo, byte[] fotoModelo, Fabricante fabricante){
-        
-        return 1;
+        Modelo modelo = new Modelo(nome,tipo,capacidade,dataModelo,fotoModelo,fabricante);
+        modeloDao.inserir(modelo);
+        return modelo.getIdModelo();
     }
     public int alterarModelo(){
         return 1;
     }
+    
     //------------------------------------------------------
     public int inserirFabricante(String nome, Date dataFundacao, byte[] logo, Pais pais){
-        
-        return 1;
+        Fabricante fabricante = new Fabricante(nome,dataFundacao,logo,pais);
+        fabricanteDao.inserir(fabricante);
+        return fabricante.getIdFabricante();
     }
     public int alterarFabricante(){
         return 1;
     }
+    
     //------------------------------------------------------
     public int inserirCliente(){
         
+        return 1;
+    }
+    public int alterarCliente(){
         return 1;
     }
     
@@ -67,8 +79,9 @@ public class GerTarefasDaoDominio {
         paisDao.inserir(pais);
         return pais.getIdPais();
     }
-    public List<Pais> listarPais() throws HibernateException{
-        return paisDao.listar(Pais.class);
+    //------------------------------------------------------
+    public List listar(Class classe) throws HibernateException{
+        return genericDao.listar(classe);
     }
     
     

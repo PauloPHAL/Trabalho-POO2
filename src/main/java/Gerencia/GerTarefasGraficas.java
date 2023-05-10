@@ -6,7 +6,6 @@ import Interface.*;
 import java.awt.*;
 import java.io.File;
 import java.lang.reflect.InvocationTargetException;
-import java.util.ArrayList;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.*;
 import org.hibernate.HibernateException;
@@ -163,12 +162,12 @@ public class GerTarefasGraficas {
     }
     //-----------------------------------------------------------------------------------------
     //Carregar Combo Box
-    public void carregarComboBox(JComboBox combo, JDialog janela){    
+    public <T> void carregarComboBox(JComboBox combo, JDialog janela, Class<T> classe){    
         try {
-            List<Pais> lista = this.gerenciaDaoDominio.listarPais();
+            List<T> lista = (List<T>) this.gerenciaDaoDominio.listar(classe);
             combo.setModel(new DefaultComboBoxModel(lista.toArray()) );
         } catch (HibernateException ex) {
-            JOptionPane.showMessageDialog(frmPrincipal, "Erro carregar Modelo:"+ ex);
+            JOptionPane.showMessageDialog(frmPrincipal, "Erro carregar Combo Box:"+ ex);
         }        
     }
     //main

@@ -251,7 +251,7 @@ public class CadastrarFabricante extends javax.swing.JDialog {
     }//GEN-LAST:event_btlAddActionPerformed
 
     private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
-        this.gerTarefas.carregarComboBox(comboPais,this);
+        this.gerTarefas.carregarComboBox(comboPais,this,Pais.class);
     }//GEN-LAST:event_formComponentShown
 
 

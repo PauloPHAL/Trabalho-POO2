@@ -56,6 +56,11 @@ public class CadastrarModelo extends javax.swing.JDialog {
                 formMouseExited(evt);
             }
         });
+        addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                formComponentShown(evt);
+            }
+        });
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "CADASTRAR MODELO", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 18), new java.awt.Color(0, 0, 204))); // NOI18N
 
@@ -288,12 +293,16 @@ public class CadastrarModelo extends javax.swing.JDialog {
                 // ALTERAR
                 this.gerTarefas.getGerenciaDaoDominio().alterarModelo();
                 int id = this.gerTarefas.getGerEdicao().getModeloSelecionado().getIdModelo();
-                JOptionPane.showMessageDialog(this, "Modelo " + id + "alterado com sucesso.");
+                JOptionPane.showMessageDialog(this, "Modelo " + id + " alterado com sucesso.");
             }
         } catch (ParseException ex) {
             JOptionPane.showMessageDialog(this, "Erro: "+ex);
         }                 
     }//GEN-LAST:event_btlAddActionPerformed
+
+    private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
+        this.gerTarefas.carregarComboBox(jComboBox1, this, Fabricante.class);
+    }//GEN-LAST:event_formComponentShown
 
     
 
