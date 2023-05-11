@@ -17,6 +17,22 @@ public class LocacaoPK implements Serializable {
         this.aeronave = aeronave;
         this.cliente = cliente;
     }
+
+    public Aeronave getAeronave() {
+        return aeronave;
+    }
+
+    public void setAeronave(Aeronave aeronave) {
+        this.aeronave = aeronave;
+    }
+
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
+    }
     
     
 }

@@ -8,6 +8,8 @@ import java.lang.reflect.InvocationTargetException;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.*;
 import org.hibernate.HibernateException;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.DefaultComboBoxModel;
 
 public class GerTarefasGraficas {
     //acessos
@@ -166,8 +168,22 @@ public class GerTarefasGraficas {
             List<T> lista = (List<T>) this.gerenciaDaoDominio.listar(classe);
             combo.setModel(new DefaultComboBoxModel(lista.toArray()));
         } catch (HibernateException ex) {
-            JOptionPane.showMessageDialog(frmPrincipal, "Erro carregar Combo Box:"+ ex);
+            JOptionPane.showMessageDialog(janela, "Erro carregar Combo Box: "+ ex);
         }        
+    }
+    //-----------------------------------------------------------------------------------------
+    //Carregar Tabela
+    public void carregarTabela(JTable tabela, JDialog janela, Class<?> classe){
+        try{
+            List<?> lista = (List<?>) this.gerenciaDaoDominio.listar(classe);
+            ((DefaultTableModel) tabela.getModel()).setNumRows(0);            
+            for (Object obj : lista){
+                // ADICIONAR LINHA NA TABELA        
+                ((DefaultTableModel)tabela.getModel()).addRow((Object[]) obj.getClass().getMethod("toArray").invoke(obj));                
+            }
+        }catch(HibernateException | IllegalAccessException | IllegalArgumentException | InvocationTargetException | NoSuchMethodException | SecurityException ex){
+            JOptionPane.showMessageDialog(janela, "Erro carregar Tabela: "+ ex);
+        }  
     }
     //main
     public static void main(String[] args) {

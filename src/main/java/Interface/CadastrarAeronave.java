@@ -2,7 +2,12 @@ package Interface;
 
 import Dominio.Fabricante;
 import Dominio.Modelo;
+import Gerencia.FuncoesUteis;
 import Gerencia.GerTarefasGraficas;
+import java.text.ParseException;
+import java.util.Date;
+import javax.swing.Icon;
+import javax.swing.JOptionPane;
 
 public class CadastrarAeronave extends javax.swing.JDialog {
     //acesso
@@ -32,7 +37,7 @@ public class CadastrarAeronave extends javax.swing.JDialog {
         txtData = new javax.swing.JFormattedTextField();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        txtNumSerie = new javax.swing.JTextField();
         btlPesquisar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -61,6 +66,11 @@ public class CadastrarAeronave extends javax.swing.JDialog {
 
         btnNovo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/intergraf/imagens/add.png"))); // NOI18N
         btnNovo.setText("Adicionar");
+        btnNovo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNovoActionPerformed(evt);
+            }
+        });
 
         btlSair.setIcon(new javax.swing.ImageIcon(getClass().getResource("/intergraf/imagens/remove.png"))); // NOI18N
         btlSair.setText("Cancelar");
@@ -113,7 +123,7 @@ public class CadastrarAeronave extends javax.swing.JDialog {
                                 .addComponent(txtData, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jLabel4)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtNumSerie, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(btlPesquisar)))
                         .addGap(0, 0, Short.MAX_VALUE)))
@@ -125,7 +135,7 @@ public class CadastrarAeronave extends javax.swing.JDialog {
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtNumSerie, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btlPesquisar))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -182,6 +192,33 @@ public class CadastrarAeronave extends javax.swing.JDialog {
         this.gerTarefas.carregarComboBox(jComboBoxM, this, Modelo.class);
     }//GEN-LAST:event_formComponentShown
 
+    private void btnNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovoActionPerformed
+        try {
+            //pegando os dados
+            String numeroSerie = this.txtNumSerie.getText();
+            String d = this.txtData.getText();           
+            Modelo modelo = (Modelo) this.jComboBoxM.getSelectedItem();            
+            
+            //tratando os dados que precisa
+            Date data = FuncoesUteis.strToDate(d);
+            
+            // INSERIR NO BANCO                      
+            //------------------------------------------------------------------------------
+            if ( this.gerTarefas.getGerEdicao().getAeronaveSelecionada() == null) {
+                // INSERIR
+                int id = this.gerTarefas.getGerenciaDaoDominio().inserirAeronave(numeroSerie, data, modelo);
+                JOptionPane.showMessageDialog(this, "Aeronave " + id + " inserida com sucesso.");
+            } else {
+                // ALTERAR
+                this.gerTarefas.getGerenciaDaoDominio().alterarAeronave();
+                int id = this.gerTarefas.getGerEdicao().getAeronaveSelecionada().getIdAeronave();
+                JOptionPane.showMessageDialog(this, "Aeronave " + id + " alterada com sucesso.");
+            }
+        } catch (ParseException ex) {
+            JOptionPane.showMessageDialog(this, "Erro: "+ex);
+        }                 
+    }//GEN-LAST:event_btnNovoActionPerformed
+
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -196,7 +233,7 @@ public class CadastrarAeronave extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JFormattedTextField txtData;
+    private javax.swing.JTextField txtNumSerie;
     // End of variables declaration//GEN-END:variables
 }

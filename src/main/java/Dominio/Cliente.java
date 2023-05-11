@@ -1,6 +1,8 @@
 package Dominio;
 
+import Gerencia.FuncoesUteis;
 import java.io.Serializable;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -21,8 +23,8 @@ public class Cliente implements Serializable{
     @Column (name="emailCliente", length = 50, nullable = false)
     private String email;
     
-    @Column
-    private int celular;
+    @Column (name="celularCliente", length = 50, nullable = false)
+    private String celular;
     
     @Column (length = 1)
     private char sexo;
@@ -41,8 +43,7 @@ public class Cliente implements Serializable{
     public Cliente() {
     }
     
-    public Cliente(int idCliente, String nome, String cpf, String email, int celular, char sexo, Date dataNascimento, byte[] fotoCliente) {
-        this.idCliente = idCliente;
+    public Cliente(String nome, String cpf, String email, String celular, char sexo, Date dataNascimento, byte[] fotoCliente) {
         this.nome = nome;
         this.cpf = cpf;
         this.email = email;
@@ -84,11 +85,11 @@ public class Cliente implements Serializable{
         this.email = email;
     }
 
-    public int getCelular() {
+    public String getCelular() {
         return celular;
     }
 
-    public void setCelular(int celular) {
+    public void setCelular(String celular) {
         this.celular = celular;
     }
 
@@ -123,12 +124,19 @@ public class Cliente implements Serializable{
     public void setLocacao(List<Locacao> locacao) {
         this.locacao = locacao;
     }
+    
+    public String getDataNascimentoFormatada() throws ParseException{
+        return FuncoesUteis.dateToStr(this.getDataNascimento());
+    }
 
     @Override
     public String toString() {
         return nome;
     }
 
+    public Object[] toArray() throws ParseException {
+        return new Object[] { this, this.getDataNascimentoFormatada(), this.getSexo(), this.getFotoCliente()};
+    }
     
     
    

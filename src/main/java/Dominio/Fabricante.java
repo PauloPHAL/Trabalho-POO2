@@ -2,6 +2,7 @@ package Dominio;
 
 
 import java.io.Serializable;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -94,7 +95,9 @@ public class Fabricante implements Serializable{
         return nome;
     }
 
-    
+    public Object[] toArray() throws ParseException {
+        return new Object[] { this, this.getPais()};
+    }
     
     
     

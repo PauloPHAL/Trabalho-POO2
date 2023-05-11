@@ -1,5 +1,7 @@
 package Gerencia;
 
+import Dominio.Aeronave;
+import Dominio.Cliente;
 import Dominio.Fabricante;
 import Dominio.Modelo;
 import Dominio.Pais;
@@ -36,9 +38,10 @@ public class GerTarefasDaoDominio {
         return gerenciador;
     }
     //------------------------------------------------------
-    public int inserirAeronave(){
-        
-        return 1;
+    public int inserirAeronave(String numeroSerie, Date dataCompra, Modelo modelo){
+        Aeronave aeronave = new Aeronave(numeroSerie, dataCompra, modelo);
+        aeronaveDao.inserir(aeronave);
+        return aeronave.getIdAeronave();
     }
     public int alterarAeronave(){
         return 1;
@@ -65,9 +68,10 @@ public class GerTarefasDaoDominio {
     }
     
     //------------------------------------------------------
-    public int inserirCliente(){
-        
-        return 1;
+    public int inserirCliente(String nome, String cpf, String email, String celular, char sexo, Date dataNascimento, byte[] fotoCliente){
+        Cliente cliente = new Cliente(nome,cpf,email,celular,sexo,dataNascimento,fotoCliente);
+        clienteDao.inserir(cliente);
+        return cliente.getIdCliente();
     }
     public int alterarCliente(){
         return 1;

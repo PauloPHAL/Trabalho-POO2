@@ -1,5 +1,6 @@
 package Gerencia;
 
+import java.awt.Component;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
@@ -11,6 +12,10 @@ import java.util.Date;
 import javax.imageio.ImageIO;
 import javax.imageio.stream.ImageOutputStream;
 import javax.swing.Icon;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
+import javax.swing.JTable;
+import javax.swing.table.TableCellRenderer;
 
 public class FuncoesUteis {
     //converter Icone para Bytes
@@ -119,5 +124,21 @@ public class FuncoesUteis {
     //verificar Email/Gmail
     public static boolean isEmail_Gmail(String str){      
         return (str.indexOf("@") > 0);
+    }
+    
+    //Foto em uma coluna expecifica
+    public static void colocarFotoNaTabela(JTable tabela, int coluna){
+        tabela.getColumnModel().getColumn(coluna).setCellRenderer( 
+            new TableCellRenderer() {
+                @Override
+                public Component getTableCellRendererComponent(JTable jtable, Object o, boolean bln, boolean bln1, int i, int i1) {
+                    // OBJETO FINAL
+                    JLabel label = new JLabel();
+                    if ( o != null)
+                        label.setIcon( new ImageIcon( (byte[]) o) );
+                    return label;
+                }
+            } 
+        );
     }
 }

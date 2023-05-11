@@ -1,6 +1,11 @@
 package Interface;
 
+import Gerencia.FuncoesUteis;
 import Gerencia.GerTarefasGraficas;
+import java.text.ParseException;
+import java.util.Date;
+import javax.swing.Icon;
+import javax.swing.JOptionPane;
 
 public class CadastrarCliente extends javax.swing.JDialog {
     //acesso
@@ -63,6 +68,11 @@ public class CadastrarCliente extends javax.swing.JDialog {
         btnNovo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/intergraf/imagens/add.png"))); // NOI18N
         btnNovo.setMnemonic('N');
         btnNovo.setText("Novo");
+        btnNovo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNovoActionPerformed(evt);
+            }
+        });
 
         btnCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/intergraf/imagens/remove.png"))); // NOI18N
         btnCancelar.setText("Cancelar");
@@ -246,6 +256,38 @@ public class CadastrarCliente extends javax.swing.JDialog {
     private void formMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseExited
         gerTarefas.cursorDentro(this);
     }//GEN-LAST:event_formMouseExited
+
+    private void btnNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovoActionPerformed
+        try {
+            //pegando os dados
+            String nome = txtNome.getText();
+            String cpf = txtCpf.getText();
+            String d = txtData.getText();
+            char sexo = (char) grpSexo.getSelection().getMnemonic();
+            String celular = txtCelular.getText();
+            String email = txtEmail.getText();
+            Icon f = lblFoto.getIcon();
+            
+            //tratando os dados que precisa
+            Date data = FuncoesUteis.strToDate(d);
+            byte[] foto = FuncoesUteis.IconToBytes(f);
+            
+            // INSERIR NO BANCO                      
+            //------------------------------------------------------------------------------
+            if ( this.gerTarefas.getGerEdicao().getClienteSelecionado() == null) {
+                // INSERIR
+                int id = this.gerTarefas.getGerenciaDaoDominio().inserirCliente(nome,cpf,email,celular,sexo,data,foto);
+                JOptionPane.showMessageDialog(this, "Cliente " + id + " inserido com sucesso.");
+            } else {
+                // ALTERAR
+                this.gerTarefas.getGerenciaDaoDominio().alterarCliente();
+                int id = this.gerTarefas.getGerEdicao().getClienteSelecionado().getIdCliente();
+                JOptionPane.showMessageDialog(this, "Cliente " + id + " alterado com sucesso.");
+            }        
+        } catch (ParseException ex) {
+            JOptionPane.showMessageDialog(this, "Erro: "+ex);
+        }                          
+    }//GEN-LAST:event_btnNovoActionPerformed
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

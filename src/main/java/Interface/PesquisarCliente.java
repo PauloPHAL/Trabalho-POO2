@@ -1,5 +1,7 @@
 package Interface;
 
+import Dominio.Cliente;
+import Gerencia.FuncoesUteis;
 import Gerencia.GerTarefasGraficas;
 
 public class PesquisarCliente extends javax.swing.JDialog {
@@ -12,6 +14,7 @@ public class PesquisarCliente extends javax.swing.JDialog {
         initComponents();
         setLocationRelativeTo(null);
         this.gerTarefas = gerTarefas;
+        FuncoesUteis.colocarFotoNaTabela(jTable1, 3);
     }
 
     @SuppressWarnings("unchecked")
@@ -41,13 +44,18 @@ public class PesquisarCliente extends javax.swing.JDialog {
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/intergraf/imagens/find.gif"))); // NOI18N
         jButton1.setText("Procurar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Nome", "Data Nascimento", "Sexo"
+                "Nome", "Nascimento", "Sexo", "Foto"
             }
         ));
         jScrollPane1.setViewportView(jTable1);
@@ -129,6 +137,10 @@ public class PesquisarCliente extends javax.swing.JDialog {
     private void formMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseExited
         gerTarefas.cursorDentro(this);
     }//GEN-LAST:event_formMouseExited
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        this.gerTarefas.carregarTabela(jTable1, this, Cliente.class);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     
 

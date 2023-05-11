@@ -1,6 +1,7 @@
 package Dominio;
 
 import java.io.Serializable;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -30,8 +31,7 @@ public class Aeronave implements Serializable{
     public Aeronave() {
     }
 
-    public Aeronave(int idAeronave, String numeroSerie, Date dataCompra, Modelo modelo) {
-        this.idAeronave = idAeronave;
+    public Aeronave(String numeroSerie, Date dataCompra, Modelo modelo) {
         this.numeroSerie = numeroSerie;
         this.dataCompra = dataCompra;
         this.modelo = modelo;
@@ -82,7 +82,9 @@ public class Aeronave implements Serializable{
         return "Aeronave:{"+ numeroSerie +'}';
     }
 
-    
+    public Object[] toArray() throws ParseException {
+        return new Object[] { this, this.getModelo(),this.getModelo().getFabricante() };
+    }
     
    
     

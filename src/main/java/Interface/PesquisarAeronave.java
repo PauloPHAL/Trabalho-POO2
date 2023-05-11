@@ -1,5 +1,6 @@
 package Interface;
 
+import Dominio.Aeronave;
 import Gerencia.GerTarefasGraficas;
 
 public class PesquisarAeronave extends javax.swing.JDialog {
@@ -41,6 +42,11 @@ public class PesquisarAeronave extends javax.swing.JDialog {
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/intergraf/imagens/find.gif"))); // NOI18N
         jButton1.setText("Procurar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -130,6 +136,10 @@ public class PesquisarAeronave extends javax.swing.JDialog {
     private void formMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseExited
         gerTarefas.cursorDentro(this);
     }//GEN-LAST:event_formMouseExited
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        this.gerTarefas.carregarTabela(jTable1, this, Aeronave.class);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     
 
