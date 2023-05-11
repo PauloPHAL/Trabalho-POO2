@@ -1,6 +1,5 @@
 package Gerencia;
 
-import java.awt.Component;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
@@ -15,7 +14,6 @@ import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JTable;
-import javax.swing.table.TableCellRenderer;
 
 public class FuncoesUteis {
     //converter Icone para Bytes
@@ -128,17 +126,12 @@ public class FuncoesUteis {
     
     //Foto em uma coluna expecifica
     public static void colocarFotoNaTabela(JTable tabela, int coluna){
-        tabela.getColumnModel().getColumn(coluna).setCellRenderer( 
-            new TableCellRenderer() {
-                @Override
-                public Component getTableCellRendererComponent(JTable jtable, Object o, boolean bln, boolean bln1, int i, int i1) {
-                    // OBJETO FINAL
-                    JLabel label = new JLabel();
-                    if ( o != null)
-                        label.setIcon( new ImageIcon( (byte[]) o) );
-                    return label;
-                }
-            } 
-        );
+        tabela.getColumnModel().getColumn(coluna).setCellRenderer((JTable jtable, Object o, boolean bln, boolean bln1, int i, int i1) -> {
+            // OBJETO FINAL
+            JLabel label = new JLabel();
+            if ( o != null)
+                label.setIcon( new ImageIcon( (byte[]) o) );
+            return label;
+        });
     }
 }

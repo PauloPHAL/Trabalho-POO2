@@ -30,7 +30,7 @@ public class Modelo implements Serializable{
     private byte[] fotoModelo;
     
     @OneToMany ( mappedBy = "modelo", fetch = FetchType.LAZY )
-    private List<Aeronave> aeronave = new ArrayList<>();
+    private List<Aeronave> aeronave;
        
     @ManyToOne ( fetch = FetchType.EAGER )
     @JoinColumn ( name="idFabricante" )
@@ -47,6 +47,7 @@ public class Modelo implements Serializable{
         this.dataModelo = dataModelo;
         this.fotoModelo = fotoModelo;
         this.fabricante = fabricante;
+        this.aeronave = new ArrayList<>();
     }
 
     public int getIdModelo() {

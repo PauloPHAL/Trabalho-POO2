@@ -39,6 +39,8 @@ public class CadastrarAeronave extends javax.swing.JDialog {
         jLabel4 = new javax.swing.JLabel();
         txtNumSerie = new javax.swing.JTextField();
         btlPesquisar = new javax.swing.JButton();
+        txtNome = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         addMouseListener(new java.awt.event.MouseAdapter() {
@@ -97,6 +99,8 @@ public class CadastrarAeronave extends javax.swing.JDialog {
             }
         });
 
+        jLabel5.setText("NOME DA AERONAVE:");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -105,7 +109,7 @@ public class CadastrarAeronave extends javax.swing.JDialog {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 66, Short.MAX_VALUE)
+                        .addGap(0, 67, Short.MAX_VALUE)
                         .addComponent(btnAlterar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btnNovo)
@@ -125,7 +129,9 @@ public class CadastrarAeronave extends javax.swing.JDialog {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(txtNumSerie, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(btlPesquisar)))
+                                .addComponent(btlPesquisar))
+                            .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel5))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -137,7 +143,11 @@ public class CadastrarAeronave extends javax.swing.JDialog {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtNumSerie, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btlPesquisar))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel5)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(txtData, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -196,6 +206,7 @@ public class CadastrarAeronave extends javax.swing.JDialog {
         try {
             //pegando os dados
             String numeroSerie = this.txtNumSerie.getText();
+            String nome = this.txtNome.getText();
             String d = this.txtData.getText();           
             Modelo modelo = (Modelo) this.jComboBoxM.getSelectedItem();            
             
@@ -206,7 +217,7 @@ public class CadastrarAeronave extends javax.swing.JDialog {
             //------------------------------------------------------------------------------
             if ( this.gerTarefas.getGerEdicao().getAeronaveSelecionada() == null) {
                 // INSERIR
-                int id = this.gerTarefas.getGerenciaDaoDominio().inserirAeronave(numeroSerie, data, modelo);
+                int id = this.gerTarefas.getGerenciaDaoDominio().inserirAeronave(nome,numeroSerie, data, modelo);
                 JOptionPane.showMessageDialog(this, "Aeronave " + id + " inserida com sucesso.");
             } else {
                 // ALTERAR
@@ -232,8 +243,10 @@ public class CadastrarAeronave extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JFormattedTextField txtData;
+    private javax.swing.JTextField txtNome;
     private javax.swing.JTextField txtNumSerie;
     // End of variables declaration//GEN-END:variables
 }

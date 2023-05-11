@@ -53,7 +53,7 @@ public class PesquisarAeronave extends javax.swing.JDialog {
 
             },
             new String [] {
-                "Codigo", "Modelo", "Fabricante"
+                "Nome", "NumeroSerie", "Modelo", "Fabricante"
             }
         ));
         jScrollPane1.setViewportView(jTable1);

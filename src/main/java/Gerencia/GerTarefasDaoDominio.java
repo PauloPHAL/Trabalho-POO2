@@ -1,10 +1,6 @@
 package Gerencia;
 
-import Dominio.Aeronave;
-import Dominio.Cliente;
-import Dominio.Fabricante;
-import Dominio.Modelo;
-import Dominio.Pais;
+import Dominio.*;
 import Persistencia.*;
 import java.util.Date;
 import java.util.List;
@@ -38,8 +34,8 @@ public class GerTarefasDaoDominio {
         return gerenciador;
     }
     //------------------------------------------------------
-    public int inserirAeronave(String numeroSerie, Date dataCompra, Modelo modelo){
-        Aeronave aeronave = new Aeronave(numeroSerie, dataCompra, modelo);
+    public int inserirAeronave(String nome, String numeroSerie, Date dataCompra, Modelo modelo){
+        Aeronave aeronave = new Aeronave(nome, numeroSerie, dataCompra, modelo);
         aeronaveDao.inserir(aeronave);
         return aeronave.getIdAeronave();
     }
@@ -78,15 +74,28 @@ public class GerTarefasDaoDominio {
     }
     
     //------------------------------------------------------
+    public int inserirLocacao(Cliente cliente, Aeronave aeronave, Date dataLocacao, Date dataLimite, double valor){
+        Locacao locacao = new Locacao(cliente, aeronave, dataLocacao, dataLimite, valor);
+        locacaoDao.inserir(locacao);
+        return 1;
+    }
+    public int alterarLocacao(){
+        return 1;
+    }
+ 
+    //------------------------------------------------------
     public int inserirPais(String nome){
         Pais pais = new Pais(nome);
         paisDao.inserir(pais);
         return pais.getIdPais();
     }
     //------------------------------------------------------
+    //Generico Excluir e Listar
     public List listar(Class classe) throws HibernateException{
         return genericDao.listar(classe);
     }
-    
-    
+    public void excluir(Object obj){
+        genericDao.excluir(obj);
+    }
+  
 }

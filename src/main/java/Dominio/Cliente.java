@@ -37,7 +37,7 @@ public class Cliente implements Serializable{
     private byte[] fotoCliente;
     
     @OneToMany ( mappedBy = "chaveComposta.cliente", fetch = FetchType.LAZY )
-    private List<Locacao> locacao = new ArrayList<>();
+    private List<Locacao> locacao;
     
     //hibernate
     public Cliente() {
@@ -51,6 +51,7 @@ public class Cliente implements Serializable{
         this.sexo = sexo;
         this.dataNascimento = dataNascimento;
         this.fotoCliente = fotoCliente;
+        this.locacao = new ArrayList<>();
     }
 
     public int getIdCliente() {

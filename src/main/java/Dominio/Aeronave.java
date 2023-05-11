@@ -13,6 +13,9 @@ public class Aeronave implements Serializable{
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     private int idAeronave;
     
+    @Column (name="nomeAeronave", length = 250, nullable = false, updatable = false)
+    private String nome;
+    
     @Column (name="numeroSerie", length = 250, nullable = false, updatable = false)
     private String numeroSerie;
     
@@ -21,7 +24,7 @@ public class Aeronave implements Serializable{
     private Date dataCompra;
     
     @OneToMany ( mappedBy = "chaveComposta.aeronave", fetch = FetchType.LAZY )
-    private List<Locacao> locacao = new ArrayList<>();
+    private List<Locacao> locacao;
     
     @ManyToOne ( fetch = FetchType.EAGER )
     @JoinColumn ( name="idModelo" )
@@ -31,10 +34,12 @@ public class Aeronave implements Serializable{
     public Aeronave() {
     }
 
-    public Aeronave(String numeroSerie, Date dataCompra, Modelo modelo) {
+    public Aeronave(String nome,String numeroSerie, Date dataCompra, Modelo modelo) {
         this.numeroSerie = numeroSerie;
         this.dataCompra = dataCompra;
         this.modelo = modelo;
+        this.nome = nome;
+        this.locacao = new ArrayList<>();
     }
 
     public int getIdAeronave() {
@@ -77,13 +82,21 @@ public class Aeronave implements Serializable{
         this.modelo = modelo;
     }
 
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+    
     @Override
     public String toString() {
-        return "Aeronave:{"+ numeroSerie +'}';
+        return  nome;
     }
 
     public Object[] toArray() throws ParseException {
-        return new Object[] { this, this.getModelo(),this.getModelo().getFabricante() };
+        return new Object[] { this,this.getNumeroSerie() ,this.getModelo(),this.getModelo().getFabricante() };
     }
     
    

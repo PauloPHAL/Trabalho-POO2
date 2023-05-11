@@ -29,7 +29,7 @@ public class Fabricante implements Serializable{
     private byte[] logo;
     
     @OneToMany ( mappedBy = "fabricante", fetch = FetchType.LAZY )
-    private List<Modelo> modelo = new ArrayList<>();
+    private List<Modelo> modelo;
     
     //Hibernate
     public Fabricante() {
@@ -40,6 +40,7 @@ public class Fabricante implements Serializable{
         this.pais = pais;
         this.dataFundacao = dataFundacao;
         this.logo = logo;
+        this.modelo = new ArrayList<>();
     }
 
     public int getIdFabricante() {
