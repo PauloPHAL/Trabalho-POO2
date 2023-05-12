@@ -1,11 +1,14 @@
 package Dominio;
 
 
+import Gerencia.FuncoesUteis;
 import java.io.Serializable;
 import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 import javax.persistence.*;
 
 @Entity
@@ -90,6 +93,10 @@ public class Fabricante implements Serializable{
     public void setModelo(List<Modelo> modelo) {
         this.modelo = modelo;
     }
+    
+    public String getDataFundacaoFormatada() throws ParseException{
+        return FuncoesUteis.dateToStr(this.getDataFundacao());
+    }
 
     @Override
     public String toString() {
@@ -98,6 +105,48 @@ public class Fabricante implements Serializable{
 
     public Object[] toArray() throws ParseException {
         return new Object[] { this, this.getPais()};
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 97 * hash + this.idFabricante;
+        hash = 97 * hash + Objects.hashCode(this.nome);
+        hash = 97 * hash + Objects.hashCode(this.pais);
+        hash = 97 * hash + Objects.hashCode(this.dataFundacao);
+        hash = 97 * hash + Arrays.hashCode(this.logo);
+        hash = 97 * hash + Objects.hashCode(this.modelo);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Fabricante other = (Fabricante) obj;
+        if (this.idFabricante != other.idFabricante) {
+            return false;
+        }
+        if (!Objects.equals(this.nome, other.nome)) {
+            return false;
+        }
+        if (!Objects.equals(this.pais, other.pais)) {
+            return false;
+        }
+        if (!Objects.equals(this.dataFundacao, other.dataFundacao)) {
+            return false;
+        }
+        if (!Arrays.equals(this.logo, other.logo)) {
+            return false;
+        }
+        return Objects.equals(this.modelo, other.modelo);
     }
     
     

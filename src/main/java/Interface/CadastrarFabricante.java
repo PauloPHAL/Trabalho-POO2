@@ -1,11 +1,15 @@
 package Interface;
 
+import Dominio.Fabricante;
 import Dominio.Pais;
 import Gerencia.FuncoesUteis;
 import Gerencia.GerTarefasGraficas;
 import java.text.ParseException;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 public class CadastrarFabricante extends javax.swing.JDialog {
@@ -20,7 +24,23 @@ public class CadastrarFabricante extends javax.swing.JDialog {
         this.gerTarefas = gerTarefas;
         this.gerTarefas.habilitarBotoes(this.gerTarefas.getGerEdicao().getFabricanteSelecionado(), btlAdd, btlAlterar);
     }
-   
+    
+    private void preencherCampos(Fabricante fabricante) throws ParseException{
+        if (fabricante != null ) {
+            this.txtNome.setText(fabricante.getNome());
+            this.comboPais.setSelectedItem(fabricante.getPais());
+            this.txtData.setText(fabricante.getDataFundacaoFormatada());                     
+            if ( fabricante.getLogo() != null ) { 
+                ImageIcon imagem = new ImageIcon( fabricante.getLogo());
+                this.gerTarefas.mostrarFoto(imagem, lblFoto);
+            } else {
+                lblFoto.setText("Foto");
+                lblFoto.setIcon(null);
+            }
+            this.gerTarefas.habilitarBotoes(this.gerTarefas.getGerEdicao().getFabricanteSelecionado(), btlAdd, btlAlterar);
+        }
+    }
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -85,6 +105,11 @@ public class CadastrarFabricante extends javax.swing.JDialog {
 
         btlAlterar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/intergraf/imagens/accept.png"))); // NOI18N
         btlAlterar.setText("Alterar");
+        btlAlterar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btlAddActionPerformed(evt);
+            }
+        });
 
         jLabel3.setText("DATA DA FUNDAÇÃO:");
 
@@ -203,6 +228,11 @@ public class CadastrarFabricante extends javax.swing.JDialog {
 
     private void btlPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btlPesquisarActionPerformed
         gerTarefas.abrirPesqFabricante();
+        try {
+            preencherCampos(this.gerTarefas.getGerEdicao().getFabricanteSelecionado());
+        } catch (ParseException ex) {
+            JOptionPane.showMessageDialog(this, "Erro: "+ex);
+        }
     }//GEN-LAST:event_btlPesquisarActionPerformed
 
     private void lblFotoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblFotoMouseClicked
@@ -222,7 +252,7 @@ public class CadastrarFabricante extends javax.swing.JDialog {
     }//GEN-LAST:event_formMouseExited
 
     private void btlAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btlAddActionPerformed
-            try {
+        try {
             //pegando os dados
             String nome = this.txtNome.getText();
             String d = this.txtData.getText();
@@ -241,12 +271,14 @@ public class CadastrarFabricante extends javax.swing.JDialog {
                 JOptionPane.showMessageDialog(this, "Fabricante " + id + " inserido com sucesso.");
             } else {
                 // ALTERAR
-                this.gerTarefas.getGerenciaDaoDominio().alterarFabricante();
-                int id = this.gerTarefas.getGerEdicao().getFabricanteSelecionado().getIdFabricante();
+                int id = this.gerTarefas.getGerenciaDaoDominio().alterarFabricante(this.gerTarefas.getGerEdicao().getFabricanteSelecionado(),nome,data,foto, pais);
                 JOptionPane.showMessageDialog(this, "Fabricante " + id + " alterado com sucesso.");
             }
         } catch (ParseException ex) {
             JOptionPane.showMessageDialog(this, "Erro: "+ex);
+        }finally{
+            this.gerTarefas.getGerEdicao().setFabricanteSelecionado(null);
+            this.gerTarefas.habilitarBotoes(this.gerTarefas.getGerEdicao().getFabricanteSelecionado(), btlAdd, btlAlterar);
         }              
     }//GEN-LAST:event_btlAddActionPerformed
 

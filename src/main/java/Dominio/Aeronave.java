@@ -5,6 +5,7 @@ import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 import javax.persistence.*;
 
 @Entity
@@ -97,6 +98,48 @@ public class Aeronave implements Serializable{
 
     public Object[] toArray() throws ParseException {
         return new Object[] { this,this.getNumeroSerie() ,this.getModelo(),this.getModelo().getFabricante() };
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 83 * hash + this.idAeronave;
+        hash = 83 * hash + Objects.hashCode(this.nome);
+        hash = 83 * hash + Objects.hashCode(this.numeroSerie);
+        hash = 83 * hash + Objects.hashCode(this.dataCompra);
+        hash = 83 * hash + Objects.hashCode(this.locacao);
+        hash = 83 * hash + Objects.hashCode(this.modelo);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Aeronave other = (Aeronave) obj;
+        if (this.idAeronave != other.idAeronave) {
+            return false;
+        }
+        if (!Objects.equals(this.nome, other.nome)) {
+            return false;
+        }
+        if (!Objects.equals(this.numeroSerie, other.numeroSerie)) {
+            return false;
+        }
+        if (!Objects.equals(this.dataCompra, other.dataCompra)) {
+            return false;
+        }
+        if (!Objects.equals(this.locacao, other.locacao)) {
+            return false;
+        }
+        return Objects.equals(this.modelo, other.modelo);
     }
     
    

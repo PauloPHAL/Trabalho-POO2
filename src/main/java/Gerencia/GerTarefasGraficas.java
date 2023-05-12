@@ -95,7 +95,7 @@ public class GerTarefasGraficas {
         dlgCadPais = (CadastrarPais) abrirJanela(frmPrincipal,dlgCadPais,CadastrarPais.class);
     }
     public void abrirPesqFabricante(){
-        dlgPesqFabricante = (PesquisarFabricante) abrirJanela(frmPrincipal,dlgPesqFabricante,PesquisarFabricante.class);
+        dlgPesqFabricante = (PesquisarFabricante) abrirJanela(frmPrincipal,dlgPesqFabricante,PesquisarFabricante.class);        
     }
     public void abrirPesqModelo(){
         dlgPesqModelo = (PesquisarModelo) abrirJanela(frmPrincipal,dlgPesqModelo,PesquisarModelo.class);
@@ -130,7 +130,7 @@ public class GerTarefasGraficas {
             mostrarFoto(imagem,lblFoto);
         }
     }
-    private void mostrarFoto(Icon ic, JLabel lblFoto){
+    public void mostrarFoto(Icon ic, JLabel lblFoto){
         ImageIcon imagem = (ImageIcon) ic;
         imagem.setImage(imagem.getImage().getScaledInstance(lblFoto.getWidth(), lblFoto.getHeight(), Image.SCALE_DEFAULT));      
         lblFoto.setText("");                
@@ -184,6 +184,21 @@ public class GerTarefasGraficas {
         }catch(HibernateException | IllegalAccessException | IllegalArgumentException | InvocationTargetException | NoSuchMethodException | SecurityException ex){
             JOptionPane.showMessageDialog(janela, "Erro carregar Tabela: "+ ex);
         }  
+    }
+    //-----------------------------------------------------------------------------------------
+    //Excluir Tabela
+    public void excluirTabela(JTable tabela, JDialog janela){
+        int linha = tabela.getSelectedRow();
+        if ( linha >= 0 ) {  
+            if ( JOptionPane.showConfirmDialog(janela, "Deseja realmente excluir?", "Título", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION ) {
+                this.gerenciaDaoDominio.excluir(tabela.getValueAt(linha, 0));
+                ((DefaultTableModel)tabela.getModel()).removeRow(linha);
+                JOptionPane.showMessageDialog(janela, "excluído com sucesso.");
+            }             
+        }        
+        else {
+            JOptionPane.showMessageDialog(janela,"Selecione uma linha." ,"Erro",JOptionPane.ERROR_MESSAGE);
+        }
     }
     //main
     public static void main(String[] args) {

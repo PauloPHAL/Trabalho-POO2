@@ -4,8 +4,10 @@ import Gerencia.FuncoesUteis;
 import java.io.Serializable;
 import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 import javax.persistence.*;
 
 @Entity
@@ -137,6 +139,60 @@ public class Cliente implements Serializable{
 
     public Object[] toArray() throws ParseException {
         return new Object[] { this, this.getDataNascimentoFormatada(), this.getSexo(), this.getFotoCliente()};
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 41 * hash + this.idCliente;
+        hash = 41 * hash + Objects.hashCode(this.nome);
+        hash = 41 * hash + Objects.hashCode(this.cpf);
+        hash = 41 * hash + Objects.hashCode(this.email);
+        hash = 41 * hash + Objects.hashCode(this.celular);
+        hash = 41 * hash + this.sexo;
+        hash = 41 * hash + Objects.hashCode(this.dataNascimento);
+        hash = 41 * hash + Arrays.hashCode(this.fotoCliente);
+        hash = 41 * hash + Objects.hashCode(this.locacao);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Cliente other = (Cliente) obj;
+        if (this.idCliente != other.idCliente) {
+            return false;
+        }
+        if (this.sexo != other.sexo) {
+            return false;
+        }
+        if (!Objects.equals(this.nome, other.nome)) {
+            return false;
+        }
+        if (!Objects.equals(this.cpf, other.cpf)) {
+            return false;
+        }
+        if (!Objects.equals(this.email, other.email)) {
+            return false;
+        }
+        if (!Objects.equals(this.celular, other.celular)) {
+            return false;
+        }
+        if (!Objects.equals(this.dataNascimento, other.dataNascimento)) {
+            return false;
+        }
+        if (!Arrays.equals(this.fotoCliente, other.fotoCliente)) {
+            return false;
+        }
+        return Objects.equals(this.locacao, other.locacao);
     }
     
     

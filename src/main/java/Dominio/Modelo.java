@@ -3,8 +3,10 @@ package Dominio;
 import java.io.Serializable;
 import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 import javax.persistence.*;
 
 @Entity
@@ -121,6 +123,56 @@ public class Modelo implements Serializable{
 
     public Object[] toArray() throws ParseException {
         return new Object[] { this,this.getFabricante() };
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 97 * hash + this.idModelo;
+        hash = 97 * hash + Objects.hashCode(this.nome);
+        hash = 97 * hash + Objects.hashCode(this.tipo);
+        hash = 97 * hash + this.capacidade;
+        hash = 97 * hash + Objects.hashCode(this.dataModelo);
+        hash = 97 * hash + Arrays.hashCode(this.fotoModelo);
+        hash = 97 * hash + Objects.hashCode(this.aeronave);
+        hash = 97 * hash + Objects.hashCode(this.fabricante);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Modelo other = (Modelo) obj;
+        if (this.idModelo != other.idModelo) {
+            return false;
+        }
+        if (this.capacidade != other.capacidade) {
+            return false;
+        }
+        if (!Objects.equals(this.nome, other.nome)) {
+            return false;
+        }
+        if (!Objects.equals(this.tipo, other.tipo)) {
+            return false;
+        }
+        if (!Objects.equals(this.dataModelo, other.dataModelo)) {
+            return false;
+        }
+        if (!Arrays.equals(this.fotoModelo, other.fotoModelo)) {
+            return false;
+        }
+        if (!Objects.equals(this.aeronave, other.aeronave)) {
+            return false;
+        }
+        return Objects.equals(this.fabricante, other.fabricante);
     }
     
     

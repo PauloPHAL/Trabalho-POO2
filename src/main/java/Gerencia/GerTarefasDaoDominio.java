@@ -45,7 +45,7 @@ public class GerTarefasDaoDominio {
     
     //------------------------------------------------------
     public int inserirModelo(String nome, String tipo, int capacidade, Date dataModelo, byte[] fotoModelo, Fabricante fabricante){
-        Modelo modelo = new Modelo(nome,tipo,capacidade,dataModelo,fotoModelo,fabricante);
+        Modelo modelo = new Modelo(nome,tipo,capacidade,dataModelo,fotoModelo,fabricante);       
         modeloDao.inserir(modelo);
         return modelo.getIdModelo();
     }
@@ -59,8 +59,13 @@ public class GerTarefasDaoDominio {
         fabricanteDao.inserir(fabricante);
         return fabricante.getIdFabricante();
     }
-    public int alterarFabricante(){
-        return 1;
+    public int alterarFabricante(Fabricante fabricante,String nome, Date dataFundacao, byte[] logo, Pais pais){
+        fabricante.setNome(nome);
+        fabricante.setDataFundacao(dataFundacao);
+        fabricante.setLogo(logo);
+        fabricante.setPais(pais);
+        fabricanteDao.alterar(fabricante);
+        return fabricante.getIdFabricante();
     }
     
     //------------------------------------------------------
