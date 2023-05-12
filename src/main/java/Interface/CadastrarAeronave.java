@@ -6,7 +6,6 @@ import Gerencia.FuncoesUteis;
 import Gerencia.GerTarefasGraficas;
 import java.text.ParseException;
 import java.util.Date;
-import javax.swing.Icon;
 import javax.swing.JOptionPane;
 
 public class CadastrarAeronave extends javax.swing.JDialog {

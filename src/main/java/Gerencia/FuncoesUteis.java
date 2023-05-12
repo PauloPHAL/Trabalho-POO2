@@ -62,6 +62,11 @@ public class FuncoesUteis {
         return num;
     }
     
+    //converter numero em string
+    public static String intToString(int num){
+        return Integer.toString(num);
+    }
+    
     //verifica o CPF
     public static boolean isCPF(String parCpf) {           
         // considera-se erro cpf's formados por uma sequencia de numeros iguais

@@ -1,10 +1,12 @@
 package Interface;
 
+import Dominio.Cliente;
 import Gerencia.FuncoesUteis;
 import Gerencia.GerTarefasGraficas;
 import java.text.ParseException;
 import java.util.Date;
 import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 public class CadastrarCliente extends javax.swing.JDialog {
@@ -20,7 +22,40 @@ public class CadastrarCliente extends javax.swing.JDialog {
         this.gerTarefas.habilitarBotoes(this.gerTarefas.getGerEdicao().getClienteSelecionado(), btnNovo, btnAlterar);
     }
 
-
+    private void preencherCampos(Cliente cliente) throws ParseException{
+        if (cliente != null ) {
+            this.txtNome.setText(cliente.getNome());          
+            this.txtData.setText(cliente.getDataNascimentoFormatada());
+            this.txtCpf.setText(cliente.getCpf());
+            this.txtEmail.setText(cliente.getEmail());
+            this.txtCelular.setText(cliente.getCelular());
+            
+            if(cliente.getSexo() == 'M'){
+                this.rdbMasc.setSelected(true);
+            }else{
+                this.rdbFemin.setSelected(true);
+            }
+            if (cliente.getFotoCliente() != null) { 
+                ImageIcon imagem = new ImageIcon( cliente.getFotoCliente());
+                this.gerTarefas.mostrarFoto(imagem, lblFoto);
+            } else {
+                lblFoto.setText("Foto");
+                lblFoto.setIcon(null);
+            }
+            this.gerTarefas.habilitarBotoes(this.gerTarefas.getGerEdicao().getClienteSelecionado(), btnNovo, btnAlterar);
+        }
+    }
+    
+    private void limparCampos(){
+        lblFoto.setText("Foto");
+        lblFoto.setIcon(null);
+        this.txtNome.setText("");          
+        this.txtData.setText("");
+        this.txtCpf.setText("");
+        this.txtEmail.setText("");
+        this.txtCelular.setText("");
+        this.rdbMasc.setSelected(true);
+    }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -138,6 +173,11 @@ public class CadastrarCliente extends javax.swing.JDialog {
 
         btnAlterar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/intergraf/imagens/accept.png"))); // NOI18N
         btnAlterar.setText("Alterar");
+        btnAlterar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNovoActionPerformed(evt);
+            }
+        });
 
         try {
             txtCelular.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##)#####-####")));
@@ -238,11 +278,17 @@ public class CadastrarCliente extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+        this.gerTarefas.getGerEdicao().setClienteSelecionado(null);
         this.dispose();
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarActionPerformed
         gerTarefas.abrirPesqCliente();
+        try {
+            preencherCampos(this.gerTarefas.getGerEdicao().getClienteSelecionado());
+        } catch (ParseException ex) {
+            JOptionPane.showMessageDialog(this, "Erro: "+ex);
+        }
     }//GEN-LAST:event_btnPesquisarActionPerformed
 
     private void lblFotoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblFotoMouseClicked
@@ -258,7 +304,7 @@ public class CadastrarCliente extends javax.swing.JDialog {
     }//GEN-LAST:event_formMouseExited
 
     private void btnNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovoActionPerformed
-        try {
+        try{
             //pegando os dados
             String nome = txtNome.getText();
             String cpf = txtCpf.getText();
@@ -274,18 +320,21 @@ public class CadastrarCliente extends javax.swing.JDialog {
             
             // INSERIR NO BANCO                      
             //------------------------------------------------------------------------------
-            if ( this.gerTarefas.getGerEdicao().getClienteSelecionado() == null) {
+            if(this.gerTarefas.getGerEdicao().getClienteSelecionado() == null){
                 // INSERIR
                 int id = this.gerTarefas.getGerenciaDaoDominio().inserirCliente(nome,cpf,email,celular,sexo,data,foto);
                 JOptionPane.showMessageDialog(this, "Cliente " + id + " inserido com sucesso.");
-            } else {
+            }else{
                 // ALTERAR
-                this.gerTarefas.getGerenciaDaoDominio().alterarCliente();
-                int id = this.gerTarefas.getGerEdicao().getClienteSelecionado().getIdCliente();
+                int id = this.gerTarefas.getGerenciaDaoDominio().alterarCliente(this.gerTarefas.getGerEdicao().getClienteSelecionado(),nome,cpf,email,celular,sexo,data,foto); 
                 JOptionPane.showMessageDialog(this, "Cliente " + id + " alterado com sucesso.");
             }        
-        } catch (ParseException ex) {
+        }catch (ParseException ex){
             JOptionPane.showMessageDialog(this, "Erro: "+ex);
+        }finally{
+            this.gerTarefas.getGerEdicao().setClienteSelecionado(null);
+            this.gerTarefas.habilitarBotoes(this.gerTarefas.getGerEdicao().getClienteSelecionado(), btnNovo, btnAlterar);
+            this.limparCampos();
         }                          
     }//GEN-LAST:event_btnNovoActionPerformed
     

@@ -6,8 +6,6 @@ import Gerencia.FuncoesUteis;
 import Gerencia.GerTarefasGraficas;
 import java.text.ParseException;
 import java.util.Date;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
@@ -39,6 +37,14 @@ public class CadastrarFabricante extends javax.swing.JDialog {
             }
             this.gerTarefas.habilitarBotoes(this.gerTarefas.getGerEdicao().getFabricanteSelecionado(), btlAdd, btlAlterar);
         }
+    }
+    
+    private void limparCampos(){
+        lblFoto.setText("Foto");
+        lblFoto.setIcon(null);
+        this.txtNome.setText("");
+        this.comboPais.setSelectedIndex(0);
+        this.txtData.setText("");
     }
     
     @SuppressWarnings("unchecked")
@@ -240,6 +246,7 @@ public class CadastrarFabricante extends javax.swing.JDialog {
     }//GEN-LAST:event_lblFotoMouseClicked
 
     private void btlSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btlSairActionPerformed
+        this.gerTarefas.getGerEdicao().setFabricanteSelecionado(null);
         this.dispose();
     }//GEN-LAST:event_btlSairActionPerformed
 
@@ -279,6 +286,7 @@ public class CadastrarFabricante extends javax.swing.JDialog {
         }finally{
             this.gerTarefas.getGerEdicao().setFabricanteSelecionado(null);
             this.gerTarefas.habilitarBotoes(this.gerTarefas.getGerEdicao().getFabricanteSelecionado(), btlAdd, btlAlterar);
+            this.limparCampos();
         }              
     }//GEN-LAST:event_btlAddActionPerformed
 

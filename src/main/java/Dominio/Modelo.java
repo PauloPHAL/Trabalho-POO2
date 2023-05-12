@@ -1,5 +1,6 @@
 package Dominio;
 
+import Gerencia.FuncoesUteis;
 import java.io.Serializable;
 import java.text.ParseException;
 import java.util.ArrayList;
@@ -114,6 +115,10 @@ public class Modelo implements Serializable{
 
     public void setFabricante(Fabricante fabricante) {
         this.fabricante = fabricante;
+    }
+    
+    public String getDataModeloFormatada() throws ParseException{
+        return FuncoesUteis.dateToStr(this.getDataModelo());
     }
 
     @Override

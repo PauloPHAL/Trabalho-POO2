@@ -49,8 +49,15 @@ public class GerTarefasDaoDominio {
         modeloDao.inserir(modelo);
         return modelo.getIdModelo();
     }
-    public int alterarModelo(){
-        return 1;
+    public int alterarModelo(Modelo modelo,String nome, String tipo, int capacidade, Date dataModelo, byte[] fotoModelo, Fabricante fabricante){
+        modelo.setNome(nome);
+        modelo.setTipo(tipo);
+        modelo.setCapacidade(capacidade);
+        modelo.setDataModelo(dataModelo);
+        modelo.setFotoModelo(fotoModelo);
+        modelo.setFabricante(fabricante);
+        modeloDao.alterar(modelo);
+        return modelo.getIdModelo();
     }
     
     //------------------------------------------------------
@@ -74,8 +81,16 @@ public class GerTarefasDaoDominio {
         clienteDao.inserir(cliente);
         return cliente.getIdCliente();
     }
-    public int alterarCliente(){
-        return 1;
+    public int alterarCliente(Cliente cliente, String nome, String cpf, String email, String celular, char sexo, Date dataNascimento, byte[] fotoCliente){
+        cliente.setNome(nome);
+        cliente.setCpf(cpf);
+        cliente.setEmail(email);
+        cliente.setCelular(celular);
+        cliente.setSexo(sexo);
+        cliente.setDataNascimento(dataNascimento);
+        cliente.setFotoCliente(fotoCliente);
+        clienteDao.alterar(cliente);
+        return cliente.getIdCliente();
     }
     
     //------------------------------------------------------

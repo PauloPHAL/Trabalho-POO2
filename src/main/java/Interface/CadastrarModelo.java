@@ -1,13 +1,13 @@
 package Interface;
 
 import Dominio.Fabricante;
+import Dominio.Modelo;
 import Gerencia.FuncoesUteis;
 import Gerencia.GerTarefasGraficas;
 import java.text.ParseException;
 import java.util.Date;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 public class CadastrarModelo extends javax.swing.JDialog {
@@ -19,10 +19,46 @@ public class CadastrarModelo extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         setLocationRelativeTo(null);
+        this.rdComercial.setSelected(true);
         this.gerTarefas = gerTarefas;
         this.gerTarefas.habilitarBotoes(this.gerTarefas.getGerEdicao().getModeloSelecionado(), btlAdd, btlAlterar);
     }
-
+    
+    private void preencherCampos(Modelo modelo) throws ParseException{
+        if (modelo != null ) {
+            this.txtNome.setText(modelo.getNome());          
+            this.txtData.setText(modelo.getDataModeloFormatada());
+            this.txtCapacidade.setText(FuncoesUteis.intToString(modelo.getCapacidade()));
+            this.jComboBox1.setSelectedItem(modelo.getFabricante());           
+            
+            if(modelo.getTipo().equals("Comercial")){
+                this.rdComercial.setSelected(true);
+            }else if(modelo.getTipo().equals("Militar")){
+                this.rdMilitar.setSelected(true);
+            }else{
+                this.rdExecutiva.setSelected(true);
+            }
+            if (modelo.getFotoModelo() != null) { 
+                ImageIcon imagem = new ImageIcon( modelo.getFotoModelo());
+                this.gerTarefas.mostrarFoto(imagem, lblFotoModelo);
+            } else {
+                lblFotoModelo.setText("Foto Modelo");
+                lblFotoModelo.setIcon(null);
+            }
+            this.gerTarefas.habilitarBotoes(this.gerTarefas.getGerEdicao().getModeloSelecionado(), btlAdd, btlAlterar);
+        }
+    }
+    
+    private void limparCampos(){
+        lblFotoModelo.setText("Foto Modelo");
+        lblFotoModelo.setIcon(null);
+        this.txtNome.setText("");          
+        this.txtData.setText("");
+        this.txtCapacidade.setText("");
+        this.jComboBox1.setSelectedIndex(0);
+        this.rdComercial.setSelected(true);
+    }
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -242,6 +278,11 @@ public class CadastrarModelo extends javax.swing.JDialog {
 
     private void btlPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btlPesquisarActionPerformed
         gerTarefas.abrirPesqModelo();
+        try {
+            preencherCampos(this.gerTarefas.getGerEdicao().getModeloSelecionado());
+        } catch (ParseException ex) {
+            JOptionPane.showMessageDialog(this, "Erro: "+ex);
+        }
     }//GEN-LAST:event_btlPesquisarActionPerformed
 
     private void lblFotoModeloMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblFotoModeloMouseClicked
@@ -249,6 +290,7 @@ public class CadastrarModelo extends javax.swing.JDialog {
     }//GEN-LAST:event_lblFotoModeloMouseClicked
 
     private void btlSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btlSairActionPerformed
+        this.gerTarefas.getGerEdicao().setModeloSelecionado(null);
         this.dispose();
     }//GEN-LAST:event_btlSairActionPerformed
 
@@ -288,15 +330,18 @@ public class CadastrarModelo extends javax.swing.JDialog {
             if ( this.gerTarefas.getGerEdicao().getModeloSelecionado() == null) {
                 // INSERIR
                 int id = this.gerTarefas.getGerenciaDaoDominio().inserirModelo(nome,tipo,capacidade,data,foto,fabricante);
-                JOptionPane.showMessageDialog(this, "Modelo " + id + "inserido com sucesso.");
+                JOptionPane.showMessageDialog(this, "Modelo " + id + " inserido com sucesso.");
             } else {
                 // ALTERAR
-                this.gerTarefas.getGerenciaDaoDominio().alterarModelo();
-                int id = this.gerTarefas.getGerEdicao().getModeloSelecionado().getIdModelo();
+                int id = this.gerTarefas.getGerenciaDaoDominio().alterarModelo(this.gerTarefas.getGerEdicao().getModeloSelecionado(),nome,tipo,capacidade,data,foto,fabricante);                
                 JOptionPane.showMessageDialog(this, "Modelo " + id + " alterado com sucesso.");
             }
         } catch (ParseException ex) {
             JOptionPane.showMessageDialog(this, "Erro: "+ex);
+        }finally{
+            this.gerTarefas.getGerEdicao().setModeloSelecionado(null);
+            this.gerTarefas.habilitarBotoes(this.gerTarefas.getGerEdicao().getModeloSelecionado(), btlAdd, btlAlterar);
+            this.limparCampos();
         }                 
     }//GEN-LAST:event_btlAddActionPerformed
 
