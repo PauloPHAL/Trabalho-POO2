@@ -13,6 +13,10 @@ public class LocacaoPK implements Serializable {
     @JoinColumn ( name="idCliente" )
     private Cliente cliente;
 
+    //hibernate
+    public LocacaoPK() {
+    }   
+    
     public LocacaoPK(Aeronave aeronave, Cliente cliente) {
         this.aeronave = aeronave;
         this.cliente = cliente;
