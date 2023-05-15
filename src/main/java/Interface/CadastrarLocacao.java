@@ -2,7 +2,13 @@ package Interface;
 
 import Dominio.Aeronave;
 import Dominio.Cliente;
+import Dominio.Locacao;
+import Gerencia.FuncoesUteis;
 import Gerencia.GerTarefasGraficas;
+import java.text.ParseException;
+import java.util.Date;
+import javax.swing.JOptionPane;
+import org.hibernate.HibernateException;
 
 public class CadastrarLocacao extends javax.swing.JDialog {
     //acesso
@@ -17,6 +23,25 @@ public class CadastrarLocacao extends javax.swing.JDialog {
         this.gerTarefas.habilitarBotoes(this.gerTarefas.getGerEdicao().getLocacaoSelecionada(), btlAdd, btlAlterar);
     }
 
+    private void preencherCampos(Locacao locacao) throws ParseException{
+        if (locacao != null ) {
+            this.txtDataLocacao.setText(locacao.getDataLocacaoFormatada());
+            this.txtDataLimite.setText(locacao.getDataLimiteFormatada());
+            this.txtValor.setText(FuncoesUteis.doubleToString(locacao.getValor()));
+            this.jComboBoxA.setSelectedItem(locacao.getChaveComposta().getAeronave());
+            this.jComboBoxC.setSelectedItem(locacao.getChaveComposta().getCliente());
+            this.gerTarefas.habilitarBotoes(this.gerTarefas.getGerEdicao().getLocacaoSelecionada(), btlAdd, btlAlterar);
+        }
+    }
+    
+    private void limparCampos(){
+        this.txtDataLocacao.setText("");
+        this.txtDataLimite.setText("");
+        this.txtValor.setText("");
+        this.jComboBoxA.setSelectedIndex(0);
+        this.jComboBoxC.setSelectedIndex(0);
+    }
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -29,12 +54,12 @@ public class CadastrarLocacao extends javax.swing.JDialog {
         btlAlterar = new javax.swing.JButton();
         btlAdd = new javax.swing.JButton();
         btlSair = new javax.swing.JButton();
-        txtData = new javax.swing.JFormattedTextField();
+        txtDataLimite = new javax.swing.JFormattedTextField();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         btlPesquisar = new javax.swing.JButton();
-        txtData1 = new javax.swing.JFormattedTextField();
-        jTextField1 = new javax.swing.JTextField();
+        txtDataLocacao = new javax.swing.JFormattedTextField();
+        txtValor = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -60,9 +85,19 @@ public class CadastrarLocacao extends javax.swing.JDialog {
 
         btlAlterar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/intergraf/imagens/accept.png"))); // NOI18N
         btlAlterar.setText("Alterar");
+        btlAlterar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btlAddActionPerformed(evt);
+            }
+        });
 
         btlAdd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/intergraf/imagens/add.png"))); // NOI18N
         btlAdd.setText("Locar");
+        btlAdd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btlAddActionPerformed(evt);
+            }
+        });
 
         btlSair.setIcon(new javax.swing.ImageIcon(getClass().getResource("/intergraf/imagens/remove.png"))); // NOI18N
         btlSair.setText("Cancelar");
@@ -73,14 +108,14 @@ public class CadastrarLocacao extends javax.swing.JDialog {
         });
 
         try {
-            txtData.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
+            txtDataLimite.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
 
-        jLabel3.setText("Data Limite");
+        jLabel3.setText("Data Limite:");
 
-        jLabel4.setText("Data Locacao");
+        jLabel4.setText("Data Locacao:");
 
         btlPesquisar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/intergraf/imagens/search.png"))); // NOI18N
         btlPesquisar.addActionListener(new java.awt.event.ActionListener() {
@@ -90,7 +125,7 @@ public class CadastrarLocacao extends javax.swing.JDialog {
         });
 
         try {
-            txtData1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
+            txtDataLocacao.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
@@ -110,20 +145,19 @@ public class CadastrarLocacao extends javax.swing.JDialog {
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel3)
                                     .addComponent(jLabel5))
-                                .addGap(18, 18, 18)
+                                .addGap(23, 23, 23)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtValor, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtDataLimite, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(txtData1, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(btlPesquisar))
-                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addComponent(jTextField1, javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(txtData, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 117, Short.MAX_VALUE))))
+                                        .addComponent(txtDataLocacao, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(7, 7, 7)
+                                        .addComponent(btlPesquisar))))
                             .addComponent(jLabel4)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addGroup(jPanel1Layout.createSequentialGroup()
                                     .addComponent(jLabel2)
-                                    .addGap(18, 18, 18)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(jComboBoxC, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGroup(jPanel1Layout.createSequentialGroup()
                                     .addComponent(jLabel1)
@@ -148,19 +182,19 @@ public class CadastrarLocacao extends javax.swing.JDialog {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(txtData1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
+                                .addGap(48, 48, 48)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(txtData, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtDataLimite, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel3))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(17, 17, 17)
-                                .addComponent(jLabel4)
+                                .addGap(14, 14, 14)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel4)
+                                    .addComponent(txtDataLocacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(0, 0, Short.MAX_VALUE)))
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtValor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel5))
                         .addGap(15, 15, 15)))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -194,6 +228,11 @@ public class CadastrarLocacao extends javax.swing.JDialog {
 
     private void btlPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btlPesquisarActionPerformed
         gerTarefas.abrirPesqLocacao();
+        try {
+            preencherCampos(this.gerTarefas.getGerEdicao().getLocacaoSelecionada());
+        } catch (ParseException ex) {
+            JOptionPane.showMessageDialog(this, "Erro: "+ex);
+        }
     }//GEN-LAST:event_btlPesquisarActionPerformed
 
     private void btlSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btlSairActionPerformed
@@ -213,6 +252,40 @@ public class CadastrarLocacao extends javax.swing.JDialog {
         this.gerTarefas.carregarComboBox(jComboBoxC, this, Cliente.class);
     }//GEN-LAST:event_formComponentShown
 
+    private void btlAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btlAddActionPerformed
+        try {
+            //pegando os dados
+            String d1 = this.txtDataLocacao.getText();
+            String d2 = this.txtDataLimite.getText();
+            String v = this.txtValor.getText();
+            Cliente cliente = (Cliente) this.jComboBoxC.getSelectedItem();
+            Aeronave aeronave = (Aeronave)this.jComboBoxA.getSelectedItem();
+            
+            //tratando os dados que precisa
+            Date dataLocacao = FuncoesUteis.strToDate(d1);
+            Date dataLimite = FuncoesUteis.strToDate(d2);
+            double valor = FuncoesUteis.stringToDouble(v);
+            
+            // INSERIR NO BANCO                      
+            //------------------------------------------------------------------------------
+            if ( this.gerTarefas.getGerEdicao().getLocacaoSelecionada() == null) {
+                // INSERIR
+                int id[] = this.gerTarefas.getGerenciaDaoDominio().inserirLocacao(cliente,aeronave,dataLocacao,dataLimite,valor);
+                JOptionPane.showMessageDialog(this, "Locacao do cliente: " +id[0]+" com a aeronave: "+id[1]+ " inserida com sucesso.");
+            } else {
+                // ALTERAR
+                int id[] = this.gerTarefas.getGerenciaDaoDominio().alterarLocacao(this.gerTarefas.getGerEdicao().getLocacaoSelecionada(),cliente,aeronave,dataLocacao,dataLimite,valor);
+                JOptionPane.showMessageDialog(this, "Locacao do cliente: " +id[0]+" com a aeronave: "+id[1]+ " alterada com sucesso.");
+            }
+        } catch (ParseException | HibernateException ex) {
+            JOptionPane.showMessageDialog(this, "Erro: "+ex);
+        }finally{
+            this.gerTarefas.getGerEdicao().setLocacaoSelecionada(null);
+            this.gerTarefas.habilitarBotoes(this.gerTarefas.getGerEdicao().getLocacaoSelecionada(), btlAdd, btlAlterar);
+            this.limparCampos();
+        }                
+    }//GEN-LAST:event_btlAddActionPerformed
+
    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -228,8 +301,8 @@ public class CadastrarLocacao extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JFormattedTextField txtData;
-    private javax.swing.JFormattedTextField txtData1;
+    private javax.swing.JFormattedTextField txtDataLimite;
+    private javax.swing.JFormattedTextField txtDataLocacao;
+    private javax.swing.JTextField txtValor;
     // End of variables declaration//GEN-END:variables
 }

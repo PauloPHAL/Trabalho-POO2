@@ -34,22 +34,27 @@ public class GerTarefasDaoDominio {
         return gerenciador;
     }
     //------------------------------------------------------
-    public int inserirAeronave(String nome, String numeroSerie, Date dataCompra, Modelo modelo){
+    public int inserirAeronave(String nome, String numeroSerie, Date dataCompra, Modelo modelo)throws HibernateException{
         Aeronave aeronave = new Aeronave(nome, numeroSerie, dataCompra, modelo);
         aeronaveDao.inserir(aeronave);
         return aeronave.getIdAeronave();
     }
-    public int alterarAeronave(){
-        return 1;
+    public int alterarAeronave(Aeronave aeronave,String nome, String numeroSerie, Date dataCompra, Modelo modelo)throws HibernateException{
+        aeronave.setNome(nome);
+        aeronave.setNumeroSerie(numeroSerie);
+        aeronave.setDataCompra(dataCompra);
+        aeronave.setModelo(modelo);
+        aeronaveDao.alterar(aeronave);
+        return aeronave.getIdAeronave();
     }
     
     //------------------------------------------------------
-    public int inserirModelo(String nome, String tipo, int capacidade, Date dataModelo, byte[] fotoModelo, Fabricante fabricante){
-        Modelo modelo = new Modelo(nome,tipo,capacidade,dataModelo,fotoModelo,fabricante);       
+    public int inserirModelo(String nome, String tipo, int capacidade, Date dataModelo, byte[] fotoModelo, Fabricante fabricante)throws HibernateException{
+        Modelo modelo = new Modelo(nome,tipo,capacidade,dataModelo,fotoModelo,fabricante);
         modeloDao.inserir(modelo);
         return modelo.getIdModelo();
     }
-    public int alterarModelo(Modelo modelo,String nome, String tipo, int capacidade, Date dataModelo, byte[] fotoModelo, Fabricante fabricante){
+    public int alterarModelo(Modelo modelo,String nome, String tipo, int capacidade, Date dataModelo, byte[] fotoModelo, Fabricante fabricante)throws HibernateException{
         modelo.setNome(nome);
         modelo.setTipo(tipo);
         modelo.setCapacidade(capacidade);
@@ -61,12 +66,12 @@ public class GerTarefasDaoDominio {
     }
     
     //------------------------------------------------------
-    public int inserirFabricante(String nome, Date dataFundacao, byte[] logo, Pais pais){
+    public int inserirFabricante(String nome, Date dataFundacao, byte[] logo, Pais pais)throws HibernateException{
         Fabricante fabricante = new Fabricante(nome,dataFundacao,logo,pais);
         fabricanteDao.inserir(fabricante);
         return fabricante.getIdFabricante();
     }
-    public int alterarFabricante(Fabricante fabricante,String nome, Date dataFundacao, byte[] logo, Pais pais){
+    public int alterarFabricante(Fabricante fabricante,String nome, Date dataFundacao, byte[] logo, Pais pais)throws HibernateException{
         fabricante.setNome(nome);
         fabricante.setDataFundacao(dataFundacao);
         fabricante.setLogo(logo);
@@ -76,12 +81,12 @@ public class GerTarefasDaoDominio {
     }
     
     //------------------------------------------------------
-    public int inserirCliente(String nome, String cpf, String email, String celular, char sexo, Date dataNascimento, byte[] fotoCliente){
+    public int inserirCliente(String nome, String cpf, String email, String celular, char sexo, Date dataNascimento, byte[] fotoCliente)throws HibernateException{
         Cliente cliente = new Cliente(nome,cpf,email,celular,sexo,dataNascimento,fotoCliente);
         clienteDao.inserir(cliente);
         return cliente.getIdCliente();
     }
-    public int alterarCliente(Cliente cliente, String nome, String cpf, String email, String celular, char sexo, Date dataNascimento, byte[] fotoCliente){
+    public int alterarCliente(Cliente cliente, String nome, String cpf, String email, String celular, char sexo, Date dataNascimento, byte[] fotoCliente)throws HibernateException{
         cliente.setNome(nome);
         cliente.setCpf(cpf);
         cliente.setEmail(email);
@@ -94,17 +99,24 @@ public class GerTarefasDaoDominio {
     }
     
     //------------------------------------------------------
-    public int inserirLocacao(Cliente cliente, Aeronave aeronave, Date dataLocacao, Date dataLimite, double valor){
+    public int[] inserirLocacao(Cliente cliente, Aeronave aeronave, Date dataLocacao, Date dataLimite, double valor)throws HibernateException{
         Locacao locacao = new Locacao(cliente, aeronave, dataLocacao, dataLimite, valor);
         locacaoDao.inserir(locacao);
-        return 1;
+        int ids[] = {cliente.getIdCliente(),aeronave.getIdAeronave()};
+        return ids;
     }
-    public int alterarLocacao(){
-        return 1;
+    public int[] alterarLocacao(Locacao locacao,Cliente cliente, Aeronave aeronave, Date dataLocacao, Date dataLimite, double valor)throws HibernateException{
+        locacao.getChaveComposta().setCliente(cliente);
+        locacao.getChaveComposta().setAeronave(aeronave);
+        locacao.setDataLimite(dataLimite);
+        locacao.setDataLocacao(dataLocacao);
+        locacao.setValor(valor);
+        int ids[] = {locacao.getChaveComposta().getCliente().getIdCliente(),locacao.getChaveComposta().getAeronave().getIdAeronave()};
+        return ids;
     }
  
     //------------------------------------------------------
-    public int inserirPais(String nome){
+    public int inserirPais(String nome)throws HibernateException{
         Pais pais = new Pais(nome);
         paisDao.inserir(pais);
         return pais.getIdPais();
@@ -114,7 +126,7 @@ public class GerTarefasDaoDominio {
     public List listar(Class classe) throws HibernateException{
         return genericDao.listar(classe);
     }
-    public void excluir(Object obj){
+    public void excluir(Object obj)throws HibernateException{
         genericDao.excluir(obj);
     }
   

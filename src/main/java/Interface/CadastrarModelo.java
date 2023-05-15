@@ -9,6 +9,7 @@ import java.util.Date;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+import org.hibernate.HibernateException;
 
 public class CadastrarModelo extends javax.swing.JDialog {
     //acessos
@@ -336,7 +337,7 @@ public class CadastrarModelo extends javax.swing.JDialog {
                 int id = this.gerTarefas.getGerenciaDaoDominio().alterarModelo(this.gerTarefas.getGerEdicao().getModeloSelecionado(),nome,tipo,capacidade,data,foto,fabricante);                
                 JOptionPane.showMessageDialog(this, "Modelo " + id + " alterado com sucesso.");
             }
-        } catch (ParseException ex) {
+        } catch (ParseException | HibernateException ex) {
             JOptionPane.showMessageDialog(this, "Erro: "+ex);
         }finally{
             this.gerTarefas.getGerEdicao().setModeloSelecionado(null);

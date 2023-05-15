@@ -1,5 +1,6 @@
 package Dominio;
 
+import Gerencia.FuncoesUteis;
 import java.io.Serializable;
 import java.text.ParseException;
 import java.util.ArrayList;
@@ -89,6 +90,10 @@ public class Aeronave implements Serializable{
 
     public void setNome(String nome) {
         this.nome = nome;
+    }
+    
+    public String getDataCompraFormatada() throws ParseException{
+        return FuncoesUteis.dateToStr(this.getDataCompra());
     }
     
     @Override

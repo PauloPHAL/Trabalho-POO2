@@ -66,6 +66,9 @@ public class FuncoesUteis {
     public static String intToString(int num){
         return Integer.toString(num);
     }
+    public static String doubleToString(double num){
+        return Double.toString(num);
+    }
     
     //verifica o CPF
     public static boolean isCPF(String parCpf) {           

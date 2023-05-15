@@ -161,11 +161,11 @@ public class PesquisarLocacao extends javax.swing.JDialog {
         int linha = this.jTable1.getSelectedRow();
         if ( linha >= 0 ) {
             this.gerTarefas.getGerEdicao().setLocacaoSelecionada((Locacao)this.jTable1.getValueAt(linha, 0));
+            this.setVisible(false);
         }
         else {
             JOptionPane.showMessageDialog(this,"Selecione uma linha.");
-        }       
-        this.setVisible(false);
+        }
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed

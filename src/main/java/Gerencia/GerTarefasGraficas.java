@@ -1,15 +1,19 @@
 package Gerencia;
 
-import java.util.List;
 import Interface.*;
 import java.awt.*;
 import java.io.File;
 import java.lang.reflect.InvocationTargetException;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.*;
-import org.hibernate.HibernateException;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.DefaultComboBoxModel;
+import java.util.List;
+import javax.swing.DefaultListModel;
+import javax.swing.JDialog;
+import javax.swing.JList;
+import javax.swing.JOptionPane;
+import org.hibernate.HibernateException;
 
 public class GerTarefasGraficas {
     //acessos
@@ -165,10 +169,24 @@ public class GerTarefasGraficas {
     //Carregar Combo Box
     public <T> void carregarComboBox(JComboBox combo, JDialog janela, Class<T> classe){    
         try {
-            List<T> lista = (List<T>) this.gerenciaDaoDominio.listar(classe);
+            List<T> lista = (List<T>)this.gerenciaDaoDominio.listar(classe);
             combo.setModel(new DefaultComboBoxModel(lista.toArray()));
         } catch (HibernateException ex) {
             JOptionPane.showMessageDialog(janela, "Erro carregar Combo Box: "+ ex);
+        }        
+    }
+    //-----------------------------------------------------------------------------------------
+    //Carregar Lista
+    public <T> void carregarLista(JList lista, JDialog janela, Class<T> classe){    
+        try {
+            List<T> items = (List<T>)this.gerenciaDaoDominio.listar(classe);
+            lista.setModel(new DefaultListModel<>());
+            DefaultListModel<T> model = (DefaultListModel<T>) lista.getModel();
+            for(T item : items) {
+                model.addElement(item);
+            }
+        } catch (HibernateException ex) {
+            JOptionPane.showMessageDialog(janela, "Erro ao carregar lista: " + ex);
         }        
     }
     //-----------------------------------------------------------------------------------------

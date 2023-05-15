@@ -1,6 +1,7 @@
 package Interface;
 
 import Dominio.Fabricante;
+import Dominio.Modelo;
 import Dominio.Pais;
 import Gerencia.FuncoesUteis;
 import Gerencia.GerTarefasGraficas;
@@ -9,6 +10,7 @@ import java.util.Date;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+import org.hibernate.HibernateException;
 
 public class CadastrarFabricante extends javax.swing.JDialog {
     //acessos
@@ -150,7 +152,7 @@ public class CadastrarFabricante extends javax.swing.JDialog {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtNome)
                             .addComponent(comboPais, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -166,12 +168,12 @@ public class CadastrarFabricante extends javax.swing.JDialog {
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(btlAddPais))
                                     .addComponent(jLabel3))
-                                .addGap(0, 69, Short.MAX_VALUE)))
+                                .addGap(0, 46, Short.MAX_VALUE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblFoto, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel4)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(btlAlterar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -203,7 +205,7 @@ public class CadastrarFabricante extends javax.swing.JDialog {
                             .addComponent(btlAddPais))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(comboPais, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 65, Short.MAX_VALUE)
+                        .addGap(18, 51, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btlSair)
                             .addComponent(btlAdd)
@@ -281,7 +283,7 @@ public class CadastrarFabricante extends javax.swing.JDialog {
                 int id = this.gerTarefas.getGerenciaDaoDominio().alterarFabricante(this.gerTarefas.getGerEdicao().getFabricanteSelecionado(),nome,data,foto, pais);
                 JOptionPane.showMessageDialog(this, "Fabricante " + id + " alterado com sucesso.");
             }
-        } catch (ParseException ex) {
+        } catch (ParseException | HibernateException ex) {
             JOptionPane.showMessageDialog(this, "Erro: "+ex);
         }finally{
             this.gerTarefas.getGerEdicao().setFabricanteSelecionado(null);
@@ -292,6 +294,7 @@ public class CadastrarFabricante extends javax.swing.JDialog {
 
     private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
         this.gerTarefas.carregarComboBox(comboPais,this,Pais.class);
+        //this.gerTarefas.carregarLista(listModelos, this, Modelo.class);
     }//GEN-LAST:event_formComponentShown
 
 

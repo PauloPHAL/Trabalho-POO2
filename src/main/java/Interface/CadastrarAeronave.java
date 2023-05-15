@@ -1,5 +1,6 @@
 package Interface;
 
+import Dominio.Aeronave;
 import Dominio.Fabricante;
 import Dominio.Modelo;
 import Gerencia.FuncoesUteis;
@@ -7,6 +8,7 @@ import Gerencia.GerTarefasGraficas;
 import java.text.ParseException;
 import java.util.Date;
 import javax.swing.JOptionPane;
+import org.hibernate.HibernateException;
 
 public class CadastrarAeronave extends javax.swing.JDialog {
     //acesso
@@ -20,7 +22,26 @@ public class CadastrarAeronave extends javax.swing.JDialog {
         this.gerTarefas = gerTarefas;
         this.gerTarefas.habilitarBotoes(this.gerTarefas.getGerEdicao().getAeronaveSelecionada(), btnNovo, btnAlterar);
     }
-
+    
+    private void preencherCampos(Aeronave aeronave) throws ParseException{
+        if (aeronave != null ) {
+            this.txtNumSerie.setText(aeronave.getNumeroSerie());
+            this.txtNome.setText(aeronave.getNome());
+            this.txtData.setText(aeronave.getDataCompraFormatada());          
+            this.jComboBoxF.setSelectedItem(aeronave.getModelo().getFabricante());
+            this.jComboBoxM.setSelectedItem(aeronave.getModelo());
+            this.gerTarefas.habilitarBotoes(this.gerTarefas.getGerEdicao().getAeronaveSelecionada(), btnNovo, btnAlterar);
+        }
+    }
+    
+    private void limparCampos(){
+        this.txtNumSerie.setText("");
+        this.txtNome.setText("");
+        this.txtData.setText("");
+        this.jComboBoxF.setSelectedIndex(0);
+        this.jComboBoxM.setSelectedIndex(0);
+    }
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -64,6 +85,11 @@ public class CadastrarAeronave extends javax.swing.JDialog {
 
         btnAlterar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/intergraf/imagens/accept.png"))); // NOI18N
         btnAlterar.setText("Alterar");
+        btnAlterar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNovoActionPerformed(evt);
+            }
+        });
 
         btnNovo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/intergraf/imagens/add.png"))); // NOI18N
         btnNovo.setText("Adicionar");
@@ -182,6 +208,11 @@ public class CadastrarAeronave extends javax.swing.JDialog {
 
     private void btlPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btlPesquisarActionPerformed
         gerTarefas.abrirPesqAeronave();
+        try {
+            preencherCampos(this.gerTarefas.getGerEdicao().getAeronaveSelecionada());
+        } catch (ParseException ex) {
+            JOptionPane.showMessageDialog(this, "Erro: "+ex);
+        }
     }//GEN-LAST:event_btlPesquisarActionPerformed
 
     private void btlSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btlSairActionPerformed
@@ -220,12 +251,15 @@ public class CadastrarAeronave extends javax.swing.JDialog {
                 JOptionPane.showMessageDialog(this, "Aeronave " + id + " inserida com sucesso.");
             } else {
                 // ALTERAR
-                this.gerTarefas.getGerenciaDaoDominio().alterarAeronave();
-                int id = this.gerTarefas.getGerEdicao().getAeronaveSelecionada().getIdAeronave();
+                int id = this.gerTarefas.getGerenciaDaoDominio().alterarAeronave(this.gerTarefas.getGerEdicao().getAeronaveSelecionada(),nome,numeroSerie, data, modelo);               
                 JOptionPane.showMessageDialog(this, "Aeronave " + id + " alterada com sucesso.");
             }
-        } catch (ParseException ex) {
+        } catch (ParseException | HibernateException ex) {
             JOptionPane.showMessageDialog(this, "Erro: "+ex);
+        }finally{
+            this.gerTarefas.getGerEdicao().setAeronaveSelecionada(null);
+            this.gerTarefas.habilitarBotoes(this.gerTarefas.getGerEdicao().getAeronaveSelecionada(), btnNovo, btnAlterar);
+            this.limparCampos();
         }                 
     }//GEN-LAST:event_btnNovoActionPerformed
 

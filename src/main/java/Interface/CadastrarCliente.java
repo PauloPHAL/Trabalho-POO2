@@ -8,6 +8,7 @@ import java.util.Date;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+import org.hibernate.HibernateException;
 
 public class CadastrarCliente extends javax.swing.JDialog {
     //acesso
@@ -329,7 +330,7 @@ public class CadastrarCliente extends javax.swing.JDialog {
                 int id = this.gerTarefas.getGerenciaDaoDominio().alterarCliente(this.gerTarefas.getGerEdicao().getClienteSelecionado(),nome,cpf,email,celular,sexo,data,foto); 
                 JOptionPane.showMessageDialog(this, "Cliente " + id + " alterado com sucesso.");
             }        
-        }catch (ParseException ex){
+        }catch (ParseException | HibernateException ex){
             JOptionPane.showMessageDialog(this, "Erro: "+ex);
         }finally{
             this.gerTarefas.getGerEdicao().setClienteSelecionado(null);
