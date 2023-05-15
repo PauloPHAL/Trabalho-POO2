@@ -111,6 +111,7 @@ public class GerTarefasDaoDominio {
         locacao.setDataLimite(dataLimite);
         locacao.setDataLocacao(dataLocacao);
         locacao.setValor(valor);
+        locacaoDao.alterar(locacao);
         int ids[] = {locacao.getChaveComposta().getCliente().getIdCliente(),locacao.getChaveComposta().getAeronave().getIdAeronave()};
         return ids;
     }
