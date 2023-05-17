@@ -7,6 +7,8 @@ import Gerencia.FuncoesUteis;
 import Gerencia.GerTarefasGraficas;
 import java.text.ParseException;
 import java.util.Date;
+import java.util.List;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import org.hibernate.HibernateException;
 
@@ -78,6 +80,12 @@ public class CadastrarAeronave extends javax.swing.JDialog {
         });
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "CADASTRAR AERONAVE", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 18), new java.awt.Color(0, 51, 204))); // NOI18N
+
+        jComboBoxF.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jComboBoxFItemStateChanged(evt);
+            }
+        });
 
         jLabel1.setText("FABRICANTES:");
 
@@ -229,7 +237,7 @@ public class CadastrarAeronave extends javax.swing.JDialog {
 
     private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
         this.gerTarefas.carregarComboBox(jComboBoxF, this, Fabricante.class);
-        this.gerTarefas.carregarComboBox(jComboBoxM, this, Modelo.class);
+        //this.gerTarefas.carregarComboBox(jComboBoxM, this, Modelo.class);
     }//GEN-LAST:event_formComponentShown
 
     private void btnNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovoActionPerformed
@@ -262,6 +270,13 @@ public class CadastrarAeronave extends javax.swing.JDialog {
             this.limparCampos();
         }                 
     }//GEN-LAST:event_btnNovoActionPerformed
+
+    private void jComboBoxFItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBoxFItemStateChanged
+        this.jComboBoxM.removeAll();
+        Fabricante fabricante = (Fabricante) this.jComboBoxF.getSelectedItem();
+        List<Modelo> lista = fabricante.getModelo();
+        this.jComboBoxM.setModel(new DefaultComboBoxModel(lista.toArray()));
+    }//GEN-LAST:event_jComboBoxFItemStateChanged
 
     
 

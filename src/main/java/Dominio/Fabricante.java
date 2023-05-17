@@ -31,7 +31,7 @@ public class Fabricante implements Serializable{
     @Lob
     private byte[] logo;
     
-    @OneToMany ( mappedBy = "fabricante", fetch = FetchType.LAZY )
+    @OneToMany ( mappedBy = "fabricante", fetch = FetchType.EAGER )
     private List<Modelo> modelo;
     
     //Hibernate

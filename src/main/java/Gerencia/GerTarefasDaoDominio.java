@@ -51,6 +51,7 @@ public class GerTarefasDaoDominio {
     //------------------------------------------------------
     public int inserirModelo(String nome, String tipo, int capacidade, Date dataModelo, byte[] fotoModelo, Fabricante fabricante)throws HibernateException{
         Modelo modelo = new Modelo(nome,tipo,capacidade,dataModelo,fotoModelo,fabricante);
+        fabricante.getModelo().add(modelo);
         modeloDao.inserir(modelo);
         return modelo.getIdModelo();
     }
