@@ -38,7 +38,7 @@ public class Cliente implements Serializable{
     @Lob
     private byte[] fotoCliente;
     
-    @OneToMany ( mappedBy = "chaveComposta.cliente", fetch = FetchType.LAZY )
+    @OneToMany ( mappedBy = "chaveComposta.cliente", fetch = FetchType.EAGER )
     private List<Locacao> locacao;
     
     //hibernate

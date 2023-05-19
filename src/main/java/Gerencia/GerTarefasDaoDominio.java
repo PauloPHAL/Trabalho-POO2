@@ -102,6 +102,8 @@ public class GerTarefasDaoDominio {
     //------------------------------------------------------
     public int[] inserirLocacao(Cliente cliente, Aeronave aeronave, Date dataLocacao, Date dataLimite, double valor)throws HibernateException{
         Locacao locacao = new Locacao(cliente, aeronave, dataLocacao, dataLimite, valor);
+        aeronave.getLocacao().add(locacao);
+        cliente.getLocacao().add(locacao);
         locacaoDao.inserir(locacao);
         int ids[] = {cliente.getIdCliente(),aeronave.getIdAeronave()};
         return ids;

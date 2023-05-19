@@ -25,7 +25,7 @@ public class Aeronave implements Serializable{
     @Temporal (TemporalType.DATE)
     private Date dataCompra;
     
-    @OneToMany ( mappedBy = "chaveComposta.aeronave", fetch = FetchType.LAZY )
+    @OneToMany ( mappedBy = "chaveComposta.aeronave", fetch = FetchType.EAGER )
     private List<Locacao> locacao;
     
     @ManyToOne ( fetch = FetchType.EAGER )
