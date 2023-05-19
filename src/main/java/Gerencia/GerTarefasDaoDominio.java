@@ -36,6 +36,7 @@ public class GerTarefasDaoDominio {
     //------------------------------------------------------
     public int inserirAeronave(String nome, String numeroSerie, Date dataCompra, Modelo modelo)throws HibernateException{
         Aeronave aeronave = new Aeronave(nome, numeroSerie, dataCompra, modelo);
+        modelo.getAeronave().add(aeronave);
         aeronaveDao.inserir(aeronave);
         return aeronave.getIdAeronave();
     }

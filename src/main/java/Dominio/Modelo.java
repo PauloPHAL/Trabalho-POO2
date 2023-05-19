@@ -32,7 +32,7 @@ public class Modelo implements Serializable{
     @Lob
     private byte[] fotoModelo;
     
-    @OneToMany ( mappedBy = "modelo", fetch = FetchType.LAZY )
+    @OneToMany ( mappedBy = "modelo", fetch = FetchType.EAGER )
     private List<Aeronave> aeronave;
        
     @ManyToOne ( fetch = FetchType.EAGER )

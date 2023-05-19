@@ -224,6 +224,7 @@ public class CadastrarAeronave extends javax.swing.JDialog {
     }//GEN-LAST:event_btlPesquisarActionPerformed
 
     private void btlSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btlSairActionPerformed
+        this.gerTarefas.getGerEdicao().setAeronaveSelecionada(null);
         this.dispose();
     }//GEN-LAST:event_btlSairActionPerformed
 
