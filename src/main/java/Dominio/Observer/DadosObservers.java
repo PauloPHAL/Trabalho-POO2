@@ -7,5 +7,5 @@ public abstract class DadosObservers {
         this.dados = dados;
     }
     
-    public abstract void update();
+    public abstract boolean update();
 }

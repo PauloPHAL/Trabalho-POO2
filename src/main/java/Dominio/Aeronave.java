@@ -95,7 +95,7 @@ public class Aeronave implements Serializable{
     public String getDataCompraFormatada() throws ParseException{
         return FuncoesUteis.dateToStr(this.getDataCompra());
     }
-    
+
     @Override
     public String toString() {
         return  nome;

@@ -6,7 +6,7 @@ import java.util.List;
 
 public class DadosSubject {
     protected List<DadosObservers> dadosObservados;
-    protected Aeronave dadosAeronave;
+    protected Locacao dadosLocacao;
 
     public DadosSubject() {
         this.dadosObservados = new ArrayList<>();
@@ -18,8 +18,8 @@ public class DadosSubject {
     public void detach(int indice) {
         dadosObservados.remove(indice);
     }
-    public void setState(Aeronave dados) {
-        this.dadosAeronave = dados;
+    public void setState(Locacao dados) {
+        this.dadosLocacao = dados;
         notifyObservers();
     }
     public void notifyObservers() {
@@ -27,8 +27,8 @@ public class DadosSubject {
             observer.update();
         });
     }
-    public Aeronave getState() {
-        return this.dadosAeronave;
+    public Locacao getState() {
+        return this.dadosLocacao;
     }
     
 }
