@@ -24,9 +24,6 @@ public class Locacao implements Serializable{
     @Column
     private double valor;
     
-    @Column (name="estaLocada")
-    private boolean locada;
-    
     //hibernate
     public Locacao() {
     }
@@ -76,14 +73,6 @@ public class Locacao implements Serializable{
     
     public String getDataLimiteFormatada() throws ParseException{
         return FuncoesUteis.dateToStr(this.getDataLimite());
-    }
-
-    public boolean isLocada() {
-        return locada;
-    }
-
-    public void setLocada(boolean locada) {
-        this.locada = locada;
     }
     
     @Override

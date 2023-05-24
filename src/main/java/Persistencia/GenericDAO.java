@@ -90,5 +90,5 @@ public class GenericDAO {
             throw new HibernateException(erro);
         }               
         return lista;
-    }    
+    }
 }

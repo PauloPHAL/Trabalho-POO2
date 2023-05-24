@@ -5,21 +5,21 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DadosSubject {
-    protected List<DadosObservers> dadosObservados;
-    protected Locacao dadosLocacao;
+    protected List<AeronavesObservers> dadosObservados;
+    protected Aeronave dadosAeronave;
 
     public DadosSubject() {
         this.dadosObservados = new ArrayList<>();
     }
     
-    public void attach(DadosObservers observer) {
+    public void attach(AeronavesObservers observer) {
         dadosObservados.add(observer);
     }
     public void detach(int indice) {
         dadosObservados.remove(indice);
     }
-    public void setState(Locacao dados) {
-        this.dadosLocacao = dados;
+    public void setState(Aeronave dados) {
+        this.dadosAeronave = dados;
         notifyObservers();
     }
     public void notifyObservers() {
@@ -27,8 +27,8 @@ public class DadosSubject {
             observer.update();
         });
     }
-    public Locacao getState() {
-        return this.dadosLocacao;
+    public Aeronave getState() {
+        return this.dadosAeronave;
     }
     
 }

@@ -1,7 +1,10 @@
 package Persistencia;
 
 import Dominio.Fabricante;
+import Dominio.Modelo;
 import java.util.List;
+import org.hibernate.HibernateException;
+import org.hibernate.Session;
 
 public class FabricanteDAO extends GenericDAO{
     // padrao Singleton
