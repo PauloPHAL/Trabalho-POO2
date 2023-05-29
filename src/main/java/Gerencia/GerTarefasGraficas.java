@@ -191,9 +191,9 @@ public class GerTarefasGraficas {
     }
     //-----------------------------------------------------------------------------------------
     //Carregar Tabela
-    public void carregarTabela(JTable tabela, JDialog janela, Class<?> classe){
+    public void carregarTabela(JTable tabela, JDialog janela, Class<?> classe, String pesq, int tipo){
         try{
-            List<?> lista = (List<?>) this.gerenciaDaoDominio.listar(classe);
+            List<?> lista = (List<?>) this.gerenciaDaoDominio.listar(classe,pesq,tipo);
             ((DefaultTableModel) tabela.getModel()).setNumRows(0);            
             for (Object obj : lista){
                 // ADICIONAR LINHA NA TABELA        

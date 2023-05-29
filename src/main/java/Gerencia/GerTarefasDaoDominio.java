@@ -139,6 +139,42 @@ public class GerTarefasDaoDominio {
         genericDao.excluir(obj);
     }
     //------------------------------------------------------
+    //Listas por Categorias
+    public List listar(Class classe,String pesq, int tipo) throws HibernateException{
+        List lista = null;
+        if(classe.equals(Fabricante.class)){
+            switch (tipo) {
+                case 0: lista = listar(classe); break;
+                case 1: lista = fabricanteDao.pesquisarNome(pesq); break;
+                case 2: lista = fabricanteDao.pesquisarPais(pesq); break;           
+            }
+        }else if(classe.equals(Modelo.class)){
+            switch (tipo) {
+                case 0: lista = listar(classe); break;
+                case 1: lista = modeloDao.pesquisarNome(pesq); break;
+                case 2: lista = modeloDao.pesquisarMes(pesq); break;
+                case 3: lista = modeloDao.pesquisarFabr(pesq); break;
+                case 4: lista = modeloDao.pesquisarCapacidade(pesq); break;
+            }
+        }else if(classe.equals(Aeronave.class)){
+            switch (tipo) {
+                case 0: lista = listar(classe); break;
+                           
+            }
+        }else if(classe.equals(Cliente.class)){
+            switch (tipo) {
+                case 0: lista = listar(classe); break;
+                           
+            }
+        }else if(classe.equals(Locacao.class)){
+            switch (tipo) {
+                case 0: lista = listar(classe); break;
+                          
+            }
+        }
+        return lista;
+    }
+    //------------------------------------------------------
     //Padrao Observer
     public void setarDados(Aeronave aeronaveSetada){
         dados.setState(aeronaveSetada);

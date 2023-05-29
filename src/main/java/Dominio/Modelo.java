@@ -127,7 +127,7 @@ public class Modelo implements Serializable{
     }
 
     public Object[] toArray() throws ParseException {
-        return new Object[] { this,this.getFabricante() };
+        return new Object[] { this,this.getDataModeloFormatada(),this.getFabricante(),this.capacidade };
     }
 
     @Override
