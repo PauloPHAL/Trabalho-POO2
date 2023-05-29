@@ -1,6 +1,7 @@
 package Gerencia;
 
 import Dominio.*;
+import Dominio.Observer.*;
 import Persistencia.*;
 import java.util.Date;
 import java.util.List;
@@ -15,6 +16,8 @@ public class GerTarefasDaoDominio {
     private ClienteDAO clienteDao;
     private LocacaoDAO locacaoDao;
     private PaisDAO paisDao;
+    //------------------------------------------
+    private DadosSubject dados;
     // padrao Singleton
     private static GerTarefasDaoDominio gerenciador; 
     private GerTarefasDaoDominio(){
@@ -26,6 +29,7 @@ public class GerTarefasDaoDominio {
         this.clienteDao = ClienteDAO.getConexão();
         this.locacaoDao = LocacaoDAO.getConexão();
         this.paisDao = PaisDAO.getConexão();
+        this.dados = new DadosSubject();
     }
     public static GerTarefasDaoDominio getConexão(){
         if(gerenciador == null){
@@ -134,5 +138,13 @@ public class GerTarefasDaoDominio {
     public void excluir(Object obj)throws HibernateException{
         genericDao.excluir(obj);
     }
-  
+    //------------------------------------------------------
+    //Padrao Observer
+    public void setarDados(Aeronave aeronaveSetada){
+        dados.setState(aeronaveSetada);
+    }
+    public void addSubject(){
+        dados.attach(new TabelaObserver(this.dados));
+        dados.attach(new GraficoObserver(this.dados));
+    }
 }

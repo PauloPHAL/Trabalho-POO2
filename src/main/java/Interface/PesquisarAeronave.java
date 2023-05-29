@@ -187,15 +187,12 @@ public class PesquisarAeronave extends javax.swing.JDialog {
         Aeronave aeronave;
         if ( linha >= 0 ) {
             aeronave = (Aeronave)this.jTable1.getValueAt(linha, 0);
-            DadosSubject dadosSubjects = new DadosSubject();
-            dadosSubjects.attach(new TabelaObserver(dadosSubjects));
-            dadosSubjects.setState(aeronave);
+            this.gerTarefas.getGerenciaDaoDominio().addSubject();
+            this.gerTarefas.getGerenciaDaoDominio().setarDados(aeronave);
         }
         else {
             JOptionPane.showMessageDialog(this,"Selecione uma linha.");
-        } 
-        
-        
+        }       
     }//GEN-LAST:event_btnVerActionPerformed
    
     // Variables declaration - do not modify//GEN-BEGIN:variables
