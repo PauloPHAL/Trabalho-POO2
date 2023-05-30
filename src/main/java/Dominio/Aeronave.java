@@ -102,7 +102,7 @@ public class Aeronave implements Serializable{
     }
 
     public Object[] toArray() throws ParseException {
-        return new Object[] { this,this.getNumeroSerie() ,this.getModelo(),this.getModelo().getFabricante() };
+        return new Object[] { this,this.getNumeroSerie() ,this.getModelo(),this.getModelo().getFabricante(),this.getDataCompraFormatada()};
     }
 
     @Override

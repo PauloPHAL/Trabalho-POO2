@@ -57,7 +57,7 @@ public class PesquisarAeronave extends javax.swing.JDialog {
 
             },
             new String [] {
-                "Nome", "NumeroSerie", "Modelo", "Fabricante"
+                "Nome", "NumeroSerie", "Modelo", "Fabricante", "Data"
             }
         ));
         jScrollPane1.setViewportView(jTable1);
@@ -78,7 +78,7 @@ public class PesquisarAeronave extends javax.swing.JDialog {
             }
         });
 
-        jComboBoxTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ALL", "Codigo", "Modelo", "Fabricante" }));
+        jComboBoxTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ALL", "Modelo", "Mes", "Fabricante" }));
 
         jButton4.setText("Excluir");
         jButton4.addActionListener(new java.awt.event.ActionListener() {

@@ -124,15 +124,21 @@
             <Component class="javax.swing.JTable" name="jTable1">
               <Properties>
                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                  <Table columnCount="4" rowCount="0">
+                  <Table columnCount="5" rowCount="0">
                     <Column editable="true" title="Nome" type="java.lang.Object"/>
                     <Column editable="true" title="NumeroSerie" type="java.lang.Object"/>
                     <Column editable="true" title="Modelo" type="java.lang.Object"/>
                     <Column editable="true" title="Fabricante" type="java.lang.Object"/>
+                    <Column editable="true" title="Data" type="java.lang.Object"/>
                   </Table>
                 </Property>
                 <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
                   <TableColumnModel selectionModel="0">
+                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                      <Title/>
+                      <Editor/>
+                      <Renderer/>
+                    </Column>
                     <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
                       <Title/>
                       <Editor/>
@@ -189,8 +195,8 @@
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
               <StringArray count="4">
                 <StringItem index="0" value="ALL"/>
-                <StringItem index="1" value="Codigo"/>
-                <StringItem index="2" value="Modelo"/>
+                <StringItem index="1" value="Modelo"/>
+                <StringItem index="2" value="Mes"/>
                 <StringItem index="3" value="Fabricante"/>
               </StringArray>
             </Property>

@@ -159,17 +159,22 @@ public class GerTarefasDaoDominio {
         }else if(classe.equals(Aeronave.class)){
             switch (tipo) {
                 case 0: lista = listar(classe); break;
-                           
+                case 1: lista = aeronaveDao.pesquisarModelo(pesq); break;
+                case 2: lista = aeronaveDao.pesquisarMes(pesq); break;
+                case 3: lista = aeronaveDao.pesquisarFabr(pesq); break;                          
             }
         }else if(classe.equals(Cliente.class)){
             switch (tipo) {
                 case 0: lista = listar(classe); break;
-                           
+                case 1: lista = clienteDao.pesquisarNome(pesq); break;
+                case 2: lista = clienteDao.pesquisarData(pesq); break;
+                case 3: lista = clienteDao.pesquisarSexo(pesq); break;           
             }
         }else if(classe.equals(Locacao.class)){
             switch (tipo) {
                 case 0: lista = listar(classe); break;
-                          
+                case 1: lista = locacaoDao.pesquisarCliente(pesq); break;
+                case 2: lista = locacaoDao.pesquisarAeronave(pesq); break;          
             }
         }
         return lista;

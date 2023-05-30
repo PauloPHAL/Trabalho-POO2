@@ -37,13 +37,12 @@ public class ModeloDAO extends GenericDAO{
             switch (tipo) {
                 case 0: restricoes = builder.like(tabela.get("nome"), pesq + "%" ); 
                         break;
-                case 2: restricoes = builder.like(tabela.get("fabricante").get("nome"), pesq + "%" ); 
-                        break;
-                case 1: 
-                        Expression<Integer> exp = builder.function("EXTRACT", Integer.class, builder.literal("MONTH"), tabela.get("dataModelo"));
+                case 1: Expression exp = builder.function("month", Integer.class, tabela.get("dataModelo"));
                         restricoes = builder.equal(exp, pesq);
-                        break;                   
-                case 3: restricoes = builder.like(tabela.get("capacidade"), pesq ); 
+                        break;                       
+                case 2: restricoes = builder.like(tabela.get("fabricante").get("nome"), pesq + "%" ); 
+                        break;                 
+                case 3: restricoes = builder.equal(tabela.get("capacidade"), pesq ); 
                         break;                      
             }
                         
