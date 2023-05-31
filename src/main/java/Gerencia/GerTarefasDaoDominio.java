@@ -182,10 +182,9 @@ public class GerTarefasDaoDominio {
     //------------------------------------------------------
     //Padrao Observer
     public void setarDados(Aeronave aeronaveSetada){
-        dados.setState(aeronaveSetada);
+        
     }
     public void addSubject(){
-        dados.attach(new TabelaObserver(this.dados));
-        dados.attach(new GraficoObserver(this.dados));
+        
     }
 }

@@ -4,31 +4,35 @@ import Dominio.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DadosSubject {
-    protected List<AeronavesObservers> dadosObservados;
-    protected Aeronave dadosAeronave;
-
-    public DadosSubject() {
-        this.dadosObservados = new ArrayList<>();
+public class DadosSubject implements Subject{
+    private List<Observer> observers = new ArrayList<>();
+    private Aeronave aeronave;  
+    
+    @Override
+    public void attach(Observer observer) {
+        observers.add(observer);
     }
     
-    public void attach(AeronavesObservers observer) {
-        dadosObservados.add(observer);
+    @Override
+    public void detach(Observer observer) {
+        observers.remove(observer);
     }
-    public void detach(int indice) {
-        dadosObservados.remove(indice);
+    
+    @Override
+    public void notifyObservers() {
+        for (Observer observer : observers) {
+            observer.update();
+        }
     }
-    public void setState(Aeronave dados) {
-        this.dadosAeronave = dados;
+    
+    public void setAeronave(Aeronave aeronave) {
+        this.aeronave = aeronave;
         notifyObservers();
     }
-    public void notifyObservers() {
-        this.dadosObservados.forEach(observer -> {
-            observer.update();
-        });
-    }
+    
+    @Override
     public Aeronave getState() {
-        return this.dadosAeronave;
+        return aeronave;
     }
     
 }

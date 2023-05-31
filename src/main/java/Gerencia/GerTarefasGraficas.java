@@ -33,6 +33,9 @@ public class GerTarefasGraficas {
     private PesquisarLocacao dlgPesqLocacao;
     private PesquisarCliente dlgPesqCliente;
     
+    //------------------ Pesquisa
+    private AeronaveObservers dlgAeronaveObservers;
+    
     //------------------ Genrencia de Dominio
     private GerTarefasDaoDominio gerenciaDaoDominio;
     private GerenciaDeEdicao gerEdicao;
@@ -50,6 +53,7 @@ public class GerTarefasGraficas {
         this.dlgPesqLocacao = null;
         this.dlgCadCliente = null;
         this.dlgCadLocacao = null;
+        this.dlgAeronaveObservers = null;
         
         //Gerencia de edicao
         this.gerEdicao = new GerenciaDeEdicao();
@@ -112,6 +116,9 @@ public class GerTarefasGraficas {
     }
     public void abrirPesqLocacao(){
         dlgPesqLocacao = (PesquisarLocacao) abrirJanela(frmPrincipal,dlgPesqLocacao,PesquisarLocacao.class);
+    }
+    public void abrirAeronaveObservers(){
+        dlgAeronaveObservers = (AeronaveObservers) abrirJanela(frmPrincipal,dlgAeronaveObservers,AeronaveObservers.class);
     }
     //-----------------------------------------------------------------------------------------
     //Acesso a classe Gerencia de Dominio e DAO, Edicao

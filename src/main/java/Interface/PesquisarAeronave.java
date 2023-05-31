@@ -1,7 +1,6 @@
 package Interface;
 
 import Dominio.Aeronave;
-import Dominio.Observer.*;
 import Gerencia.GerTarefasGraficas;
 import javax.swing.JOptionPane;
 
@@ -87,7 +86,7 @@ public class PesquisarAeronave extends javax.swing.JDialog {
             }
         });
 
-        btnVer.setText("Ver");
+        btnVer.setText("Mostrar Todas Aeronaves");
         btnVer.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnVerActionPerformed(evt);
@@ -109,7 +108,7 @@ public class PesquisarAeronave extends javax.swing.JDialog {
                         .addComponent(jButton3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton2))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 392, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 589, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(jComboBoxTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -187,8 +186,7 @@ public class PesquisarAeronave extends javax.swing.JDialog {
         Aeronave aeronave;
         if ( linha >= 0 ) {
             aeronave = (Aeronave)this.jTable1.getValueAt(linha, 0);
-            this.gerTarefas.getGerenciaDaoDominio().addSubject();
-            this.gerTarefas.getGerenciaDaoDominio().setarDados(aeronave);
+            this.gerTarefas.abrirAeronaveObservers();
         }
         else {
             JOptionPane.showMessageDialog(this,"Selecione uma linha.");
