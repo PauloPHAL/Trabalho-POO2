@@ -70,6 +70,11 @@ public class FuncoesUteis {
         return Double.toString(num);
     }
     
+    //converter char em string
+    public static String charToString(char c){
+        return String.valueOf(c);
+    }
+    
     //verifica o CPF
     public static boolean isCPF(String parCpf) {           
         // considera-se erro cpf's formados por uma sequencia de numeros iguais

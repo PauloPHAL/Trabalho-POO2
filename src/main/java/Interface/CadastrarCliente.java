@@ -31,7 +31,7 @@ public class CadastrarCliente extends javax.swing.JDialog {
             this.txtEmail.setText(cliente.getEmail());
             this.txtCelular.setText(cliente.getCelular());
             
-            if(cliente.getSexo() == 'M'){
+            if(cliente.getSexo().equals('M')){
                 this.rdbMasc.setSelected(true);
             }else{
                 this.rdbFemin.setSelected(true);
@@ -310,7 +310,7 @@ public class CadastrarCliente extends javax.swing.JDialog {
             String nome = txtNome.getText();
             String cpf = txtCpf.getText();
             String d = txtData.getText();
-            char sexo = (char) grpSexo.getSelection().getMnemonic();
+            char s = (char) grpSexo.getSelection().getMnemonic();
             String celular = txtCelular.getText();
             String email = txtEmail.getText();
             Icon f = lblFoto.getIcon();
@@ -318,7 +318,7 @@ public class CadastrarCliente extends javax.swing.JDialog {
             //tratando os dados que precisa
             Date data = FuncoesUteis.strToDate(d);
             byte[] foto = FuncoesUteis.IconToBytes(f);
-            
+            String sexo = FuncoesUteis.charToString(s);
             // INSERIR NO BANCO                      
             //------------------------------------------------------------------------------
             if(this.gerTarefas.getGerEdicao().getClienteSelecionado() == null){

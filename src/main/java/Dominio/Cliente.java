@@ -29,7 +29,7 @@ public class Cliente implements Serializable{
     private String celular;
     
     @Column (length = 1)
-    private char sexo;
+    private String sexo;
     
     @Column (updatable = false)
     @Temporal (TemporalType.DATE)
@@ -45,7 +45,7 @@ public class Cliente implements Serializable{
     public Cliente() {
     }
     
-    public Cliente(String nome, String cpf, String email, String celular, char sexo, Date dataNascimento, byte[] fotoCliente) {
+    public Cliente(String nome, String cpf, String email, String celular, String sexo, Date dataNascimento, byte[] fotoCliente) {
         this.nome = nome;
         this.cpf = cpf;
         this.email = email;
@@ -96,11 +96,11 @@ public class Cliente implements Serializable{
         this.celular = celular;
     }
 
-    public char getSexo() {
+    public String getSexo() {
         return sexo;
     }
 
-    public void setSexo(char sexo) {
+    public void setSexo(String sexo) {
         this.sexo = sexo;
     }
 
@@ -149,7 +149,7 @@ public class Cliente implements Serializable{
         hash = 41 * hash + Objects.hashCode(this.cpf);
         hash = 41 * hash + Objects.hashCode(this.email);
         hash = 41 * hash + Objects.hashCode(this.celular);
-        hash = 41 * hash + this.sexo;
+        hash = 41 * hash + Objects.hashCode(this.sexo);
         hash = 41 * hash + Objects.hashCode(this.dataNascimento);
         hash = 41 * hash + Arrays.hashCode(this.fotoCliente);
         hash = 41 * hash + Objects.hashCode(this.locacao);
@@ -171,7 +171,7 @@ public class Cliente implements Serializable{
         if (this.idCliente != other.idCliente) {
             return false;
         }
-        if (this.sexo != other.sexo) {
+        if (this.sexo == null ? other.sexo != null : !this.sexo.equals(other.sexo)) {
             return false;
         }
         if (!Objects.equals(this.nome, other.nome)) {

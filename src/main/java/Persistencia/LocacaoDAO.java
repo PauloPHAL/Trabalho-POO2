@@ -37,7 +37,7 @@ public class LocacaoDAO extends GenericDAO{
             switch (tipo) {
                 case 0: restricoes = builder.like(tabela.get("chaveComposta").get("cliente").get("nome"), pesq +"%"); 
                         break;                      
-                case 2: restricoes = builder.like(tabela.get("chaveComposta").get("aeronave").get("nome"), pesq +"%"); 
+                case 1: restricoes = builder.like(tabela.get("chaveComposta").get("aeronave").get("nome"), pesq +"%"); 
                         break;                    
             }
                         

@@ -40,7 +40,7 @@ public class ClienteDAO extends GenericDAO{
                 case 1: Expression exp = builder.function("month", Integer.class, tabela.get("dataNascimento"));
                         restricoes = builder.equal(exp, pesq);
                         break;                       
-                case 2: restricoes = builder.like(tabela.get("sexo"), pesq); 
+                case 2: restricoes = builder.like(tabela.get("sexo"),pesq ); 
                         break;                    
             }
                         

@@ -65,7 +65,7 @@ public class Pais implements Serializable{
         if (this.idPais != other.idPais) {
             return false;
         }
-        return Objects.equals(this.nome, other.nome);
+        return true;
     }
     
     

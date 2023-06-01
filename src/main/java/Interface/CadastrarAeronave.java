@@ -238,7 +238,9 @@ public class CadastrarAeronave extends javax.swing.JDialog {
 
     private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
         this.gerTarefas.carregarComboBox(jComboBoxF, this, Fabricante.class);
-        //this.gerTarefas.carregarComboBox(jComboBoxM, this, Modelo.class);
+        Fabricante fabricante = (Fabricante) this.jComboBoxF.getSelectedItem();
+        List<Modelo> lista = fabricante.getModelo();
+        this.jComboBoxM.setModel(new DefaultComboBoxModel(lista.toArray()));
     }//GEN-LAST:event_formComponentShown
 
     private void btnNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovoActionPerformed

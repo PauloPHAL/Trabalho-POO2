@@ -87,12 +87,12 @@ public class GerTarefasDaoDominio {
     }
     
     //------------------------------------------------------
-    public int inserirCliente(String nome, String cpf, String email, String celular, char sexo, Date dataNascimento, byte[] fotoCliente)throws HibernateException{
+    public int inserirCliente(String nome, String cpf, String email, String celular, String sexo, Date dataNascimento, byte[] fotoCliente)throws HibernateException{
         Cliente cliente = new Cliente(nome,cpf,email,celular,sexo,dataNascimento,fotoCliente);
         clienteDao.inserir(cliente);
         return cliente.getIdCliente();
     }
-    public int alterarCliente(Cliente cliente, String nome, String cpf, String email, String celular, char sexo, Date dataNascimento, byte[] fotoCliente)throws HibernateException{
+    public int alterarCliente(Cliente cliente, String nome, String cpf, String email, String celular, String sexo, Date dataNascimento, byte[] fotoCliente)throws HibernateException{
         cliente.setNome(nome);
         cliente.setCpf(cpf);
         cliente.setEmail(email);

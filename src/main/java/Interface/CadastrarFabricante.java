@@ -77,9 +77,11 @@ public class CadastrarFabricante extends javax.swing.JDialog {
                 formMouseExited(evt);
             }
         });
-        addComponentListener(new java.awt.event.ComponentAdapter() {
-            public void componentShown(java.awt.event.ComponentEvent evt) {
-                formComponentShown(evt);
+        addWindowFocusListener(new java.awt.event.WindowFocusListener() {
+            public void windowGainedFocus(java.awt.event.WindowEvent evt) {
+                formWindowGainedFocus(evt);
+            }
+            public void windowLostFocus(java.awt.event.WindowEvent evt) {
             }
         });
 
@@ -292,10 +294,9 @@ public class CadastrarFabricante extends javax.swing.JDialog {
         }              
     }//GEN-LAST:event_btlAddActionPerformed
 
-    private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
+    private void formWindowGainedFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowGainedFocus
         this.gerTarefas.carregarComboBox(comboPais,this,Pais.class);
-        //this.gerTarefas.carregarLista(listModelos, this, Modelo.class);
-    }//GEN-LAST:event_formComponentShown
+    }//GEN-LAST:event_formWindowGainedFocus
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
