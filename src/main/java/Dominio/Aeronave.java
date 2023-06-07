@@ -107,13 +107,8 @@ public class Aeronave implements Serializable{
 
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 83 * hash + this.idAeronave;
-        hash = 83 * hash + Objects.hashCode(this.nome);
-        hash = 83 * hash + Objects.hashCode(this.numeroSerie);
-        hash = 83 * hash + Objects.hashCode(this.dataCompra);
-        hash = 83 * hash + Objects.hashCode(this.locacao);
-        hash = 83 * hash + Objects.hashCode(this.modelo);
+        int hash = 5;
+        hash = 79 * hash + this.idAeronave;
         return hash;
     }
 
@@ -132,20 +127,10 @@ public class Aeronave implements Serializable{
         if (this.idAeronave != other.idAeronave) {
             return false;
         }
-        if (!Objects.equals(this.nome, other.nome)) {
-            return false;
-        }
-        if (!Objects.equals(this.numeroSerie, other.numeroSerie)) {
-            return false;
-        }
-        if (!Objects.equals(this.dataCompra, other.dataCompra)) {
-            return false;
-        }
-        if (!Objects.equals(this.locacao, other.locacao)) {
-            return false;
-        }
-        return Objects.equals(this.modelo, other.modelo);
+        return true;
     }
+
+    
     
    
     

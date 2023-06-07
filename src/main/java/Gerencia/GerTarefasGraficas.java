@@ -56,7 +56,7 @@ public class GerTarefasGraficas {
         this.dlgAeronaveObservers = null;
         
         //Gerencia de edicao
-        this.gerEdicao = new GerenciaDeEdicao();
+        this.gerEdicao = GerenciaDeEdicao.getConexão();
         
         //Conexao
         this.gerenciaDaoDominio = GerTarefasDaoDominio.getConexão();
@@ -164,10 +164,10 @@ public class GerTarefasGraficas {
     //-----------------------------------------------------------------------------------------
     //Habilitar Botoes
     public void habilitarBotoes(Object obj, JButton btnNovo, JButton btnAlterar){
-        if ( obj == null ) {
+        if(obj == null){
             btnNovo.setVisible(true);
             btnAlterar.setVisible(false);
-        } else {
+        }else{
             btnNovo.setVisible(false);
             btnAlterar.setVisible(true);
         } 
@@ -216,12 +216,15 @@ public class GerTarefasGraficas {
         int linha = tabela.getSelectedRow();
         if ( linha >= 0 ) {  
             if ( JOptionPane.showConfirmDialog(janela, "Deseja realmente excluir?", "Título", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION ) {
-                this.gerenciaDaoDominio.excluir(tabela.getValueAt(linha, 0));
-                ((DefaultTableModel)tabela.getModel()).removeRow(linha);
-                JOptionPane.showMessageDialog(janela, "excluído com sucesso.");
+                try{
+                    this.gerenciaDaoDominio.excluir(tabela.getValueAt(linha, 0));
+                    ((DefaultTableModel)tabela.getModel()).removeRow(linha);
+                    JOptionPane.showMessageDialog(janela, "excluído com sucesso.");
+                }catch(HibernateException ex){
+                    JOptionPane.showMessageDialog(janela, "Erro: Nao pode ser excluido");
+                }
             }             
-        }        
-        else {
+        }else{
             JOptionPane.showMessageDialog(janela,"Selecione uma linha." ,"Erro",JOptionPane.ERROR_MESSAGE);
         }
     }

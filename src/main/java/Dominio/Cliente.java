@@ -143,16 +143,8 @@ public class Cliente implements Serializable{
 
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 41 * hash + this.idCliente;
-        hash = 41 * hash + Objects.hashCode(this.nome);
-        hash = 41 * hash + Objects.hashCode(this.cpf);
-        hash = 41 * hash + Objects.hashCode(this.email);
-        hash = 41 * hash + Objects.hashCode(this.celular);
-        hash = 41 * hash + Objects.hashCode(this.sexo);
-        hash = 41 * hash + Objects.hashCode(this.dataNascimento);
-        hash = 41 * hash + Arrays.hashCode(this.fotoCliente);
-        hash = 41 * hash + Objects.hashCode(this.locacao);
+        int hash = 5;
+        hash = 67 * hash + this.idCliente;
         return hash;
     }
 
@@ -171,29 +163,9 @@ public class Cliente implements Serializable{
         if (this.idCliente != other.idCliente) {
             return false;
         }
-        if (this.sexo == null ? other.sexo != null : !this.sexo.equals(other.sexo)) {
-            return false;
-        }
-        if (!Objects.equals(this.nome, other.nome)) {
-            return false;
-        }
-        if (!Objects.equals(this.cpf, other.cpf)) {
-            return false;
-        }
-        if (!Objects.equals(this.email, other.email)) {
-            return false;
-        }
-        if (!Objects.equals(this.celular, other.celular)) {
-            return false;
-        }
-        if (!Objects.equals(this.dataNascimento, other.dataNascimento)) {
-            return false;
-        }
-        if (!Arrays.equals(this.fotoCliente, other.fotoCliente)) {
-            return false;
-        }
-        return Objects.equals(this.locacao, other.locacao);
+        return true;
     }
+
     
     
    

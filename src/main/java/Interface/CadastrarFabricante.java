@@ -1,7 +1,6 @@
 package Interface;
 
 import Dominio.Fabricante;
-import Dominio.Modelo;
 import Dominio.Pais;
 import Gerencia.FuncoesUteis;
 import Gerencia.GerTarefasGraficas;
@@ -37,6 +36,9 @@ public class CadastrarFabricante extends javax.swing.JDialog {
                 lblFoto.setText("Foto");
                 lblFoto.setIcon(null);
             }
+            this.gerTarefas.habilitarBotoes(this.gerTarefas.getGerEdicao().getFabricanteSelecionado(), btlAdd, btlAlterar);
+        }else{
+            this.limparCampos();
             this.gerTarefas.habilitarBotoes(this.gerTarefas.getGerEdicao().getFabricanteSelecionado(), btlAdd, btlAlterar);
         }
     }
@@ -296,6 +298,11 @@ public class CadastrarFabricante extends javax.swing.JDialog {
 
     private void formWindowGainedFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowGainedFocus
         this.gerTarefas.carregarComboBox(comboPais,this,Pais.class);
+        try {
+            preencherCampos(this.gerTarefas.getGerEdicao().getFabricanteSelecionado());
+        } catch (ParseException ex) {
+            JOptionPane.showMessageDialog(this, "Erro: "+ex);
+        }
     }//GEN-LAST:event_formWindowGainedFocus
 
 

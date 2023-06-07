@@ -92,10 +92,7 @@ public class Locacao implements Serializable{
     @Override
     public int hashCode() {
         int hash = 3;
-        hash = 31 * hash + Objects.hashCode(this.chaveComposta);
-        hash = 31 * hash + Objects.hashCode(this.dataLocacao);
-        hash = 31 * hash + Objects.hashCode(this.dataLimite);
-        hash = 31 * hash + (int) (Double.doubleToLongBits(this.valor) ^ (Double.doubleToLongBits(this.valor) >>> 32));
+        hash = 53 * hash + Objects.hashCode(this.chaveComposta);
         return hash;
     }
 
@@ -111,16 +108,12 @@ public class Locacao implements Serializable{
             return false;
         }
         final Locacao other = (Locacao) obj;
-        if (Double.doubleToLongBits(this.valor) != Double.doubleToLongBits(other.valor)) {
-            return false;
-        }
         if (!Objects.equals(this.chaveComposta, other.chaveComposta)) {
             return false;
         }
-        if (!Objects.equals(this.dataLocacao, other.dataLocacao)) {
-            return false;
-        }
-        return Objects.equals(this.dataLimite, other.dataLimite);
+        return true;
     }
+
+    
     
 }

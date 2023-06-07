@@ -44,6 +44,9 @@ public class CadastrarCliente extends javax.swing.JDialog {
                 lblFoto.setIcon(null);
             }
             this.gerTarefas.habilitarBotoes(this.gerTarefas.getGerEdicao().getClienteSelecionado(), btnNovo, btnAlterar);
+        }else{
+            this.limparCampos();
+            this.gerTarefas.habilitarBotoes(this.gerTarefas.getGerEdicao().getClienteSelecionado(), btnNovo, btnAlterar);
         }
     }
     
@@ -89,6 +92,13 @@ public class CadastrarCliente extends javax.swing.JDialog {
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 formMouseExited(evt);
+            }
+        });
+        addWindowFocusListener(new java.awt.event.WindowFocusListener() {
+            public void windowGainedFocus(java.awt.event.WindowEvent evt) {
+                formWindowGainedFocus(evt);
+            }
+            public void windowLostFocus(java.awt.event.WindowEvent evt) {
             }
         });
         getContentPane().setLayout(new javax.swing.BoxLayout(getContentPane(), javax.swing.BoxLayout.LINE_AXIS));
@@ -338,6 +348,14 @@ public class CadastrarCliente extends javax.swing.JDialog {
             this.limparCampos();
         }                          
     }//GEN-LAST:event_btnNovoActionPerformed
+
+    private void formWindowGainedFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowGainedFocus
+        try {
+            preencherCampos(this.gerTarefas.getGerEdicao().getClienteSelecionado());
+        } catch (ParseException ex) {
+            JOptionPane.showMessageDialog(this, "Erro: "+ex);
+        }
+    }//GEN-LAST:event_formWindowGainedFocus
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

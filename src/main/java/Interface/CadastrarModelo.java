@@ -47,6 +47,9 @@ public class CadastrarModelo extends javax.swing.JDialog {
                 lblFotoModelo.setIcon(null);
             }
             this.gerTarefas.habilitarBotoes(this.gerTarefas.getGerEdicao().getModeloSelecionado(), btlAdd, btlAlterar);
+        }else{
+            this.limparCampos();
+            this.gerTarefas.habilitarBotoes(this.gerTarefas.getGerEdicao().getModeloSelecionado(), btlAdd, btlAlterar);
         }
     }
     
@@ -96,6 +99,13 @@ public class CadastrarModelo extends javax.swing.JDialog {
         addComponentListener(new java.awt.event.ComponentAdapter() {
             public void componentShown(java.awt.event.ComponentEvent evt) {
                 formComponentShown(evt);
+            }
+        });
+        addWindowFocusListener(new java.awt.event.WindowFocusListener() {
+            public void windowGainedFocus(java.awt.event.WindowEvent evt) {
+                formWindowGainedFocus(evt);
+            }
+            public void windowLostFocus(java.awt.event.WindowEvent evt) {
             }
         });
 
@@ -349,6 +359,14 @@ public class CadastrarModelo extends javax.swing.JDialog {
     private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
         this.gerTarefas.carregarComboBox(jComboBox1, this, Fabricante.class);
     }//GEN-LAST:event_formComponentShown
+
+    private void formWindowGainedFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowGainedFocus
+        try {
+            preencherCampos(this.gerTarefas.getGerEdicao().getModeloSelecionado());
+        } catch (ParseException ex) {
+            JOptionPane.showMessageDialog(this, "Erro: "+ex);
+        }
+    }//GEN-LAST:event_formWindowGainedFocus
 
     
 

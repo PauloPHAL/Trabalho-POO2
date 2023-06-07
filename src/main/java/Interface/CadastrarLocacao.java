@@ -31,6 +31,9 @@ public class CadastrarLocacao extends javax.swing.JDialog {
             this.jComboBoxA.setSelectedItem(locacao.getChaveComposta().getAeronave());
             this.jComboBoxC.setSelectedItem(locacao.getChaveComposta().getCliente());
             this.gerTarefas.habilitarBotoes(this.gerTarefas.getGerEdicao().getLocacaoSelecionada(), btlAdd, btlAlterar);
+        }else{
+            this.limparCampos();
+            this.gerTarefas.habilitarBotoes(this.gerTarefas.getGerEdicao().getLocacaoSelecionada(), btlAdd, btlAlterar);
         }
     }
     
@@ -74,6 +77,13 @@ public class CadastrarLocacao extends javax.swing.JDialog {
         addComponentListener(new java.awt.event.ComponentAdapter() {
             public void componentShown(java.awt.event.ComponentEvent evt) {
                 formComponentShown(evt);
+            }
+        });
+        addWindowFocusListener(new java.awt.event.WindowFocusListener() {
+            public void windowGainedFocus(java.awt.event.WindowEvent evt) {
+                formWindowGainedFocus(evt);
+            }
+            public void windowLostFocus(java.awt.event.WindowEvent evt) {
             }
         });
 
@@ -236,6 +246,7 @@ public class CadastrarLocacao extends javax.swing.JDialog {
     }//GEN-LAST:event_btlPesquisarActionPerformed
 
     private void btlSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btlSairActionPerformed
+        this.gerTarefas.getGerEdicao().setLocacaoSelecionada(null);
         this.dispose();
     }//GEN-LAST:event_btlSairActionPerformed
 
@@ -285,6 +296,14 @@ public class CadastrarLocacao extends javax.swing.JDialog {
             this.limparCampos();
         }                
     }//GEN-LAST:event_btlAddActionPerformed
+
+    private void formWindowGainedFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowGainedFocus
+        try {
+            preencherCampos(this.gerTarefas.getGerEdicao().getLocacaoSelecionada());
+        } catch (ParseException ex) {
+            JOptionPane.showMessageDialog(this, "Erro: "+ex);
+        }
+    }//GEN-LAST:event_formWindowGainedFocus
 
    
 

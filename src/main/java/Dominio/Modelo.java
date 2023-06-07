@@ -132,15 +132,8 @@ public class Modelo implements Serializable{
 
     @Override
     public int hashCode() {
-        int hash = 5;
-        hash = 97 * hash + this.idModelo;
-        hash = 97 * hash + Objects.hashCode(this.nome);
-        hash = 97 * hash + Objects.hashCode(this.tipo);
-        hash = 97 * hash + this.capacidade;
-        hash = 97 * hash + Objects.hashCode(this.dataModelo);
-        hash = 97 * hash + Arrays.hashCode(this.fotoModelo);
-        hash = 97 * hash + Objects.hashCode(this.aeronave);
-        hash = 97 * hash + Objects.hashCode(this.fabricante);
+        int hash = 7;
+        hash = 47 * hash + this.idModelo;
         return hash;
     }
 
@@ -159,26 +152,10 @@ public class Modelo implements Serializable{
         if (this.idModelo != other.idModelo) {
             return false;
         }
-        if (this.capacidade != other.capacidade) {
-            return false;
-        }
-        if (!Objects.equals(this.nome, other.nome)) {
-            return false;
-        }
-        if (!Objects.equals(this.tipo, other.tipo)) {
-            return false;
-        }
-        if (!Objects.equals(this.dataModelo, other.dataModelo)) {
-            return false;
-        }
-        if (!Arrays.equals(this.fotoModelo, other.fotoModelo)) {
-            return false;
-        }
-        if (!Objects.equals(this.aeronave, other.aeronave)) {
-            return false;
-        }
-        return Objects.equals(this.fabricante, other.fabricante);
+        return true;
     }
+
+    
     
     
     

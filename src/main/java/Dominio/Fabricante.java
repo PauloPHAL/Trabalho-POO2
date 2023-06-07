@@ -109,13 +109,8 @@ public class Fabricante implements Serializable{
 
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 97 * hash + this.idFabricante;
-        hash = 97 * hash + Objects.hashCode(this.nome);
-        hash = 97 * hash + Objects.hashCode(this.pais);
-        hash = 97 * hash + Objects.hashCode(this.dataFundacao);
-        hash = 97 * hash + Arrays.hashCode(this.logo);
-        hash = 97 * hash + Objects.hashCode(this.modelo);
+        int hash = 3;
+        hash = 19 * hash + this.idFabricante;
         return hash;
     }
 
@@ -134,20 +129,10 @@ public class Fabricante implements Serializable{
         if (this.idFabricante != other.idFabricante) {
             return false;
         }
-        if (!Objects.equals(this.nome, other.nome)) {
-            return false;
-        }
-        if (!Objects.equals(this.pais, other.pais)) {
-            return false;
-        }
-        if (!Objects.equals(this.dataFundacao, other.dataFundacao)) {
-            return false;
-        }
-        if (!Arrays.equals(this.logo, other.logo)) {
-            return false;
-        }
-        return Objects.equals(this.modelo, other.modelo);
+        return true;
     }
+
+
     
     
     

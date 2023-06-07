@@ -8,7 +8,23 @@ public class GerenciaDeEdicao {
     private Fabricante fabricanteSelecionado;
     private Cliente clienteSelecionado;
     private Locacao locacaoSelecionada;
-
+    
+    // padrao Singleton
+    private static GerenciaDeEdicao gerenciador; 
+    private GerenciaDeEdicao(){
+        this.aeronaveSelecionada = null;
+        this.clienteSelecionado = null;
+        this.fabricanteSelecionado = null;
+        this.locacaoSelecionada = null;
+        this.modeloSelecionado = null;
+    }
+    public static GerenciaDeEdicao getConexão(){
+        if(gerenciador == null){
+            gerenciador = new GerenciaDeEdicao();
+        }
+        return gerenciador;
+    }
+    //---------------------------------------------------------
     public Aeronave getAeronaveSelecionada() {
         return aeronaveSelecionada;
     }
@@ -47,7 +63,5 @@ public class GerenciaDeEdicao {
 
     public void setLocacaoSelecionada(Locacao locacaoSelecionada) {
         this.locacaoSelecionada = locacaoSelecionada;
-    }
-  
-    
+    }  
 }

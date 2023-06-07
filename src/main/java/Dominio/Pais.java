@@ -46,7 +46,6 @@ public class Pais implements Serializable{
     public int hashCode() {
         int hash = 7;
         hash = 79 * hash + this.idPais;
-        hash = 79 * hash + Objects.hashCode(this.nome);
         return hash;
     }
 
@@ -67,6 +66,9 @@ public class Pais implements Serializable{
         }
         return true;
     }
+
+    
+    
     
     
 }
