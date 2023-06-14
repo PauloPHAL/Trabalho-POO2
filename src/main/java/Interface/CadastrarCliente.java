@@ -13,6 +13,7 @@ import org.hibernate.HibernateException;
 public class CadastrarCliente extends javax.swing.JDialog {
     //acesso
     private GerTarefasGraficas gerTarefas;
+    private boolean controle = false;
     
     //construtor 
     public CadastrarCliente(java.awt.Frame parent, boolean modal, GerTarefasGraficas gerTarefas) {
@@ -36,12 +37,14 @@ public class CadastrarCliente extends javax.swing.JDialog {
             }else{
                 this.rdbFemin.setSelected(true);
             }
-            if (cliente.getFotoCliente() != null) { 
-                ImageIcon imagem = new ImageIcon( cliente.getFotoCliente());
-                this.gerTarefas.mostrarFoto(imagem, lblFoto);
-            } else {
-                lblFoto.setText("Foto");
-                lblFoto.setIcon(null);
+            if (!controle) {
+                if (cliente.getFotoCliente() != null) { 
+                    ImageIcon imagem = new ImageIcon( cliente.getFotoCliente());
+                    this.gerTarefas.mostrarFoto(imagem, lblFoto);
+                } else {
+                    lblFoto.setText("Foto");
+                    lblFoto.setIcon(null);
+                }
             }
             this.gerTarefas.habilitarBotoes(this.gerTarefas.getGerEdicao().getClienteSelecionado(), btnNovo, btnAlterar);
         }else{
@@ -51,14 +54,17 @@ public class CadastrarCliente extends javax.swing.JDialog {
     }
     
     private void limparCampos(){
-        lblFoto.setText("Foto");
-        lblFoto.setIcon(null);
-        this.txtNome.setText("");          
-        this.txtData.setText("");
-        this.txtCpf.setText("");
-        this.txtEmail.setText("");
-        this.txtCelular.setText("");
-        this.rdbMasc.setSelected(true);
+        if (!controle) {
+            lblFoto.setText("Foto");
+            lblFoto.setIcon(null);
+            this.txtNome.setText("");          
+            this.txtData.setText("");
+            this.txtCpf.setText("");
+            this.txtEmail.setText("");
+            this.txtCelular.setText("");
+            this.rdbMasc.setSelected(true);
+            this.controle = false;
+        }          
     }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -290,10 +296,12 @@ public class CadastrarCliente extends javax.swing.JDialog {
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         this.gerTarefas.getGerEdicao().setClienteSelecionado(null);
+        this.controle = false;
         this.dispose();
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarActionPerformed
+        this.controle = false;
         gerTarefas.abrirPesqCliente();
         try {
             preencherCampos(this.gerTarefas.getGerEdicao().getClienteSelecionado());
@@ -304,6 +312,7 @@ public class CadastrarCliente extends javax.swing.JDialog {
 
     private void lblFotoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblFotoMouseClicked
         gerTarefas.abrirFoto(lblFoto, this);
+        this.controle = true;
     }//GEN-LAST:event_lblFotoMouseClicked
 
     private void formMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseEntered
@@ -345,6 +354,7 @@ public class CadastrarCliente extends javax.swing.JDialog {
         }finally{
             this.gerTarefas.getGerEdicao().setClienteSelecionado(null);
             this.gerTarefas.habilitarBotoes(this.gerTarefas.getGerEdicao().getClienteSelecionado(), btnNovo, btnAlterar);
+            this.controle = false;
             this.limparCampos();
         }                          
     }//GEN-LAST:event_btnNovoActionPerformed

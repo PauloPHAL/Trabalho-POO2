@@ -14,6 +14,7 @@ import org.hibernate.HibernateException;
 public class CadastrarFabricante extends javax.swing.JDialog {
     //acessos
     private GerTarefasGraficas gerTarefas;
+    private boolean controle = false;
     
     //construtor
     public CadastrarFabricante(java.awt.Frame parent, boolean modal,GerTarefasGraficas gerTarefas) {
@@ -26,17 +27,21 @@ public class CadastrarFabricante extends javax.swing.JDialog {
     
     private void preencherCampos(Fabricante fabricante) throws ParseException{
         if (fabricante != null ) {
+
             this.txtNome.setText(fabricante.getNome());
             this.comboPais.setSelectedItem(fabricante.getPais());
-            this.txtData.setText(fabricante.getDataFundacaoFormatada());                     
-            if ( fabricante.getLogo() != null ) { 
-                ImageIcon imagem = new ImageIcon( fabricante.getLogo());
-                this.gerTarefas.mostrarFoto(imagem, lblFoto);
-            } else {
-                lblFoto.setText("Foto");
-                lblFoto.setIcon(null);
+            this.txtData.setText(fabricante.getDataFundacaoFormatada());
+            if(!controle){
+                if (fabricante.getLogo() != null ) { 
+                    ImageIcon imagem = new ImageIcon( fabricante.getLogo());
+                    this.gerTarefas.mostrarFoto(imagem, lblFoto);
+                } else {
+                    lblFoto.setText("Foto");
+                    lblFoto.setIcon(null);
+                }
             }
             this.gerTarefas.habilitarBotoes(this.gerTarefas.getGerEdicao().getFabricanteSelecionado(), btlAdd, btlAlterar);
+            
         }else{
             this.limparCampos();
             this.gerTarefas.habilitarBotoes(this.gerTarefas.getGerEdicao().getFabricanteSelecionado(), btlAdd, btlAlterar);
@@ -44,11 +49,14 @@ public class CadastrarFabricante extends javax.swing.JDialog {
     }
     
     private void limparCampos(){
-        lblFoto.setText("Foto");
-        lblFoto.setIcon(null);
-        this.txtNome.setText("");
-        this.comboPais.setSelectedIndex(0);
-        this.txtData.setText("");
+        if (!controle) {
+            lblFoto.setText("Foto");
+            lblFoto.setIcon(null);
+            this.txtNome.setText("");
+            this.comboPais.setSelectedIndex(0);
+            this.txtData.setText("");
+            this.controle = false;
+        }
     }
     
     @SuppressWarnings("unchecked")
@@ -235,10 +243,12 @@ public class CadastrarFabricante extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btlAddPaisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btlAddPaisActionPerformed
+        this.controle = false;
         gerTarefas.abrirCadPais();
     }//GEN-LAST:event_btlAddPaisActionPerformed
 
     private void btlPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btlPesquisarActionPerformed
+        this.controle = false;
         gerTarefas.abrirPesqFabricante();
         try {
             preencherCampos(this.gerTarefas.getGerEdicao().getFabricanteSelecionado());
@@ -248,11 +258,13 @@ public class CadastrarFabricante extends javax.swing.JDialog {
     }//GEN-LAST:event_btlPesquisarActionPerformed
 
     private void lblFotoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblFotoMouseClicked
-        gerTarefas.abrirFoto(lblFoto,this);     
+        gerTarefas.abrirFoto(lblFoto,this);
+        this.controle = true;
     }//GEN-LAST:event_lblFotoMouseClicked
 
     private void btlSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btlSairActionPerformed
         this.gerTarefas.getGerEdicao().setFabricanteSelecionado(null);
+        this.controle = false;
         this.dispose();
     }//GEN-LAST:event_btlSairActionPerformed
 
@@ -292,6 +304,7 @@ public class CadastrarFabricante extends javax.swing.JDialog {
         }finally{
             this.gerTarefas.getGerEdicao().setFabricanteSelecionado(null);
             this.gerTarefas.habilitarBotoes(this.gerTarefas.getGerEdicao().getFabricanteSelecionado(), btlAdd, btlAlterar);
+            this.controle = false;
             this.limparCampos();
         }              
     }//GEN-LAST:event_btlAddActionPerformed

@@ -17,7 +17,7 @@ public class GerTarefasDaoDominio {
     private LocacaoDAO locacaoDao;
     private PaisDAO paisDao;
     //------------------------------------------
-    private DadosSubject dados;
+    private Subject dados;
     // padrao Singleton
     private static GerTarefasDaoDominio gerenciador; 
     private GerTarefasDaoDominio(){

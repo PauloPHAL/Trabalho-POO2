@@ -14,6 +14,7 @@ import org.hibernate.HibernateException;
 public class CadastrarModelo extends javax.swing.JDialog {
     //acessos
     private GerTarefasGraficas gerTarefas;
+    private boolean controle = false;
     
     //construtor 
     public CadastrarModelo(java.awt.Frame parent, boolean modal, GerTarefasGraficas gerTarefas) {
@@ -39,12 +40,14 @@ public class CadastrarModelo extends javax.swing.JDialog {
             }else{
                 this.rdExecutiva.setSelected(true);
             }
-            if (modelo.getFotoModelo() != null) { 
-                ImageIcon imagem = new ImageIcon( modelo.getFotoModelo());
-                this.gerTarefas.mostrarFoto(imagem, lblFotoModelo);
-            } else {
-                lblFotoModelo.setText("Foto Modelo");
-                lblFotoModelo.setIcon(null);
+            if (!controle) {
+                if (modelo.getFotoModelo() != null) { 
+                    ImageIcon imagem = new ImageIcon( modelo.getFotoModelo());
+                    this.gerTarefas.mostrarFoto(imagem, lblFotoModelo);
+                } else {
+                    lblFotoModelo.setText("Foto Modelo");
+                    lblFotoModelo.setIcon(null);
+                }
             }
             this.gerTarefas.habilitarBotoes(this.gerTarefas.getGerEdicao().getModeloSelecionado(), btlAdd, btlAlterar);
         }else{
@@ -54,13 +57,16 @@ public class CadastrarModelo extends javax.swing.JDialog {
     }
     
     private void limparCampos(){
-        lblFotoModelo.setText("Foto Modelo");
-        lblFotoModelo.setIcon(null);
-        this.txtNome.setText("");          
-        this.txtData.setText("");
-        this.txtCapacidade.setText("");
-        this.jComboBox1.setSelectedIndex(0);
-        this.rdComercial.setSelected(true);
+        if (!controle) {
+            lblFotoModelo.setText("Foto");
+            lblFotoModelo.setIcon(null);
+            this.txtNome.setText("");          
+            this.txtData.setText("");
+            this.txtCapacidade.setText("");
+            this.jComboBox1.setSelectedIndex(0);
+            this.rdComercial.setSelected(true);
+            this.controle = false;
+        }
     }
     
     @SuppressWarnings("unchecked")
@@ -288,6 +294,7 @@ public class CadastrarModelo extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btlPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btlPesquisarActionPerformed
+        this.controle = false;
         gerTarefas.abrirPesqModelo();
         try {
             preencherCampos(this.gerTarefas.getGerEdicao().getModeloSelecionado());
@@ -298,10 +305,12 @@ public class CadastrarModelo extends javax.swing.JDialog {
 
     private void lblFotoModeloMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblFotoModeloMouseClicked
         gerTarefas.abrirFoto(lblFotoModelo,this);
+        this.controle = true;
     }//GEN-LAST:event_lblFotoModeloMouseClicked
 
     private void btlSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btlSairActionPerformed
         this.gerTarefas.getGerEdicao().setModeloSelecionado(null);
+        this.controle = false;
         this.dispose();
     }//GEN-LAST:event_btlSairActionPerformed
 
@@ -352,6 +361,7 @@ public class CadastrarModelo extends javax.swing.JDialog {
         }finally{
             this.gerTarefas.getGerEdicao().setModeloSelecionado(null);
             this.gerTarefas.habilitarBotoes(this.gerTarefas.getGerEdicao().getModeloSelecionado(), btlAdd, btlAlterar);
+            this.controle = false;
             this.limparCampos();
         }                 
     }//GEN-LAST:event_btlAddActionPerformed
