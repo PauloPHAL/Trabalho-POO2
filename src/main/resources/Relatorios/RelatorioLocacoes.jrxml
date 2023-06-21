@@ -13,6 +13,27 @@
 			<style mode="Opaque" backcolor="#F0EFEF"/>
 		</conditionalStyle>
 	</style>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="valor" class="java.lang.Double">
+		<fieldDescription><![CDATA[valor]]></fieldDescription>
+	</field>
+	<field name="dataLocacaoFormatada" class="java.lang.String">
+		<fieldDescription><![CDATA[dataLocacaoFormatada]]></fieldDescription>
+	</field>
+	<field name="dataLocacao" class="java.util.Date">
+		<fieldDescription><![CDATA[dataLocacao]]></fieldDescription>
+	</field>
+	<field name="dataLimiteFormatada" class="java.lang.String">
+		<fieldDescription><![CDATA[dataLimiteFormatada]]></fieldDescription>
+	</field>
+	<field name="dataLimite" class="java.util.Date">
+		<fieldDescription><![CDATA[dataLimite]]></fieldDescription>
+	</field>
+	<field name="chaveComposta" class="Dominio.LocacaoPK">
+		<fieldDescription><![CDATA[chaveComposta]]></fieldDescription>
+	</field>
 	<background>
 		<band splitType="Stretch"/>
 	</background>

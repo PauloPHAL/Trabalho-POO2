@@ -39,6 +39,7 @@ public class GerTarefasGraficas {
     //------------------ Genrencia de Dominio
     private GerTarefasDaoDominio gerenciaDaoDominio;
     private GerenciaDeEdicao gerEdicao;
+    private GerenciaDeRelatorios gerRelatorios;
     //construtor
     public GerTarefasGraficas(){
         this.frmPrincipal = null;
@@ -57,7 +58,7 @@ public class GerTarefasGraficas {
         
         //Gerencia de edicao
         this.gerEdicao = GerenciaDeEdicao.getConexão();
-        
+        this.gerRelatorios = new GerenciaDeRelatorios();
         //Conexao
         this.gerenciaDaoDominio = GerTarefasDaoDominio.getConexão();
     }
@@ -127,7 +128,10 @@ public class GerTarefasGraficas {
     }
     public GerenciaDeEdicao getGerEdicao() {
         return gerEdicao;
-    }   
+    }
+    public GerenciaDeRelatorios getGerRelatorios() {
+        return gerRelatorios;
+    }
     //-----------------------------------------------------------------------------------------
     //Abrir Foto
     public void abrirFoto(JLabel lblFoto,JDialog janela){
