@@ -2,6 +2,7 @@ package Interface;
 
 import Dominio.Locacao;
 import Gerencia.GerTarefasGraficas;
+import java.util.List;
 import javax.swing.JOptionPane;
 
 public class PesquisarLocacao extends javax.swing.JDialog {
@@ -29,6 +30,7 @@ public class PesquisarLocacao extends javax.swing.JDialog {
         jButton3 = new javax.swing.JButton();
         jComboBoxTipo = new javax.swing.JComboBox<>();
         jButton4 = new javax.swing.JButton();
+        jButton5 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         addMouseListener(new java.awt.event.MouseAdapter() {
@@ -85,6 +87,13 @@ public class PesquisarLocacao extends javax.swing.JDialog {
             }
         });
 
+        jButton5.setText("Relatorios");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -94,8 +103,10 @@ public class PesquisarLocacao extends javax.swing.JDialog {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jButton5)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jButton4)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jButton3)
@@ -124,7 +135,8 @@ public class PesquisarLocacao extends javax.swing.JDialog {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton2)
                     .addComponent(jButton3)
-                    .addComponent(jButton4)))
+                    .addComponent(jButton4)
+                    .addComponent(jButton5)))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -172,6 +184,11 @@ public class PesquisarLocacao extends javax.swing.JDialog {
         this.gerTarefas.excluirTabela(jTable1, this);
     }//GEN-LAST:event_jButton4ActionPerformed
 
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        List<Locacao> lista = this.gerTarefas.getGerenciaDaoDominio().listar(Locacao.class, this.txtPesq.getText(), this.jComboBoxTipo.getSelectedIndex());
+        this.gerTarefas.getGerRelatorios().relComLista(lista, "RelatorioLocacoes.jasper");
+    }//GEN-LAST:event_jButton5ActionPerformed
+
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -179,6 +196,7 @@ public class PesquisarLocacao extends javax.swing.JDialog {
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
     private javax.swing.JComboBox<String> jComboBoxTipo;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
