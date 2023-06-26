@@ -37,11 +37,11 @@
         <dependency>
             <groupId>net.sf.jasperreports</groupId>
             <artifactId>jasperreports</artifactId>
-            <version>6.3.0</version>
+            <version>6.7.1</version>
             <exclusions>
                 <exclusion>
-                    <groupId>org.olap4j</groupId>
-                    <artifactId>olap4j</artifactId>
+                    <groupId>com.lowagie</groupId>
+                    <artifactId>itext</artifactId>
                 </exclusion>
             </exclusions>
         </dependency>

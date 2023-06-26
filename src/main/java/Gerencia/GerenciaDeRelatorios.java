@@ -56,7 +56,7 @@ public class GerenciaDeRelatorios {
             // PASSO 1 - Caminho do relatório
             InputStream rel = getClass().getResourceAsStream("../relatorios/" + nome);
             // COMPILAR
-            // JasperReport rel = JasperCompileManager.compileReport(relArq);           
+            // JasperReport rel = JasperCompileManager.compileReport(relArq);      
             // PASSO 2 - Criar parâmetros de Pesquisa 
             Map parametros = new HashMap();           
             // PASSO 3 - Carregar o relatório com os dados
